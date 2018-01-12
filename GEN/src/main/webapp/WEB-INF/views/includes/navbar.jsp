@@ -1,6 +1,6 @@
               
 <!--Navbar-->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark indigo">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark indigo">
 
   <a class="navbar-brand" href="#">
         <img src="resources/img/GEN/huracanes-tifones-019.png" height="30" class="d-inline-block align-top" alt="">

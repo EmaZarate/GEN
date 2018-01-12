@@ -1,2 +1,7 @@
 /* Your custom styles */
-#mapid { height: 180px; }
+body {
+  background-color: #F5F5F5;
+}
+#mapid { width: 1200px; height: 800px; 
+}
+.navbar{}
