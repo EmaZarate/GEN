@@ -35,5 +35,14 @@ public class HomeController {
 		
 		return "home";
 	}
+	/**
+	 * Radares
+	 */
+	@RequestMapping(value = "/radares", method = RequestMethod.GET)
+	public String radars(Locale locale, Model model) {
+
+		
+		return "radares";
+	}
 	
 }
