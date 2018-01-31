@@ -55,7 +55,7 @@
         <div class="col-md-4">
             <div class="md-form">
                 <input type="text" id="form51" class="form-control">
-                <label for="form51" class="">Ciudad</label>
+                <label for="form51" class="">Example label</label>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
         <div class="col-md-4">
             <div class="md-form">
                 <input type="text" id="form61" class="form-control">
-                <label for="form61" class="">Tipo de riesgo</label>
+                <label for="form61" class="">Example label</label>
             </div>
         </div>
 
