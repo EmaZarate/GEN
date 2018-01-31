@@ -1,0 +1,8 @@
+/* Your custom styles */
+body {
+  background-color: #F5F5F5;
+}
+#mapid { height: width: 600px; height: 800px;; 
+}
+.navbar{}
+.containerMap

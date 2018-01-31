@@ -10,9 +10,8 @@
         <!--First column-->
         <div class="col-md-6">
             <div class="md-form">
-                <i class="fa fa-envelope prefix"></i>
-                <input type="email" id="form81" class="form-control validate">
-                <label for="form81" data-error="wrong" data-success="right">Type your email</label>
+               <input type="text" id="form1" class="form-control">
+    			<label for="form1" class="">Nombre del riesgo</label>
             </div>
         </div>
 
@@ -21,7 +20,7 @@
             <div class="md-form">
                 <i class="fa fa-lock prefix"></i>
                 <input type="password" id="form82" class="form-control validate">
-                <label for="form82" data-error="wrong" data-success="right">Type your password</label>
+                <label for="form82" data-error="wrong" data-success="right"></label>
             </div>
         </div>
     </div>
@@ -34,7 +33,7 @@
 
             <div class="md-form">
                 <textarea type="text" id="form76" class="md-textarea"></textarea>
-                <label for="form76">Basic textarea</label>
+                <label for="form76">Descripción del riesgo</label>
             </div>
 
         </div>

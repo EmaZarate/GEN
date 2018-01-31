@@ -1,0 +1,26 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark indigo">
+
+   <a class="navbar-brand" href="#">
+        <img src="src/main/webapp/resources/img/GEN/huracanes-tifones-019.png" height="30" class="d-inline-block align-top" alt="">
+        GEN
+    </a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+       
+
+        <!-- Search form -->
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
