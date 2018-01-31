@@ -45,4 +45,11 @@ public class HomeController {
 		return "radares";
 	}
 	
+	@RequestMapping(value = "/nuevoRiesgo", method = RequestMethod.GET)
+	public String nuevoRiesgo(Locale locale, Model model) {
+
+		
+		return "nuevoRiesgo";
+	}
+	
 }
