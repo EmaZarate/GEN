@@ -47,7 +47,7 @@
         <div class="col-md-4">
             <div class="md-form">
                 <input type="text" id="form41" class="form-control">
-                <label for="form41" class="">Example label</label>
+                <label for="form41" class="">Provincia</label>
             </div>
         </div>
 
