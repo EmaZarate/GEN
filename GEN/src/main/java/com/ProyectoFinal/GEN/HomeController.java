@@ -51,5 +51,16 @@ public class HomeController {
 		
 		return "nuevoRiesgo";
 	}
+	@RequestMapping(value = "/prueba", method = RequestMethod.GET)
+	public String prueba(Locale locale, Model model) {
+        
+		return "prueba";
+	}
+	@RequestMapping(value = "/radarMeteorologico", method = RequestMethod.GET)
+	public String radarMeteorological(Locale locale, Model model) {
+
+		
+		return "radarMeteorologico";
+	}
 	
 }

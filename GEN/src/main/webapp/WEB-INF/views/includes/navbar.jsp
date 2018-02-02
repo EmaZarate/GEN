@@ -2,7 +2,7 @@
 <!--Navbar-->
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark indigo">
 
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="">
         <img src="resources/img/GEN/huracanes-tifones-019.png" height="30" class="d-inline-block align-top" alt="">
         GEN
     </a>
@@ -17,7 +17,7 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="home.jsp">Desastres <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="home">Desastres <span class="sr-only">(current)</span></a>
             </li>
             
             

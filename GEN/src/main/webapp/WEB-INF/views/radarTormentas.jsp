@@ -21,12 +21,11 @@
     <a class="nav-link disabled" href="radarHumedad">Humedad</a>
   </li>
 </ul>
-temperatura
-<div class="separator" style="clear: both; text-align: center;">
-<span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><iframe frameborder="0" height="500" src="https://embed.windyty.com/?-32.695,-61.611,5,temp,message,metric.wind.km/h" width="400"></iframe><br /></span>
-<div class="separator" style="clear: both; text-align: center;"> 
-   
 
+Tormentas activas
+<br>
+<a href="http://wwlln.net/WWLLN_movies/Movie_of_Lightning_in_Americas_BIG.gif" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" height="400" src="http://wwlln.net/WWLLN_movies/Movie_of_Lightning_in_Americas_BIG.gif" width="390" /></a>
+<div class="separator" style="clear: both; text-align: center;">
 
 
 
