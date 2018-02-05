@@ -9,7 +9,7 @@
     <a class="nav-link active" href="radares">Radar mas completo</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="radarMeteotologico"> Satelite meteorologico</a>
+    <a class="nav-link" href="radarMeteorologico"> Satelite meteorologico</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="radarTormentas">Tormertas activas</a>
@@ -21,7 +21,7 @@
     <a class="nav-link disabled" href="radarHumedad">Humedad</a>
   </li>
 </ul>
-temperatura
+<h2>Radar de Temperatura</h2>
 <div class="separator" style="clear: both; text-align: center;">
 <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><iframe frameborder="0" height="500" src="https://embed.windyty.com/?-32.695,-61.611,5,temp,message,metric.wind.km/h" width="400"></iframe><br /></span>
 <div class="separator" style="clear: both; text-align: center;"> 

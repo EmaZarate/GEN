@@ -38,6 +38,7 @@ public class HomeController {
 	/**
 	 * Radares
 	 */
+	
 	@RequestMapping(value = "/radares", method = RequestMethod.GET)
 	public String radars(Locale locale, Model model) {
 
@@ -61,6 +62,24 @@ public class HomeController {
 
 		
 		return "radarMeteorologico";
+	}
+	@RequestMapping(value = "/radarHumedad", method = RequestMethod.GET)
+	public String radarHumidity(Locale locale, Model model) {
+
+		
+		return "radarHumedad";
+	}
+	@RequestMapping(value = "/radarIsobara", method = RequestMethod.GET)
+	public String radarIsobar(Locale locale, Model model) {
+
+		
+		return "radarIsobara";
+	}
+	@RequestMapping(value = "/radarTormentas", method = RequestMethod.GET)
+	public String radarStorm(Locale locale, Model model) {
+
+		
+		return "radarTormentas";
 	}
 	
 }
