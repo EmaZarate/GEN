@@ -3,15 +3,18 @@
 <%@ include file="includes/navbar.jsp" %>
 <body>
 
-<div class="container">    
+<div class="container margentop">    
+	<h5 >Alta de nuevo riesgo</h5>
+	<br>
 	<form>
 	<!--First row-->
 	    <div class="row">
 	        <!--First column-->
 	        <div class="col-md-6">
 	            <div class="md-form">
-	               <input type="text" id="form1" class="form-control">
-	    			<label for="form1" class="">Nombre del riesgo</label>
+	            	<i class="fa fa-fire prefix"></i>
+	                <input type="text" id="form1" class="form-control">
+	    			<label for="form1" class="textcontrol">Nombre del riesgo</label>
 	            </div>
 	        </div>
 	
@@ -19,8 +22,8 @@
 	        <div class="col-md-6">
 	            <div class="md-form">
 	                <i class="fa fa-lock prefix"></i>
-	                <input type="password" id="form82" class="form-control validate">
-	                <label for="form82" data-error="wrong" data-success="right"></label>
+	                <input type="password" id="form82" class="form-control validate textcontrol">
+	                <label for="form82" data-error="wrong" class="textcontrol" data-success="right">Contraseña</label>
 	            </div>
 	        </div>
 	    </div>
@@ -30,10 +33,10 @@
 	    <div class="row">
 	        <!--First column-->
 	        <div class="col-md-12">
-	
 	            <div class="md-form">
-	                <textarea type="text" id="form76" class="md-textarea"></textarea>
-	                <label for="form76">Descripción del riesgo</label>
+	            	<i class="fa fa-font prefix"></i>
+	                <textarea id="form76" class="md-textarea "></textarea>
+	                <label for="form76" class="textcontrol">Descripción del riesgo</label>
 	            </div>
 	
 	        </div>
@@ -46,29 +49,48 @@
 	        <!--First column-->
 	        <div class="col-md-4">
 	            <div class="md-form">
+	           		<i class="fa fa-map-marker-alt prefix"></i>
 	                <input type="text" id="form41" class="form-control">
-	                <label for="form41" class="">Provincia</label>
+	                <label for="form41" class="textcontrol">Provincia</label>
 	            </div>
 	        </div>
 	
 	        <!--Second column-->
 	        <div class="col-md-4">
 	            <div class="md-form">
+	            <i class="fas fa-city prefix"></i>
 	                <input type="text" id="form51" class="form-control">
-	                <label for="form51" class="">Ciudad</label>
+	                <label for="form51" class="textcontrol">Ciudad</label>
 	            </div>
 	        </div>
 	
 	        <!--Third column-->
 	        <div class="col-md-4">
 	            <div class="md-form">
+					<i class="fas fa-list-ol prefix"></i>
 	                <input type="text" id="form61" class="form-control">
-	                <label for="form61" class="">Tipo de riesgo</label>
+	                <label for="form61"  class="textcontrol">Tipo de riesgo</label>
 	            </div>
 	        </div>
 	
 	    </div>
 	    <!--/.Third row-->
+	    <!--Fourth row-->
+	    <div class="row">
+	    	<div class="col-md-7">
+	    	</div>
+	     	<div class="col-md-2">
+	            <div class="md-form">
+	            <button type="button" class="btn btn-blue-grey">Cancelar</button>
+	    	 </div>
+	        </div>
+	        <div class="col-md-2">
+	            <div class="md-form">
+	            <button type="button" class="btn btn-success">Guardar</button>
+	    	 </div>
+	        </div>
+	    </div>
+	    <!--/.Fourth row-->
 	</form>
 </div>
 

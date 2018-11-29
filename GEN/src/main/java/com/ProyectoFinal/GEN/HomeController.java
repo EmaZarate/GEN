@@ -39,11 +39,11 @@ public class HomeController {
 	 * Radares
 	 */
 	
-	@RequestMapping(value = "/radares", method = RequestMethod.GET)
-	public String radars(Locale locale, Model model) {
+	@RequestMapping(value = "/mapaInteractivo", method = RequestMethod.GET)
+	public String mapaInteractivo(Locale locale, Model model) {
 
 		
-		return "radares";
+		return "mapaInteractivo";
 	}
 	
 	@RequestMapping(value = "/nuevoRiesgo", method = RequestMethod.GET)
@@ -51,11 +51,6 @@ public class HomeController {
 
 		
 		return "nuevoRiesgo";
-	}
-	@RequestMapping(value = "/prueba", method = RequestMethod.GET)
-	public String prueba(Locale locale, Model model) {
-        
-		return "prueba";
 	}
 	@RequestMapping(value = "/radarMeteorologico", method = RequestMethod.GET)
 	public String radarMeteorological(Locale locale, Model model) {
@@ -81,5 +76,8 @@ public class HomeController {
 		
 		return "radarTormentas";
 	}
-	
+	@RequestMapping(value = "/prueba", method = RequestMethod.GET)
+	public String prueba(Locale locale, Model model) {
+		return "prueba";
+	}
 }

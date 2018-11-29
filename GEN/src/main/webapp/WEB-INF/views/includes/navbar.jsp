@@ -16,7 +16,7 @@
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="home">Desastres <span class="sr-only">(current)</span></a>
             </li>
             
@@ -34,7 +34,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mapas</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="radares">Radares</a>
+                    <a class="dropdown-item" href="mapaInteractivo">Mapas/Radares</a>
                 </div>
             </li>
 
@@ -42,7 +42,7 @@
         <!-- Links -->
 
         <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa fa-envelope"></i> Contacto <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
