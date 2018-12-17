@@ -29,21 +29,8 @@
 	    </div>
 	    <!--/.First row-->
 	
-	    <!--Second row-->
-	    <div class="row">
-	        <!--First column-->
-	        <div class="col-md-12">
-	            <div class="md-form">
-	            	<i class="fa fa-font prefix"></i>
-	                <textarea id="form76" class="md-textarea "></textarea>
-	                <label for="form76" class="textcontrol">Descripción del riesgo</label>
-	            </div>
-	
-	        </div>
-	    </div>
-	    <!--/.Second row-->
-	
-	    <!--Third row-->
+	  
+	    <!--second row-->
 	    <div class="row">
 	
 	        <!--First column-->
@@ -68,12 +55,31 @@
 	        <div class="col-md-4">
 	            <div class="md-form">
 					<i class="fas fa-list-ol prefix"></i>
-	                <input type="text" id="form61" class="form-control">
-	                <label for="form61"  class="textcontrol">Tipo de riesgo</label>
+	                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+     					 aria-haspopup="true" aria-expanded="false" class="form-control">Tipo de Riesgo</button>
+	                <div class="dropdown-menu">
+				      <a class="dropdown-item" href="#">Inundacion</a>
+				      <a class="dropdown-item" href="#">Incendio</a>
+				      <a class="dropdown-item" href="#">Terremoto</a>
+				      <a class="dropdown-item" href="#">Tornado</a>
+				    </div>
 	            </div>
 	        </div>
 	
 	    </div>
+	    <!--Second row-->
+	    <div class="row">
+	        <!--First column-->
+	        <div class="col-md-12">
+	            <div class="md-form">
+	            	<i class="fa fa-font prefix"></i>
+	                <textarea id="form76" class="md-textarea "></textarea>
+	                <label for="form76" class="textcontrol">Descripción del riesgo</label>
+	            </div>
+	
+	        </div>
+	    </div>
+	    <!--/.Second row-->
 	    <!--/.Third row-->
 	    <!--Fourth row-->
 	    <div class="row">

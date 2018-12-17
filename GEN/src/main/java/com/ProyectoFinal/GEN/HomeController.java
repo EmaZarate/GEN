@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "Home";
 	}
 	/**
 	 * Radares
@@ -79,5 +79,14 @@ public class HomeController {
 	@RequestMapping(value = "/prueba", method = RequestMethod.GET)
 	public String prueba(Locale locale, Model model) {
 		return "prueba";
+	}
+	
+	@RequestMapping(value = "/aviacion", method = RequestMethod.GET)
+	public String aviacion(Locale locale, Model model) {
+		return "aviacion";
+	}
+	@RequestMapping(value = "/anomalas", method = RequestMethod.GET)
+	public String anomalas(Locale locale, Model model) {
+		return "anomalas";
 	}
 }

@@ -34,7 +34,8 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mapas</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="mapaInteractivo">Mapas/Radares</a>
+                    <a class="dropdown-item" href="mapaInteractivo">Mapas</a>
+                    <a class="dropdown-item" href="aviacion">Mapas para aviacion</a>
                 </div>
             </li>
 

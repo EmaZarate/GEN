@@ -1,25 +1,30 @@
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="includes/head.jsp" %>
 <body>
 <%@ include file="includes/navbar.jsp" %>
+
     
 <div class="container">
 	<div class="col-md-6 login">
-	 <!-- Default form login -->
-	<form class="text-center border border-light p-5">
+	 <!-- form login -->
+	 
+	<form:form class="text-center border border-light p-5" role="form" id="valida" action="validar" method="POST" modelAttribute="usu">
 	
 	    <p class="h4 mb-4">Ingresar a GEN</p>
 	
 	    <!-- Email -->
-	    <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
-	
+		<form:input path="usuario" class="form-control mb-4" type="text" placeholder="Usuario"/>	
 	    <!-- Password -->
-	    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+	    <form:input  path="clave"  class="form-control mb-4"  type="text" placeholder="Password"/>
 	
 	    <div class="d-flex justify-content-around">
 	        <div>
 	            <!-- Forgot password -->
 	            <a href="">¿Olvidaste tu contraseña?</a>
+	            <div class='error'><c:out value="${error}"></c:out></div>
 	        </div>
 	    </div>
 	
@@ -32,7 +37,7 @@
 	    </p>
 
 	
-	</form>
+	</form:form>
 	<!-- Default form login -->
 	</div>
 </div>

@@ -7,7 +7,7 @@
     <a class="nav-link" href="radarIsobara"><button type="button" class="btn btn-dark">Isobara</button></a>
     <a class="nav-link" href="radarMeteorologico"><button type="button" class="btn btn-dark">Meteorologico</button></a>
     <a class="nav-link" href="radarTormentas"><button type="button" class="btn btn-dark">Tormentas</button></a>
-    <a class="nav-link" href="prueba"><button type="button" class="btn btn-dark">Prueba</button></a>
+    <a class="nav-link" href="anomalas"><button type="button" class="btn btn-dark">Temp. Anomalas</button></a>
   </form>
 </nav> 
 

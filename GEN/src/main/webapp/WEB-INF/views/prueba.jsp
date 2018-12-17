@@ -5,10 +5,8 @@
 <%@ include file="includes/navRadares.jsp" %>        
 
 <div class="container-fliud">    
-<h2 style="text-align: center">Mapa Alturas y depresiones</h2> 
-<img id="OL_Icon_89_innerImage" class="olAlphaImg" src="http://www.ign.gob.ar/argenmap2/argenmap.jquery/img/iconos/argenmapIco.png" style="position: relative; width: 32px; height: 32px;">
-
-
+<h2 class="margentop" style="text-align: center">Surface Wx Analysis</h2> 
+<img src="radar/radar_combi0.jpg?nocache=1543612586" class="img-responsive img-thumbnail" />
 </div> 
  <%@ include file="includes/footer.jsp" %>      
 
