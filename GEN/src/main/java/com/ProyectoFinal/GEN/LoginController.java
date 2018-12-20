@@ -5,8 +5,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import datos.usuarioDatos;
 
@@ -42,7 +43,6 @@ public class LoginController {
 	
 	@RequestMapping(value = "/validar", method = RequestMethod.POST)
 	public String validar(Model model, Usuario usu,HttpSession sesion) {
-		System.out.println (usu);
 		String ir="redirect:/?error=1";
 		if(usuarioDatos.validarUsuario(usu))
 		{
@@ -55,5 +55,17 @@ public class LoginController {
 		
 		return ir;
 	}
+	
+	@RequestMapping(value = "/finsesion", method = RequestMethod.GET)
+	public String finsesion(Model model, HttpSession sesion) {
+		
+		
+		if(model.containsAttribute("usuario")) {sesion.removeAttribute("usuario");}
+
+		model.addAttribute("usu",  new Usuario());
+		
+		return "login";
+	}
+	
 	
 }
