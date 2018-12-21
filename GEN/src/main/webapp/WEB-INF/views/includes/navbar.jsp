@@ -16,11 +16,7 @@
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="home">Desastres <span class="sr-only">(current)</span></a>
-            </li>
-            
-            
+                        
              <!-- Dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Riesgos</a>
@@ -50,10 +46,12 @@
                             <a class="nav-link" href="#"><i class="fa fa-gear"></i> Propiedades</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Perfil </a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
+                             ${usuario.getUsuario()}</a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                                <a class="dropdown-item" href="#">Mi cuenta</a>
-                                <a class="dropdown-item" href="#">cerrar sesion</a>
+                             	<a class="dropdown-item" href="login">Login</a>
+                                <a class="dropdown-item" href="micuenta">Mi cuenta</a>
+                                <a class="dropdown-item" href="finsesion">cerrar sesion</a>
                             </div>
                         </li>
         </ul>

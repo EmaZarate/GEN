@@ -18,7 +18,7 @@
 	    <!-- Email -->
 		<form:input path="usuario" class="form-control mb-4" type="text" placeholder="Usuario"/>	
 	    <!-- Password -->
-	    <form:input  path="clave"  class="form-control mb-4"  type="text" placeholder="Password"/>
+	    <form:input  path="clave"  class="form-control mb-4"  type="password" placeholder="Password"/>
 	
 	    <div class="d-flex justify-content-around">
 	        <div>

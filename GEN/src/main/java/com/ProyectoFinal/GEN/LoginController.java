@@ -49,7 +49,6 @@ public class LoginController {
 			//crear sesiones
 			sesion.setAttribute("usuario", usu);
 			ir="redirect:/mapaInteractivo";
-			
 		}
 		else{model.addAttribute("usu",  new Usuario());}
 		

@@ -109,4 +109,11 @@ public class HomeController {
 		{ir="login";model.addAttribute("usu", new Usuario());}	
 		return ir; 
 	}
+	@RequestMapping(value = "/micuenta", method = RequestMethod.GET)
+	public String micuenta(Locale locale, Model model, HttpSession sesion) {
+		String ir="micuenta";
+		if(sesion.getAttribute("usuario")==null) 
+		{ir="login";model.addAttribute("usu", new Usuario());}	
+		return ir; 
+	}
 }
