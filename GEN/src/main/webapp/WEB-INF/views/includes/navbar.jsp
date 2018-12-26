@@ -49,9 +49,13 @@
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
                              ${usuario.getUsuario()}</a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                             	<% if (session.getAttribute("usuario") == null){%>
                              	<a class="dropdown-item" href="login">Login</a>
+                             	<%}%>
                                 <a class="dropdown-item" href="micuenta">Mi cuenta</a>
+                                <% if (session.getAttribute("usuario") != null){%>
                                 <a class="dropdown-item" href="finsesion">cerrar sesion</a>
+                                <%}%>
                             </div>
                         </li>
         </ul>

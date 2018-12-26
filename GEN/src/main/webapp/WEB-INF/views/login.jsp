@@ -1,5 +1,4 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="includes/head.jsp" %>
@@ -14,7 +13,6 @@
 	<form:form class="text-center border border-light p-5" role="form" id="valida" action="validar" method="POST" modelAttribute="usu">
 	
 	    <p class="h4 mb-4">Ingresar a GEN</p>
-	
 	    <!-- Email -->
 		<form:input path="usuario" class="form-control mb-4" type="text" placeholder="Usuario"/>	
 	    <!-- Password -->
