@@ -34,15 +34,14 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Locale locale, Model model, @RequestParam(required = false) String error) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		if(error!=null && error.equals("1")){error="Usuario o password no valido";}
-		model.addAttribute("usu",new Usuario());
 		model.addAttribute("error", error);
+		logger.info("Welcome home! The client locale is {}.", locale);
+		model.addAttribute("usu",new Usuario());
 		return "login";
 	}
 	
 	@RequestMapping(value = "/validar", method = RequestMethod.POST)
-	public String validar(Model model, Usuario usu,HttpSession sesion) {
+	public String validar(Model model, Usuario usu,HttpSession sesion, @RequestParam(required = false) String error) {
 		String ir="redirect:/?error=1";
 		if(usuarioDatos.validarUsuario(usu))
 		{
@@ -50,19 +49,18 @@ public class LoginController {
 			sesion.setAttribute("usuario", usu);
 			ir="redirect:/mapaInteractivo";
 		}
-		else{model.addAttribute("usu",  new Usuario());}
+		else{model.addAttribute("usu",  new Usuario());
+		error="Error de usuario o password";
+		model.addAttribute("error", error);
+		ir="redirect:/login";}
 		
 		return ir;
 	}
 	
 	@RequestMapping(value = "/finsesion", method = RequestMethod.GET)
 	public String finsesion(Model model, HttpSession sesion) {
-		
-		
-		if(model.containsAttribute("usuario")) {sesion.removeAttribute("usuario");}
-
+		sesion.removeAttribute("usuario");
 		model.addAttribute("usu",  new Usuario());
-		
 		return "login";
 	}
 	

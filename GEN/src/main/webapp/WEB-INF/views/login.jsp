@@ -4,14 +4,16 @@
 <%@ include file="includes/head.jsp" %>
 <body>
 <%@ include file="includes/navbar.jsp" %>
-
+ 
+	<div class="alert alert-danger alert-dismissible text-centro" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar" ><span aria-hidden="true">&times;</span>	</button>
+						<strong><c:out value="${error}"></c:out></strong>
+	</div>  
     
 <div class="container">
 	<div class="col-md-6 login">
 	 <!-- form login -->
-	 
 	<form:form class="text-center border border-light p-5" role="form" id="valida" action="validar" method="POST" modelAttribute="usu">
-	
 	    <p class="h4 mb-4">Ingresar a GEN</p>
 	    <!-- Email -->
 		<form:input path="usuario" class="form-control mb-4" type="text" placeholder="Usuario"/>	
@@ -22,7 +24,6 @@
 	        <div>
 	            <!-- Forgot password -->
 	            <a href="">¿Olvidaste tu contraseña?</a>
-	            <div class='error'><c:out value="${error}"></c:out></div>
 	        </div>
 	    </div>
 	
@@ -36,7 +37,11 @@
 
 	
 	</form:form>
-	<!-- Default form login -->
+	<!-- form login -->
+	
+	 <!-- Asi muestro mensajes -->
+	    <div class='msj'><c:out value="${mensaje}"></c:out></div>
+		<div class='error'><c:out value="${error}"></c:out></div>
 	</div>
 </div>
 
