@@ -1,3 +1,7 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="includes/head.jsp" %>
 
 <%@ include file="includes/head.jsp" %>
 <%@ include file="includes/navbar.jsp" %>
@@ -6,7 +10,7 @@
 <div class="container margentop">    
 	<h5 >Alta de nuevo riesgo</h5>
 	<br>
-	<form>
+	<form:form class="text-center border border-light p-5" role="form" id="nuevoRiesgo" action="nuevoRiesgo" method="POST" modelAttribute="riesgo">
 	<!--First row-->
 	    <div class="row">
 	        <!--First column-->
@@ -97,7 +101,7 @@
 	        </div>
 	    </div>
 	    <!--/.Fourth row-->
-	</form>
+	</form:form>
 </div>
 
  <%@ include file="includes/footer.jsp" %>      
