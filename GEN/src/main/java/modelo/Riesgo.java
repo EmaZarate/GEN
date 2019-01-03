@@ -10,6 +10,8 @@ public class Riesgo {
 	private String descripcion;
 	private int tipo_riesgo;
 	private int id_usuario;
+	private int prv;
+	private int ciu;
 	
 	public int getIdriesgo() {
 		return idriesgo;
@@ -36,7 +38,6 @@ public class Riesgo {
 		this.descripcion = descripcion;
 	}
 	
-	
 	public int getId_usuario() {
 		return id_usuario;
 	}
@@ -60,5 +61,17 @@ public class Riesgo {
 	}
 	public void setTipo_riesgo(int tipo_riesgo) {
 		this.tipo_riesgo = tipo_riesgo;
+	}
+	public int getPrv() {
+		return prv;
+	}
+	public void setPrv(int prv) {
+		this.prv = prv;
+	}
+	public int getCiu() {
+		return ciu;
+	}
+	public void setCiu(int ciu) {
+		this.ciu = ciu;
 	}
 }

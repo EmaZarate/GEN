@@ -8,7 +8,7 @@
 <div class="container margentop">    
 	<h4>Alta de nuevo riesgo</h4>
 	<br>
-	<form:form class="border border-light p-5" role="form" id="crearRiesgo" action="crearRiesgo" method="post" modelAttribute="rie">
+	<form:form class="border border-light p-5" role="form" id="verAccion" action="verAccion" method="POST" modelAttribute="accion">
 	<!--First row-->
 	    <div class="row">
 	        <!--First column-->
@@ -16,7 +16,7 @@
 	            <div class="md-form">
 	            	<i class="fa fa-fire prefix"></i>
 	                <form:input type="text" path="nombre" class="form-control"/>
-	    			<label for="nombre" class="textcontrol">Nombre del riesgo</label>
+	    			<label for="nombre" class="textcontrol">Nombre de la Accion</label>
 	            </div>
 	        </div>
 	    
@@ -24,11 +24,11 @@
 	        <div class="col-md-4">
 	               <div class="md-form">
                       <div class="form-group">
-					    <form:select path="tipo_riesgo" class="browser-default custom-select form-control">
-						  <option selected>Tipo de riesgo</option>
-						  <option value="1">Inundacion</option>
-						  <option value="2">Incendio</option>
-						  <option value="3">Otro</option>
+					    <form:select path="id_tipo_Accion" class="browser-default custom-select form-control">
+						  <option selected>Tipo de Accion</option>
+						  <option value="1">Equipo de rescate</option>
+						  <option value="2">Provisiones</option>
+						  <option value="3">Emergencia</option>
 						</form:select>
 					  </div>
 	            </div>
@@ -36,36 +36,14 @@
 	        </div>
 	     
 	    <!--/.First row-->
-	    <!--second row-->
-	    <div class="row">
-	
-	        <!--First column-->
-	        <div class="col-md-6">
-	            <div class="md-form">
-	           		<i class="fa fa-map-marker-alt prefix"></i>
-	                <form:input type="text" id="prv" path="prv" class="form-control"/>
-	                <label for="prv" class="textcontrol">Provincia</label>
-	            </div>
-	        </div>
-	
-	        <!--Second column-->
-	        <div class="col-md-6">	        
-	            <div class="md-form">
-	            	 <i class="fas fa-city prefix"></i>
-	                <form:input path="ciu" id="ciu" type="text" class="form-control"/>
-	                <label for="ciu" class="textcontrol">Ciudad</label>
-	            </div>
-	        </div>
-	    </div>
 	    
-	    <!--Second row-->
 	    <div class="row">
 	        <!--First column-->
 	        <div class="col-md-12">
 	            <div class="md-form">
 	            	<i class="fa fa-font prefix"></i>
-	                <form:input type="textarea" id="desc" path="descripcion" class="md-textarea "/>
-	                <label for="desc" class="textcontrol">Descripción del riesgo</label>
+	                <form:input type="textarea" id="descripcion" path="descripcion" class="md-textarea "/>
+	                <label for="desc" class="textcontrol">Descripción de la accion</label>
 	            </div>
 	
 	        </div>
