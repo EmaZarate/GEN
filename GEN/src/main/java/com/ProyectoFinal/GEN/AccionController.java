@@ -30,16 +30,18 @@ public class AccionController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AccionController.class);	
 	
-	@RequestMapping(value ="/verAccion")
-	 public String enviar(Accion accion) {
-	 return "verAccion";
-	 }
+	@RequestMapping(value ="/nuevaAccion")
+	public String nuevaAccion(Model model) {
+	Accion acc = new Accion();
+	model.addAttribute("accion", acc);
+	return "nuevaAccion";
+	}
 
 	
-	@RequestMapping(value="/formularioAccion")
-	 public String formularioPersona(@ModelAttribute Accion accion) {
-	 return "formularioAccion";
-	 }
+	@RequestMapping(value="/guardarAccion")
+	public String formularioPersona(@ModelAttribute Accion accion) {
+	return "guardarAccion";
+	}
 	
 	
 }

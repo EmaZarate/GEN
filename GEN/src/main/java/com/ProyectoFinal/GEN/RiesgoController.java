@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,12 +42,19 @@ public class RiesgoController {
 	}
 	
 	@RequestMapping(value = "/crearRiesgo", method = RequestMethod.POST)
-	public String crearRiesgo(@RequestBody Riesgo rie, HttpSession sesion, Model model) {
+	public String crearRiesgo(@ModelAttribute("rie") Riesgo rie,
+            BindingResult result, HttpSession sesion, Model model) {
 		String ir="crearRiesgo";
-		System.out.println("crearRiesgo");
-		System.out.println(rie.getDescripcion());
 		if(sesion.getAttribute("usuario")==null) 
-		{ir="login";}	
+			{
+				ir="login";
+			}
+		else {
+			Usuario usu=(Usuario)sesion.getAttribute("usuario");
+			rie.setId_usuario(usu.getIdusuario());
+			riesgoDatos.nuevoRiesgo(rie);
+			ir="mapaInteractivo";
+		}
 		return ir;
 	}
 	

@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 
 import datos.conexion;
 import java.sql.ResultSet;
@@ -17,20 +18,17 @@ public class riesgoDatos {
 		try {
 			conn = conexion.getConnection();
 			conn.setAutoCommit(false);
+			System.out.println("riesgoDatos - nuevoRiesgo");
 			PreparedStatement pst = 
-			conn.prepareStatement("INSERT INTO 'riesgos' ('nombre','fecha_inicio','fecha_fin','estado','tipo_riesgo','id_usuario','descripcion') VALUES ( ?, ?, ?, ?, ?, ?, ?)");
+			conn.prepareStatement("INSERT INTO `riesgos` (`nombre`, `estado`, `tipo_riesgo`, `id_usuario`, `descripcion`) VALUES ( ?, ?, ?, ?, ?)");
 			pst.setString(1, rie.getNombre());
-			pst.setDate(2, rie.getFecha_inicio());
-			pst.setDate(3, rie.getFecha_fin());
-			pst.setString(4, rie.getEstado());
-			pst.setInt(5,rie.getTipo_riesgo());
-			pst.setInt(6,rie.getId_usuario());
-			pst.setString(7,rie.getDescripcion());
+			pst.setString(2, rie.getEstado());
+			pst.setInt(3,rie.getTipo_riesgo());
+			pst.setInt(4,rie.getId_usuario());
+			pst.setString(5,rie.getDescripcion());
+			System.out.println(pst);
 			pst.executeUpdate();
-			ResultSet rs=pst.getGeneratedKeys();
-
 			conn.commit();
-			
 			conn.close();
 		} 
 		catch (SQLException e) {System.out.println(e.toString());try {conn.rollback();} catch (SQLException e1) {e1.printStackTrace();	}}

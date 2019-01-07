@@ -26,9 +26,9 @@
                       <div class="form-group">
 					    <form:select path="tipo_riesgo" class="browser-default custom-select form-control">
 						  <option selected>Tipo de riesgo</option>
-						  <option value="1">Inundacion</option>
-						  <option value="2">Incendio</option>
-						  <option value="3">Otro</option>
+						  <option value=1>Inundacion</option>
+						  <option value=2>Incendio</option>
+						  <option value=3>Otro</option>
 						</form:select>
 					  </div>
 	            </div>
@@ -43,7 +43,7 @@
 	        <div class="col-md-6">
 	            <div class="md-form">
 	           		<i class="fa fa-map-marker-alt prefix"></i>
-	                <form:input type="text" id="prv" path="prv" class="form-control"/>
+	                <form:input type="number" id="prv" path="prv" class="form-control"/>
 	                <label for="prv" class="textcontrol">Provincia</label>
 	            </div>
 	        </div>
@@ -52,7 +52,7 @@
 	        <div class="col-md-6">	        
 	            <div class="md-form">
 	            	 <i class="fas fa-city prefix"></i>
-	                <form:input path="ciu" id="ciu" type="text" class="form-control"/>
+	                <form:input path="ciu" id="ciu" type="number" class="form-control"/>
 	                <label for="ciu" class="textcontrol">Ciudad</label>
 	            </div>
 	        </div>

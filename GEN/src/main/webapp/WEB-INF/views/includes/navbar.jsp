@@ -22,6 +22,7 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Riesgos</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="nuevoRiesgo">Nuevo Riesgo</a>
+                    <a class="dropdown-item" href="nuevaAccion">Nueva Accion</a>
                 </div>
             </li>
             
@@ -52,7 +53,12 @@
                              	<% if (session.getAttribute("usuario") == null){%>
                              	<a class="dropdown-item" href="login">Login</a>
                              	<%}%>
+                             	<% if (session.getAttribute("usuario") == null){%>
+                             	<a class="dropdown-item" href="">Crear cuenta</a>
+                             	<%}%>
+                             	<% if (session.getAttribute("usuario") != null){%>
                                 <a class="dropdown-item" href="micuenta">Mi cuenta</a>
+                                <%}%>
                                 <% if (session.getAttribute("usuario") != null){%>
                                 <a class="dropdown-item" href="finsesion">cerrar sesion</a>
                                 <%}%>
