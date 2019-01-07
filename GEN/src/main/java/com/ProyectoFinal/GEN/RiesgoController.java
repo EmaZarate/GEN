@@ -52,6 +52,7 @@ public class RiesgoController {
 		else {
 			Usuario usu=(Usuario)sesion.getAttribute("usuario");
 			rie.setId_usuario(usu.getIdusuario());
+			rie.setEstado("Iniciado");
 			riesgoDatos.nuevoRiesgo(rie);
 			ir="mapaInteractivo";
 		}

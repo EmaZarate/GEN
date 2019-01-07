@@ -19,8 +19,9 @@ public class riesgoDatos {
 			conn = conexion.getConnection();
 			conn.setAutoCommit(false);
 			System.out.println("riesgoDatos - nuevoRiesgo");
+			//Insert con parametros para que no hagan SQL Inject
 			PreparedStatement pst = 
-			conn.prepareStatement("INSERT INTO `riesgos` (`nombre`, `estado`, `tipo_riesgo`, `id_usuario`, `descripcion`) VALUES ( ?, ?, ?, ?, ?)");
+			conn.prepareStatement("INSERT INTO `riesgos` (`nombre`, `estado`, `tipo_riesgo`, `id_usuario`, `descripcion`,`fecha_inicio`) VALUES ( ?, ?, ?, ?, ?,?)");
 			pst.setString(1, rie.getNombre());
 			pst.setString(2, rie.getEstado());
 			pst.setInt(3,rie.getTipo_riesgo());

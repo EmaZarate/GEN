@@ -40,23 +40,32 @@
 	    <div class="row">
 	
 	        <!--First column-->
-	        <div class="col-md-6">
-	            <div class="md-form">
-	           		<i class="fa fa-map-marker-alt prefix"></i>
-	                <form:input type="number" id="prv" path="prv" class="form-control"/>
-	                <label for="prv" class="textcontrol">Provincia</label>
+	         <div class="col-md-4">
+	               <div class="md-form">
+                      <div class="form-group">
+					    <form:select path="prv" class="browser-default custom-select form-control">
+						  <option selected>Provincia</option>
+						  <option value=></option>
+						  <option value=></option>
+						  <option value=></option>
+						</form:select>
+					  </div>
 	            </div>
 	        </div>
+	     
 	
-	        <!--Second column-->
-	        <div class="col-md-6">	        
-	            <div class="md-form">
-	            	 <i class="fas fa-city prefix"></i>
-	                <form:input path="ciu" id="ciu" type="number" class="form-control"/>
-	                <label for="ciu" class="textcontrol">Ciudad</label>
+	      <div class="col-md-4">
+	               <div class="md-form">
+                      <div class="form-group">
+					    <form:select path="ciu" class="browser-default custom-select form-control">
+						  <option selected>Ciudad</option>
+						  <option value=></option>
+						  <option value=></option>
+						  <option value=></option>
+						</form:select>
+					  </div>
 	            </div>
 	        </div>
-	    </div>
 	    
 	    <!--Second row-->
 	    <div class="row">
