@@ -39,34 +39,29 @@
 	    <!--second row-->
 	    <div class="row">
 	
-	        <!--First column-->
-	         <div class="col-md-4">
+	       
+	     <div class="col-md-4">
 	               <div class="md-form">
                       <div class="form-group">
-					    <form:select path="prv" class="browser-default custom-select form-control">
-						  <option selected>Provincia</option>
-						  <option value=></option>
-						  <option value=></option>
-						  <option value=></option>
+					    <form:select id="cmciu" path="prv" class="form-control">
+    					  <form:option value="0" label="Selecciona Provincia" />
+						  <form:options items="${prvs}" itemValue="id_provincia" itemLabel="nombre" />
 						</form:select>
 					  </div>
 	            </div>
 	        </div>
-	     
 	
 	      <div class="col-md-4">
 	               <div class="md-form">
                       <div class="form-group">
-					    <form:select path="ciu" class="browser-default custom-select form-control">
-						  <option selected>Ciudad</option>
-						  <option value=></option>
-						  <option value=></option>
-						  <option value=></option>
+					    <form:select id="cmciu" path="ciu" class="form-control">
+    					  <form:option value="0" label="Selecciona Ciudad" />
+					 <!--/ <form:options items="${cius}" itemValue="id_ciudad" itemLabel="nombre" />-->
 						</form:select>
 					  </div>
 	            </div>
-	        </div>
-	    
+	        </div> 
+	    </div>
 	    <!--Second row-->
 	    <div class="row">
 	        <!--First column-->

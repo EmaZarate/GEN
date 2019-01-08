@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import datos.ciudadDatos;
+import datos.provinciaDatos;
 import datos.riesgoDatos;
 import modelo.Riesgo;
 import modelo.Usuario;
@@ -37,6 +39,8 @@ public class RiesgoController {
 		Riesgo rie=new Riesgo();
 		System.out.println("Riesgo Creado");
 		model.addAttribute("rie",rie);
+		model.addAttribute("cius", ciudadDatos.mostrarTodos() );
+		model.addAttribute("prvs", provinciaDatos.mostrarTodos() );
 		System.out.println("Riesgo Modelado");
 		return "nuevoRiesgo";
 	}
