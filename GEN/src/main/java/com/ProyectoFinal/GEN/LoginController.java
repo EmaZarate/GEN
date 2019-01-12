@@ -15,13 +15,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import datos.usuarioDatos;
-
 import modelo.Usuario;
 
 
@@ -63,6 +63,25 @@ public class LoginController {
 		model.addAttribute("usu",  new Usuario());
 		return "login";
 	}
+	
+	@RequestMapping(value = "/nuevoUsuario", method = RequestMethod.GET)
+	public String nuevoUsuario(Locale locale, Model model, HttpSession sesion) {
+		Usuario nu=new Usuario();
+		model.addAttribute("nu",nu);
+		return "registrarse";
+	}
+
+	@RequestMapping(value = "/registrarse", method = RequestMethod.POST)
+	public String crearTipoRiesgo(@ModelAttribute("nu") Usuario nu,
+            BindingResult result, HttpSession sesion, Model model) {
+		    String ir="registrarse";
+			nu.setHabilitado(false);
+			nu.setTipoUsuario(1);
+			usuarioDatos.nuevoUsu(nu);
+			ir="mapaInteractivo";
+		return ir;
+	}
+	
 	
 	
 }

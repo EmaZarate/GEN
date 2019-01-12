@@ -8,45 +8,46 @@ import java.util.List;
 import datos.conexion;
 import java.sql.ResultSet;
 
-import modelo.TipoRiesgo;
+import modelo.Accion;
 
-public class tipoRiesgoDatos {
-	public static  List<TipoRiesgo> mostrarTodos() {
+public class AccionDatos {
+	public static  List<Accion> mostrarTodos() {
 		Connection conn = null;
-		List<TipoRiesgo> trs=new ArrayList<TipoRiesgo>();
+		List<Accion> as=new ArrayList<Accion>();
 		try {
 			conn = conexion.getConnection();
 			conn.setAutoCommit(false);
 			PreparedStatement pst = 
-			conn.prepareStatement("SELECT * from tipo_riesgo order by nombre asc");
+			conn.prepareStatement("SELECT * from accion order by nombre asc");
 			ResultSet rs=pst.executeQuery();
 			while(rs.next())
 				{                           
-				TipoRiesgo tr=new TipoRiesgo();
-				tr.setId_tipor(rs.getInt("id_tipo"));
-				tr.setNombre(rs.getString("nombre"));
-				tr.setDescripcion(rs.getString("descripcion"));
-				trs.add(tr);
+				Accion a=new Accion();
+				a.setId_accion(rs.getInt("id_accion"));
+				a.setId_tipo_Accion(rs.getInt("id_tipo_accion"));
+				a.setDescripcion(rs.getString("descripcion"));
+				a.setNombre(rs.getString("nombre"));
+				as.add(a);
 				}
 			conn.close();
 		} 
 		catch (SQLException e) {System.out.println(e.toString());}
 		finally {if(conn!=null)	try {conn.close();} catch (SQLException e) {System.out.println(e.toString());}
 		}
-		return trs;
+		return as;
 	}
 	
-	public static void nuevoTR(TipoRiesgo tr) {
+	public static void nuevoA(Accion a) {
 		Connection conn = null;
 		try {
 			conn = conexion.getConnection();
 			conn.setAutoCommit(false);
 			//Insert con parametros para que no hagan SQL Inject
 			PreparedStatement pst = 
-			conn.prepareStatement("INSERT INTO `tipo_riesgo` (`descripcion`,`nombre`,`usu_alta_tr`,`fecha_alta_tr`) VALUES (?, ?, ?, NOW())");
-			pst.setString(1, tr.getDescripcion());
-			pst.setString(2, tr.getNombre());
-			pst.setInt(3, tr.getId_usu_atr());
+			conn.prepareStatement("INSERT INTO `accion` (`id_tipo_Accion`,`descripcion`,`nombre`) VALUES ( ?, ?, ?)");
+			pst.setInt(1, a.getId_tipo_Accion());
+			pst.setString(1, a.getDescripcion());
+			pst.setString(1, a.getNombre());
 			pst.executeUpdate();
 			conn.commit();
 			conn.close();
@@ -57,4 +58,6 @@ public class tipoRiesgoDatos {
 		}	
 	}
 }
+
+
 	

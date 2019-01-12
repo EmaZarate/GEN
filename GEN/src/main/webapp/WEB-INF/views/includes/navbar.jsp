@@ -22,11 +22,16 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Riesgos</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="nuevoRiesgo">Nuevo Riesgo</a>
-                    <a class="dropdown-item" href="nuevaAccion">Nueva Accion</a>
+                    <a class="dropdown-item" href="nuevoTipoRiesgo">Nuevo Tipo de Riesgo</a>
                 </div>
             </li>
-            
-
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Acciones</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="nuevaAccion">Nueva Accion</a>
+                    <a class="dropdown-item" href="nuevoTipoAccion">Nuevo Tipo de Accion</a>
+                </div>
+            </li>
             <!-- Dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mapas</a>
@@ -54,7 +59,7 @@
                              	<a class="dropdown-item" href="login">Login</a>
                              	<%}%>
                              	<% if (session.getAttribute("usuario") == null){%>
-                             	<a class="dropdown-item" href="">Crear cuenta</a>
+                             	<a class="dropdown-item" href="register">Crear cuenta</a>
                              	<%}%>
                              	<% if (session.getAttribute("usuario") != null){%>
                                 <a class="dropdown-item" href="micuenta">Mi cuenta</a>

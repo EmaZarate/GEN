@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import datos.ciudadDatos;
 import datos.provinciaDatos;
 import datos.riesgoDatos;
+import datos.tipoRiesgoDatos;
 import modelo.Riesgo;
+import modelo.TipoRiesgo;
 import modelo.Usuario;
 
 
@@ -37,11 +39,9 @@ public class RiesgoController {
 	@RequestMapping(value = "/nuevoRiesgo", method = RequestMethod.GET)
 	public String nuevoRiesgo(Locale locale, Model model, HttpSession sesion) {
 		Riesgo rie=new Riesgo();
-		System.out.println("Riesgo Creado");
 		model.addAttribute("rie",rie);
 		model.addAttribute("cius", ciudadDatos.mostrarTodos() );
 		model.addAttribute("prvs", provinciaDatos.mostrarTodos() );
-		System.out.println("Riesgo Modelado");
 		return "nuevoRiesgo";
 	}
 	
@@ -62,7 +62,36 @@ public class RiesgoController {
 		}
 		return ir;
 	}
-	
-	
+	@RequestMapping(value = "/nuevoTipoRiesgo", method = RequestMethod.GET)
+	public String nuevoRipoRiesgo(Locale locale, Model model, HttpSession sesion) {
+		String ir="login";
+		if(sesion.getAttribute("usuario")==null) 
+			{
+				ir="login";
+			}
+		else {
+		TipoRiesgo tr=new TipoRiesgo();
+		model.addAttribute("tr",tr);
+		ir="nuevoTipoRiesgo";
+		}
+		return ir;
+	}
+
+	@RequestMapping(value = "/crearTipoRiesgo", method = RequestMethod.POST)
+	public String crearTipoRiesgo(@ModelAttribute("tr") TipoRiesgo tr,
+            BindingResult result, HttpSession sesion, Model model) {
+		String ir="crearTipoRiesgo";
+		if(sesion.getAttribute("usuario")==null) 
+			{
+				ir="login";
+			}
+		else {
+			Usuario usu=(Usuario)sesion.getAttribute("usuario");
+			tr.setId_usu_atr(usu.getIdusuario());
+			tipoRiesgoDatos.nuevoTR(tr);
+			ir="mapaInteractivo";
+		}
+		return ir;
+	}
 	
 }

@@ -7,6 +7,7 @@ import java.sql.Statement;
 import datos.conexion;
 import java.sql.ResultSet;
 
+import modelo.TipoRiesgo;
 import modelo.Usuario;
 
 public class usuarioDatos {
@@ -46,8 +47,29 @@ public class usuarioDatos {
 		}
 		return resp;
 	}
-	
-		
-	
+	public static void nuevoUsu(Usuario usu) {
+		Connection conn = null;
+		try {
+			conn = conexion.getConnection();
+			conn.setAutoCommit(false);
+			//Insert con parametros para que no hagan SQL Inject
+			PreparedStatement pst = 
+			conn.prepareStatement("INSERT INTO `usuarios` (`nombre`, `apellido`,`email`,`usuario`, `password`,`habilitado`,`tipo_usuario`) VALUES ( ?, ?, ?,?,?,?,?)");
+			pst.setString(1, usu.getNombre());
+			pst.setString(2, usu.getApellido());
+			pst.setString(3, usu.getEmail());
+			pst.setString(4, usu.getUsuario());
+			pst.setString(5, usu.getClave());
+			pst.setBoolean(6, usu.getHabilitado());
+			pst.setInt(7, usu.getTipoUsuario());
+			pst.executeUpdate();
+			conn.commit();
+			conn.close();
+		} 
+		catch (SQLException e) {System.out.println(e.toString());try {conn.rollback();} catch (SQLException e1) {e1.printStackTrace();	}}
+		finally {if(conn!=null)	try {conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+
+		}	
+	}	
 	
 }

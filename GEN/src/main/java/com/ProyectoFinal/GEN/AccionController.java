@@ -15,13 +15,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import datos.tipoAccionDatos;
 import modelo.Accion;
+import modelo.TipoAccion;
+import modelo.Usuario;
 
 
 
@@ -43,5 +47,35 @@ public class AccionController {
 	return "guardarAccion";
 	}
 	
-	
+	@RequestMapping(value = "/nuevoTipoAccion", method = RequestMethod.GET)
+	public String nuevoTipoAccion(Locale locale, Model model, HttpSession sesion) {
+		String ir="login";
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			ir="login";
+		}
+		else {
+		TipoAccion ta=new TipoAccion();
+		model.addAttribute("ta",ta);
+		ir="nuevoTipoAccion";
+		}
+		return ir;
+	}
+
+	@RequestMapping(value = "/crearTipoAccion", method = RequestMethod.POST)
+	public String crearTipoAccion(@ModelAttribute("ta") TipoAccion ta,
+            BindingResult result, HttpSession sesion, Model model) {
+		String ir="crearTipoAccion";
+		if(sesion.getAttribute("usuario")==null) 
+			{
+				ir="login";
+			}
+		else {
+			Usuario usu=(Usuario)sesion.getAttribute("usuario");
+			ta.setUsu_alta_ta(usu.getIdusuario());
+			tipoAccionDatos.nuevoTA(ta);
+			ir="mapaInteractivo";
+		}
+		return ir;
+	}
 }

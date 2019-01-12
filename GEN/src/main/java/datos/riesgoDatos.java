@@ -2,19 +2,14 @@ package datos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Calendar;
 
 import datos.conexion;
-import java.sql.ResultSet;
 
 import modelo.Riesgo;
 
 public class riesgoDatos {
 	public static void nuevoRiesgo(Riesgo rie) {
 		Connection conn = null;
-		long id=0;
-		boolean resp = false;
 		try {
 			conn = conexion.getConnection();
 			conn.setAutoCommit(false);
@@ -34,15 +29,8 @@ public class riesgoDatos {
 		} 
 		catch (SQLException e) {System.out.println(e.toString());try {conn.rollback();} catch (SQLException e1) {e1.printStackTrace();	}}
 		finally {if(conn!=null)	try {conn.close();} catch (SQLException e) {System.out.println(e.toString());}
-
 		}
-		
-		
-		
+			
 	}
-	
-	
-		
-	
 	
 }
