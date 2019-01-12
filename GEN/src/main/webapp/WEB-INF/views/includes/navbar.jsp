@@ -59,7 +59,7 @@
                              	<a class="dropdown-item" href="login">Login</a>
                              	<%}%>
                              	<% if (session.getAttribute("usuario") == null){%>
-                             	<a class="dropdown-item" href="register">Crear cuenta</a>
+                             	<a class="dropdown-item" href="nuevoUsuario">Crear cuenta</a>
                              	<%}%>
                              	<% if (session.getAttribute("usuario") != null){%>
                                 <a class="dropdown-item" href="micuenta">Mi cuenta</a>

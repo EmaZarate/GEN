@@ -72,7 +72,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/registrarse", method = RequestMethod.POST)
-	public String crearTipoRiesgo(@ModelAttribute("nu") Usuario nu,
+	public String registrarse(@ModelAttribute("nu") Usuario nu,
             BindingResult result, HttpSession sesion, Model model) {
 		    String ir="registrarse";
 			nu.setHabilitado(false);

@@ -32,7 +32,7 @@
 	
 	    <!-- Register -->
 	    <p>¿No eres miembro?
-	        <a href="">Pedir cuenta</a>
+	        <a href="nuevoUsuario">Registrarse</a>
 	    </p>
 
 	
