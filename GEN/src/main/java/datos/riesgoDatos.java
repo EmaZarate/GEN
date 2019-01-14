@@ -16,12 +16,14 @@ public class riesgoDatos {
 			System.out.println("riesgoDatos - nuevoRiesgo");
 			//Insert con parametros para que no hagan SQL Inject
 			PreparedStatement pst = 
-			conn.prepareStatement("INSERT INTO `riesgos` (`nombre`, `estado`, `tipo_riesgo`, `id_usuario`, `descripcion`,`fecha_inicio`) VALUES ( ?, ?, ?, ?, ?,?)");
+			conn.prepareStatement("INSERT INTO `riesgos` (`nombre`, `estado`, `tipo_riesgo`, `id_usuario`, `descripcion`,`fecha_inicio`,`id_ciudad`,`id_provincia`) VALUES ( ?, ?, ?, ?, ?,NOW(), ?, ?)");
 			pst.setString(1, rie.getNombre());
 			pst.setString(2, rie.getEstado());
 			pst.setInt(3,rie.getTipo_riesgo());
 			pst.setInt(4,rie.getId_usuario());
 			pst.setString(5,rie.getDescripcion());
+			pst.setInt(6,rie.getCiu());
+			pst.setInt(7,rie.getPrv());
 			System.out.println(pst);
 			pst.executeUpdate();
 			conn.commit();

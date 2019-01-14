@@ -21,14 +21,12 @@
 	        </div>
 	    
 	        <!--Second column-->
-	        <div class="col-md-4">
+	        <div class="col-md-6">
 	               <div class="md-form">
                       <div class="form-group">
-					    <form:select path="tipo_riesgo" class="browser-default custom-select form-control">
-						  <option selected>Tipo de riesgo</option>
-						  <option value=1>Inundacion</option>
-						  <option value=2>Incendio</option>
-						  <option value=3>Otro</option>
+					    <form:select id="cmtr" path="tipo_riesgo" class="form-control">
+					  	 	 <form:option value="1" label="Seleccione el tipo de riesgo" />
+					  	  	 <form:options items="${trs}" itemValue="id_tipor" itemLabel="nombre" />
 						</form:select>
 					  </div>
 	            </div>
@@ -40,10 +38,10 @@
 	    <div class="row">
 	
 	       
-	     <div class="col-md-4">
+	     <div class="col-md-6">
 	               <div class="md-form">
                       <div class="form-group">
-					    <form:select id="cmciu" path="prv" class="form-control">
+					    <form:select id="cmprov" path="prv" class="form-control">
     					  <form:option value="0" label="Selecciona Provincia" />
 						  <form:options items="${prvs}" itemValue="id_provincia" itemLabel="nombre" />
 						</form:select>
@@ -51,11 +49,11 @@
 	            </div>
 	        </div>
 	
-	      <div class="col-md-4">
+	      <div class="col-md-6">
 	               <div class="md-form">
                       <div class="form-group">
 					    <form:select id="cmciu" path="ciu" class="form-control">
-    					  <form:option value="0" label="Selecciona Ciudad" />
+    					  <form:option value="1111" label="Selecciona Ciudad" />
 					 <!--/ <form:options items="${cius}" itemValue="id_ciudad" itemLabel="nombre" />-->
 						</form:select>
 					  </div>
@@ -68,7 +66,7 @@
 	        <div class="col-md-12">
 	            <div class="md-form">
 	            	<i class="fa fa-font prefix"></i>
-	                <form:input type="textarea" id="desc" path="descripcion" class="md-textarea "/>
+	                <form:textarea type="text" id="desc" path="descripcion" class="md-textarea "/>
 	                <label for="desc" class="textcontrol">Descripción del riesgo</label>
 	            </div>
 	

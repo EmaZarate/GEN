@@ -42,6 +42,7 @@ public class RiesgoController {
 		model.addAttribute("rie",rie);
 		model.addAttribute("cius", ciudadDatos.mostrarTodos() );
 		model.addAttribute("prvs", provinciaDatos.mostrarTodos() );
+		model.addAttribute("trs",tipoRiesgoDatos.mostrarTodos());
 		return "nuevoRiesgo";
 	}
 	
