@@ -15,7 +15,7 @@
 	        <div class="col-md-6">
 	            <div class="md-form">
 	            	<i class="fas fa-file-signature prefix"></i>
-	                <form:input type="text" path="nombre" class="form-control"/>
+	                <form:input type="text" path="nombre" class="form-control" required="true"/>
 	    			<label for="nombre" class="textcontrol">Nombre del Tipo de Accion</label>
 	            </div>
 	        </div>
@@ -24,7 +24,7 @@
 	      <div class="col-md-6">
 	            <div class="md-form">
 					<i class="fas fa-align-justify prefix"></i>
-	                <form:textarea type="text" path="descripcion" class="md-textarea form-control"/>
+	                <form:textarea type="text" path="descripcion" class="md-textarea form-control" required="true"/>
 	    			<label for="descripcion" class="textcontrol">Descripcion del Tipo de accion</label>
 	            </div>
 	      </div>

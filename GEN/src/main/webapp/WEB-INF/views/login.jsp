@@ -16,9 +16,9 @@
 	<form:form class="text-center border border-light p-5" role="form" id="valida" action="validar" method="POST" modelAttribute="usu">
 	    <p class="h4 mb-4">Ingresar a GEN</p>
 	    <!-- Email -->
-		<form:input path="usuario" class="form-control mb-4" type="text" placeholder="Usuario"/>	
+		<form:input path="usuario" class="form-control mb-4" type="text" placeholder="Usuario" required="true"/>	
 	    <!-- Password -->
-	    <form:input  path="clave"  class="form-control mb-4"  type="password" placeholder="Password"/>
+	    <form:input  path="clave"  class="form-control mb-4"  type="password" placeholder="Password" required="true"/>
 	
 	    <div class="d-flex justify-content-around">
 	        <div>

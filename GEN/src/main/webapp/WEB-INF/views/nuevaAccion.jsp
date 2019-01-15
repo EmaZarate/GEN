@@ -16,7 +16,7 @@
 	        <div class="col-md-6">
 	            <div class="md-form">
 	            	<i class="fa fa-fire prefix"></i>
-	                <form:input type="text" path="nombre" class="form-control"/>
+	                <form:input type="text" path="nombre" class="form-control" required="true"/>
 	    			<label for="nombre" class="textcontrol">Nombre de la Accion</label>
 	            </div>
 	        </div>
@@ -25,7 +25,7 @@
 	        <div class="col-md-4">
 	               <div class="md-form">
                       <div class="form-group">
-					    <form:select path="id_tipo_Accion" class="browser-default custom-select form-control">
+					    <form:select path="id_tipo_Accion" class="browser-default custom-select form-control" required="true">
 						  <option selected>Tipo de Accion</option>
 						  <option value="1">Equipo de rescate</option>
 						  <option value="2">Provisiones</option>
@@ -43,7 +43,7 @@
 	        <div class="col-md-12">
 	            <div class="md-form">
 	            	<i class="fa fa-font prefix"></i>
-	                <form:input type="textarea" id="descripcion" path="descripcion" class="md-textarea "/>
+	                <form:input type="textarea" id="descripcion" path="descripcion" class="md-textarea " required="true"/>
 	                <label for="desc" class="textcontrol">Descripción de la accion</label>
 	            </div>
 	

@@ -12,14 +12,14 @@
 	        <div class="col-md-6">
 	            <div class="md-form">
 				<i class="fas fa-signature prefix"></i>
-	                <form:input type="text" path="nombre" class="form-control"/>
+	                <form:input type="text" path="nombre" class="form-control" required="true"/>
 	    			<label for="nombre" class="textcontrol">Nombre</label>
 	            </div>
 	        </div>
 	           <div class="col-md-6">
 	            <div class="md-form">
 				<i class="fas fa-signature prefix"></i>	   
-                <form:input type="text" path="apellido" class="form-control"/>
+                <form:input type="text" path="apellido" class="form-control" required="true"/>
 	    		<label for="apellido" class="textcontrol">Apellido</label>
 	            </div>
 	        </div>
@@ -30,27 +30,35 @@
 	    <div class="col-md-6">
 	            <div class="md-form">
 				<i class="fas fa-user prefix"></i>	   
-	               <form:input type="text" path="usuario" class="form-control"/>
+	               <form:input type="text" path="usuario" class="form-control" maxlength="18" pattern="[a-zA-Z0-9]((\.|_|-)?[a-zA-Z0-9]+){6}" title="El nombre de cuenta debe tener al menos 6 caracteres, pueden ser letras,numeros y ._- pero no al comienzo" required="true"/>
 	    			<label for="usuario" class="textcontrol">Usuario</label>
 	            </div>
 	        </div>
-	           <div class="col-md-6">
-	            <div class="md-form">
-				<i class="fas fa-key prefix"></i>
-               	 <form:input type="password" path="clave" class="form-control"/>
-	    			<label for="clave" class="textcontrol">Password</label>
-	            </div>
-	        </div>
-	    </div>
-	    
-	    <div class="row">
-	      <div class="col-md-6">
+	          <div class="col-md-6">
 	            <div class="md-form">
 				<i class="fas fa-envelope-square prefix"></i>
-	                <form:textarea type="email" path="email" aria-describedby="emailHelp" class="md-textarea form-control"/>
+	                <form:input type="email" path="email" class="md-textarea form-control"  aria-describedby="emailHelp" maxlength="18" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$" title="Ingrese un mail valido" required="true"/>
 	    			<label for="email" class="textcontrol">Email</label>
 	            </div>
 	      </div>
+	    </div>
+	     
+     
+	    <div class="row">
+	      <div class="col-md-6">
+	            <div class="md-form">
+				<i class="fas fa-key prefix"></i>
+               	 <form:input type="password" name="clave" path="clave" class="form-control" onkeyup='check();' pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="La contraseña debe tener al menos 8 caracteres, letras y numeros" required="true"/>
+	    			<label for="clave" class="textcontrol">Password</label>
+	            </div>
+	        </div>
+	         <div class="col-md-6">
+	            <div class="md-form">
+				<i class="fas fa-key prefix"></i>
+               	 <input type="password" name="clave2"  class="form-control" onkeyup='check();' pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="La contraseña debe tener al menos 8 caracteres, letras y numeros" required/>
+	    			<label for="clave2" class="textcontrol">Repetir Password</label><span id='message'></span>
+	            </div>
+	        </div>
 	   </div>
 	   
 		<!--Fourth row-->
@@ -64,17 +72,36 @@
 	        </div>
 	        <div class="col-md-2">
 	            <div class="md-form">
-	            <button type="submit" class="btn btn-success">Registrarse</button>
+	            <button type="submit" id="btnReg" class="btn btn-success">Registrarse</button>
 	    	 </div>
 	        </div>
 	    </div>
 	    <!--/.Fourth row-->
 	</form:form>
-</div>
 
 
  <%@ include file="includes/footer.jsp" %>      
 
 </body>
+
+
+<script>
+var check = function() {
+	  var botonEnviar = document.getElementById('btnReg');
+	  botonEnviar.disabled=true;
+	  if (document.getElementById('clave').value ==
+	    document.getElementById('clave2').value) {
+	    document.getElementById('message').style.color = 'green';
+	    document.getElementById('message').innerHTML = 'Coinciden ';
+	    botonEnviar.disabled=false;
+	    return true;
+	  } else {
+	    document.getElementById('message').style.color = 'red';
+	    document.getElementById('message').innerHTML = 'No coinciden ';
+	    botonEnviar.disabled=true;
+	    return false;
+	  }
+	}
+</script>
 
 </html>
