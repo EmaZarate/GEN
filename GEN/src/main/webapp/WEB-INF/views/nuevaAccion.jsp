@@ -43,7 +43,7 @@
 	        <div class="col-md-12">
 	            <div class="md-form">
 	            	<i class="fa fa-font prefix"></i>
-	                <form:input type="textarea" id="descripcion" path="descripcion" class="md-textarea " required="true"/>
+	                <form:textarea type="text" id="descripcion" path="descripcion" class="md-textarea " required="true"/>
 	                <label for="desc" class="textcontrol">Descripción de la accion</label>
 	            </div>
 	

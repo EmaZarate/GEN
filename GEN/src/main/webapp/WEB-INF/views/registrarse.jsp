@@ -48,15 +48,18 @@
 	      <div class="col-md-6">
 	            <div class="md-form">
 				<i class="fas fa-key prefix"></i>
-               	 <form:input type="password" name="clave" path="clave" class="form-control" onkeyup='check();' pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="La contraseña debe tener al menos 8 caracteres, letras y numeros" required="true"/>
+               	 <form:input type="password" id="clave" path="clave" class="form-control" onkeyup='check();' pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="La contraseña debe tener al menos 8 caracteres, letras y numeros" required="true"/>
 	    			<label for="clave" class="textcontrol">Password</label>
 	            </div>
 	        </div>
 	         <div class="col-md-6">
 	            <div class="md-form">
 				<i class="fas fa-key prefix"></i>
-               	 <input type="password" name="clave2"  class="form-control" onkeyup='check();' pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="La contraseña debe tener al menos 8 caracteres, letras y numeros" required/>
-	    			<label for="clave2" class="textcontrol">Repetir Password</label><span id='message'></span>
+               	 <input type="password" id="clave2"  class="form-control" onkeyup='check();' pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="La contraseña debe tener al menos 8 caracteres, letras y numeros" required/>
+	    			<label for="clave2" class="textcontrol">Repetir Password</label>
+	    			 <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+   						   	<span id='message'></span>
+   					 </small>
 	            </div>
 	        </div>
 	   </div>
@@ -92,12 +95,12 @@ var check = function() {
 	  if (document.getElementById('clave').value ==
 	    document.getElementById('clave2').value) {
 	    document.getElementById('message').style.color = 'green';
-	    document.getElementById('message').innerHTML = 'Coinciden ';
+	    document.getElementById('message').innerHTML = 'Las contraseñas coinciden <i class="far fa-laugh-beam"></i>';
 	    botonEnviar.disabled=false;
 	    return true;
 	  } else {
 	    document.getElementById('message').style.color = 'red';
-	    document.getElementById('message').innerHTML = 'No coinciden ';
+	    document.getElementById('message').innerHTML = 'No coinciden las contraseñas <i class="far fa-tired"></i>';
 	    botonEnviar.disabled=true;
 	    return false;
 	  }
