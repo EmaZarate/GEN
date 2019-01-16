@@ -15,7 +15,8 @@
     <link href="resources/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="resources/css/style.css" rel="stylesheet">
-    
     <!--llamada Leaflet-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"/>
+     <!--Favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="resources/img/GEN/favicon.ico" />
 </head>
