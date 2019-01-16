@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import modelo.Usuario;
 
@@ -42,72 +43,69 @@ public class HomeController {
 	@RequestMapping(value = "/mapaInteractivo", method = RequestMethod.GET)
 	public String mapaInteractivo(Locale locale, Model model, HttpSession sesion) {
 		String ir="mapaInteractivo";
-		if(sesion.getAttribute("usuario")==null) 
-		{ir="login";model.addAttribute("usu", new Usuario());}	
 		return ir;
 	}
 	
 	@RequestMapping(value = "/radarMeteorologico", method = RequestMethod.GET)
-	public String radarMeteorological(Locale locale, Model model, HttpSession sesion) {
+	public String radarMeteorological(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String error) {
 		String ir="radarMeteorologico";
 		if(sesion.getAttribute("usuario")==null) 
-		{ir="login";model.addAttribute("usu", new Usuario());}	
+		{ir="login";model.addAttribute("usu", new Usuario());error="Debe estar logeado para ver un Mapa/Radar";model.addAttribute("error", error);}	
+		model.addAttribute("error", error);
 		return ir;
 	}
 	
 	@RequestMapping(value = "/radarHumedad", method = RequestMethod.GET)
-	public String radarHumidity(Locale locale, Model model, HttpSession sesion) {
+	public String radarHumidity(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String error) {
 		String ir="radarHumedad";
 		if(sesion.getAttribute("usuario")==null) 
-		{ir="login";model.addAttribute("usu", new Usuario());}	
+		{ir="login";model.addAttribute("usu", new Usuario());error="Debe estar logeado para ver un Mapa/Radar";model.addAttribute("error", error);}	
+		model.addAttribute("error", error);
 		return ir;
 	}
 	
 	@RequestMapping(value = "/radarIsobara", method = RequestMethod.GET)
-	public String radarIsobar(Locale locale, Model model, HttpSession sesion) {
+	public String radarIsobar(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String error) {
 		String ir="radarIsobara";
 		if(sesion.getAttribute("usuario")==null) 
-		{ir="login";model.addAttribute("usu", new Usuario());}	
+		{ir="login";model.addAttribute("usu", new Usuario());error="Debe estar logeado para ver un Mapa/Radar";model.addAttribute("error", error);}	
+		model.addAttribute("error", error);
 		return ir;
 	}
 	
 	@RequestMapping(value = "/radarTormentas", method = RequestMethod.GET)
-	public String radarStorm(Locale locale, Model model, HttpSession sesion) {
+	public String radarStorm(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String error) {
 		String ir="radarTormentas";
 		if(sesion.getAttribute("usuario")==null) 
-		{ir="login";model.addAttribute("usu", new Usuario());}	
-		return ir;
-	}
-	
-	@RequestMapping(value = "/prueba", method = RequestMethod.GET)
-	public String prueba(Locale locale, Model model, HttpSession sesion) {
-		String ir="prueba";
-		if(sesion.getAttribute("usuario")==null) 
-		{ir="login";model.addAttribute("usu", new Usuario());}	
+		{ir="login";model.addAttribute("usu", new Usuario());error="Debe estar logeado para ver un Mapa/Radar";model.addAttribute("error", error);}	
+		model.addAttribute("error", error);
 		return ir;
 	}
 	
 	@RequestMapping(value = "/aviacion", method = RequestMethod.GET)
-	public String aviacion(Locale locale, Model model, HttpSession sesion) {
+	public String aviacion(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String error) {
 		String ir="aviacion";
 		if(sesion.getAttribute("usuario")==null) 
-		{ir="login";model.addAttribute("usu", new Usuario());}	
+		{ir="login";model.addAttribute("usu", new Usuario());error="Debe estar logeado para ver un Mapa/Radar";model.addAttribute("error", error);}	
+		model.addAttribute("error", error);
 		return ir;
 	}
 	
 	@RequestMapping(value = "/anomalas", method = RequestMethod.GET)
-	public String anomalas(Locale locale, Model model, HttpSession sesion) {
+	public String anomalas(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String error) {
 		String ir="anomalas";
 		if(sesion.getAttribute("usuario")==null) 
-		{ir="login";model.addAttribute("usu", new Usuario());}	
+		{ir="login";model.addAttribute("usu", new Usuario());error="Debe estar logeado para ver un Mapa/Radar";model.addAttribute("error", error);}	
+		model.addAttribute("error", error);
 		return ir; 
 	}
 	
 	@RequestMapping(value = "/micuenta", method = RequestMethod.GET)
-	public String micuenta(Locale locale, Model model, HttpSession sesion) {
+	public String micuenta(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String error) {
 		String ir="micuenta";
 		if(sesion.getAttribute("usuario")==null) 
-		{ir="login";model.addAttribute("usu", new Usuario());}	
+		{ir="login";model.addAttribute("usu", new Usuario());error="Debe estar logeado para ver un Mapa/Radar";model.addAttribute("error", error);}	
+		model.addAttribute("error", error);
 		return ir; 
 	}
 }

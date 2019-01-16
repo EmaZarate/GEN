@@ -35,10 +35,20 @@ public class AccionController {
 	private static final Logger logger = LoggerFactory.getLogger(AccionController.class);	
 	
 	@RequestMapping(value ="/nuevaAccion")
-	public String nuevaAccion(Model model) {
-	Accion acc = new Accion();
-	model.addAttribute("accion", acc);
-	return "nuevaAccion";
+	public String nuevaAccion(Model model, HttpSession sesion, @RequestParam(required = false) String error) {
+	if(sesion.getAttribute("usuario")==null) 
+		{
+			error="Debe estar logeado para crear una Acción";
+			model.addAttribute("error", error);
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+	else {
+		model.addAttribute("error", error);
+		Accion acc = new Accion();
+		model.addAttribute("accion", acc);
+		return "nuevaAccion";
+		}
 	}
 
 	
@@ -48,13 +58,17 @@ public class AccionController {
 	}
 	
 	@RequestMapping(value = "/nuevoTipoAccion", method = RequestMethod.GET)
-	public String nuevoTipoAccion(Locale locale, Model model, HttpSession sesion) {
+	public String nuevoTipoAccion(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String error) {
 		String ir="login";
 		if(sesion.getAttribute("usuario")==null) 
 		{
-			ir="login";
+			error="Debe estar logeado para crear un Tipo de Acción";
+			model.addAttribute("error", error);
+			model.addAttribute("usu", new Usuario());
+			return "login";
 		}
 		else {
+		model.addAttribute("error", error);
 		TipoAccion ta=new TipoAccion();
 		model.addAttribute("ta",ta);
 		ir="nuevoTipoAccion";

@@ -38,12 +38,19 @@ public class RiesgoController {
 	
 	@RequestMapping(value = "/nuevoRiesgo", method = RequestMethod.GET)
 	public String nuevoRiesgo(Locale locale, Model model, HttpSession sesion) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+	else {
 		Riesgo rie=new Riesgo();
 		model.addAttribute("rie",rie);
 		model.addAttribute("cius", ciudadDatos.mostrarTodos() );
 		model.addAttribute("prvs", provinciaDatos.mostrarTodos() );
 		model.addAttribute("trs",tipoRiesgoDatos.mostrarTodos());
 		return "nuevoRiesgo";
+	}
 	}
 	
 	@RequestMapping(value = "/crearRiesgo", method = RequestMethod.POST)
@@ -53,6 +60,7 @@ public class RiesgoController {
 		if(sesion.getAttribute("usuario")==null) 
 			{
 				ir="login";
+				return ir;
 			}
 		else {
 			Usuario usu=(Usuario)sesion.getAttribute("usuario");
@@ -67,10 +75,11 @@ public class RiesgoController {
 	public String nuevoRipoRiesgo(Locale locale, Model model, HttpSession sesion) {
 		String ir="login";
 		if(sesion.getAttribute("usuario")==null) 
-			{
-				ir="login";
-			}
-		else {
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+	else {
 		TipoRiesgo tr=new TipoRiesgo();
 		model.addAttribute("tr",tr);
 		ir="nuevoTipoRiesgo";

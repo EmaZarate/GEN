@@ -1,6 +1,7 @@
               
 <!--Navbar-->
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark indigo">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
   <a class="navbar-brand" href="/GEN">
         <img src="resources/img/GEN/huracanes-tifones-019.png" height="30" class="d-inline-block align-top" alt="">
@@ -40,8 +41,15 @@
                     <a class="dropdown-item" href="aviacion">Mapas para aviacion</a>
                 </div>
             </li>
-
-        </ul>
+           
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="">Habilitar Usuarios</a>
+                </div>
+            </li>
+        
+          </ul>
         <!-- Links -->
 
         <ul class="navbar-nav ml-auto">

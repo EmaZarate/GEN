@@ -41,12 +41,14 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/validar", method = RequestMethod.POST)
-	public String validar(Model model, Usuario usu,HttpSession sesion, @RequestParam(required = false) String error) {
+	public String validar(Model model, Usuario usu,HttpSession sesion, @RequestParam(required = false) String error, Boolean admin) {
 		String ir="redirect:/?error=1";
 		if(usuarioDatos.validarUsuario(usu))
 		{
 			//crear sesiones
 			sesion.setAttribute("usuario", usu);
+			int tipoUsu = usu.getTipoUsuario();
+			sesion.setAttribute("tipoUsu", tipoUsu);
 			ir="redirect:/mapaInteractivo";
 		}
 		else{model.addAttribute("usu",  new Usuario());

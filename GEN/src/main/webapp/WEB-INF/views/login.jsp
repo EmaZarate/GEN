@@ -4,12 +4,13 @@
 <%@ include file="includes/head.jsp" %>
 <body>
 <%@ include file="includes/navbar.jsp" %>
- 
+  
+  <c:if test="${not empty error}">
 	<div class="alert alert-danger alert-dismissible text-centro" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar" ><span aria-hidden="true">&times;</span>	</button>
 						<strong><c:out value="${error}"></c:out></strong>
 	</div>  
-    
+  </c:if>
 <div class="container">
 	<div class="col-md-6 login">
 	 <!-- form login -->
@@ -38,10 +39,7 @@
 	
 	</form:form>
 	<!-- form login -->
-	
-	 <!-- Asi muestro mensajes -->
-	    <div class='msj'><c:out value="${mensaje}"></c:out></div>
-		<div class='error'><c:out value="${error}"></c:out></div>
+		   
 	</div>
 </div>
 
