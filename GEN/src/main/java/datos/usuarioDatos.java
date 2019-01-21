@@ -3,10 +3,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import datos.conexion;
 import java.sql.ResultSet;
 
+import modelo.TipoAccion;
 import modelo.TipoRiesgo;
 import modelo.Usuario;
 
@@ -31,7 +34,6 @@ public class usuarioDatos {
 				usu.setIdusuario(rs.getInt("id_usuario"));
 				usu.setHabilitado(rs.getBoolean("habilitado"));
 				usu.setTipoUsuario(rs.getInt("tipo_usuario"));
-				System.out.println(usu.getApellido());
 			}
 		
 			conn.close();
@@ -47,6 +49,7 @@ public class usuarioDatos {
 		}
 		return resp;
 	}
+	
 	public static void nuevoUsu(Usuario usu) {
 		Connection conn = null;
 		try {
@@ -71,5 +74,85 @@ public class usuarioDatos {
 
 		}	
 	}	
+	
+	public static  List<Usuario> mostrarInhab() {
+		Connection conn = null;
+		List<Usuario> usus=new ArrayList<Usuario>();
+		try {
+			conn = conexion.getConnection();
+			conn.setAutoCommit(false);
+			PreparedStatement pst = 
+			conn.prepareStatement("SELECT * from usuarios");
+			ResultSet rs=pst.executeQuery();
+			while(rs.next())
+				{                           
+				Usuario usu=new Usuario();
+				usu.setNombre(rs.getString("nombre"));
+				usu.setApellido(rs.getString("apellido"));
+				usu.setEmail(rs.getString("email"));
+				usu.setUsuario(rs.getString("usuario"));
+				usu.setClave(rs.getString("password"));
+				usu.setIdusuario(rs.getInt("id_usuario"));
+				usu.setHabilitado(rs.getBoolean("habilitado"));
+				usu.setTipoUsuario(rs.getInt("tipo_usuario"));
+				usus.add(usu);
+				}
+			conn.close();
+		} 
+		catch (SQLException e) {System.out.println(e.toString());}
+		finally {if(conn!=null)	try {conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+		}
+		return usus;
+	}
+	
+	public static boolean habilitarUsu(int idusu) {
+		Connection conn = null;
+		boolean resp = false;
+		try {
+			conn = conexion.getConnection();
+		    //Asi se hace una consulta para que no metan SQL inject
+			PreparedStatement pst = conn.prepareStatement("UPDATE `usuarios` SET `habilitado`=0 where `id_usuario`=?");
+			pst.setInt(1, idusu); 
+			System.out.println(pst);
+			pst.executeUpdate();
+			resp = true;
+			conn.close();
+		} catch (SQLException e) {resp=false;
+			System.out.println(e.toString());
+		} finally {resp=false;
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					System.out.println(e.toString());
+				}
+		}
+		return resp;
+	}
+	
+	public static boolean deshabilitarUsu(int idusu) {
+		Connection conn = null;
+		boolean resp = false;
+		try {
+			conn = conexion.getConnection();
+		    //Asi se hace una consulta para que no metan SQL inject
+			PreparedStatement pst = conn.prepareStatement("UPDATE `usuarios` SET `habilitado`=1 where `id_usuario`=?");
+			pst.setInt(1, idusu);
+			System.out.println(pst);
+			pst.executeUpdate();
+			resp = true;
+			conn.close();
+		} catch (SQLException e) {resp=false;
+			System.out.println(e.toString());
+		} finally {resp=false;
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					System.out.println(e.toString());
+				}
+		}
+		return resp;
+	}
 	
 }

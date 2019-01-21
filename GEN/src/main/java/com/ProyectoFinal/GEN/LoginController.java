@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import datos.tipoRiesgoDatos;
 import datos.usuarioDatos;
 import modelo.Usuario;
 
@@ -84,6 +85,23 @@ public class LoginController {
 		return ir;
 	}
 	
+	@RequestMapping(value = "/habilitarUsuarios", method = RequestMethod.GET)
+	public String habilitarUsuarios(Locale locale, Model model, HttpSession sesion) {
+		model.addAttribute("usus",usuarioDatos.mostrarInhab());
+		return "habilitarUsuarios";
+	}
 	
+	@RequestMapping(value = "/habilitarUsu", method = RequestMethod.GET)
+	public String habilitarUsu(Locale locale, Model model, HttpSession sesion, @RequestParam int id) {
+		usuarioDatos.habilitarUsu(id);
+		return "habilitarUsuarios";
+	}
 	
+	@RequestMapping(value = "/deshabilitarUsu", method = RequestMethod.GET)
+	public String deshabilitarUsu(Locale locale, Model model, HttpSession sesion,@RequestParam int id) {
+		usuarioDatos.deshabilitarUsu(id);
+		return "habilitarUsuarios";
+	}
+	
+
 }
