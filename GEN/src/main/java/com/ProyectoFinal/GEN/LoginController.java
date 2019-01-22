@@ -49,6 +49,7 @@ public class LoginController {
 			//crear sesiones
 			sesion.setAttribute("usuario", usu);
 			int tipoUsu = usu.getTipoUsuario();
+			System.out.println(tipoUsu);
 			sesion.setAttribute("tipoUsu", tipoUsu);
 			ir="redirect:/mapaInteractivo";
 		}
@@ -86,19 +87,24 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/habilitarUsuarios", method = RequestMethod.GET)
-	public String habilitarUsuarios(Locale locale, Model model, HttpSession sesion) {
+	public String habilitarUsuarios(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj) {
 		model.addAttribute("usus",usuarioDatos.mostrarInhab());
+		model.addAttribute("msj", msj);
 		return "habilitarUsuarios";
 	}
 	
 	@RequestMapping(value = "/habilitarUsu", method = RequestMethod.GET)
-	public String habilitarUsu(Locale locale, Model model, HttpSession sesion, @RequestParam int id) {
+	public String habilitarUsu(Locale locale, Model model, HttpSession sesion, @RequestParam int id, @RequestParam(required = false) String msj) {
+		msj="Usuario Habilitado";
+		model.addAttribute("msj", msj);
 		usuarioDatos.habilitarUsu(id);
 		return "habilitarUsuarios";
 	}
 	
 	@RequestMapping(value = "/deshabilitarUsu", method = RequestMethod.GET)
-	public String deshabilitarUsu(Locale locale, Model model, HttpSession sesion,@RequestParam int id) {
+	public String deshabilitarUsu(Locale locale, Model model, HttpSession sesion,@RequestParam int id, @RequestParam(required = false) String msj) {
+		msj="Usuario Deshabilitado";
+		model.addAttribute("msj", msj);
 		usuarioDatos.deshabilitarUsu(id);
 		return "habilitarUsuarios";
 	}

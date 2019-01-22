@@ -5,11 +5,19 @@
 <%@ include file="includes/navbar.jsp" %>
 <body>
 
+<c:if test="${not empty msj}">
+	<div class="alert alert-success alert-dismissible text-centro" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar" ><span aria-hidden="true">&times;</span>	</button>
+						<strong><c:out value="${msj}"></c:out></strong>
+	</div>  
+</c:if>
+
+
 <div class="container margentop">    
 	<h4>Habilitar usuarios:</h4>
 	<br>
 	
-<table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table id="dtBasicExample" class="table table-striped table-bordered">
   <thead>
     <tr>
       <th class="th-sm">Nombre 

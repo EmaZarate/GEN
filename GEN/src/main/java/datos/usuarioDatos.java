@@ -113,7 +113,6 @@ public class usuarioDatos {
 		    //Asi se hace una consulta para que no metan SQL inject
 			PreparedStatement pst = conn.prepareStatement("UPDATE `usuarios` SET `habilitado`=0 where `id_usuario`=?");
 			pst.setInt(1, idusu); 
-			System.out.println(pst);
 			pst.executeUpdate();
 			resp = true;
 			conn.close();
@@ -138,7 +137,6 @@ public class usuarioDatos {
 		    //Asi se hace una consulta para que no metan SQL inject
 			PreparedStatement pst = conn.prepareStatement("UPDATE `usuarios` SET `habilitado`=1 where `id_usuario`=?");
 			pst.setInt(1, idusu);
-			System.out.println(pst);
 			pst.executeUpdate();
 			resp = true;
 			conn.close();

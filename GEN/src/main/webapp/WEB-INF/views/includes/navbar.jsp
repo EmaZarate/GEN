@@ -42,21 +42,20 @@
                 </div>
             </li>
            
+           <% if(session.getAttribute("tipo_usuario") == "0"){%>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="habilitarUsuarios">Habilitar Usuarios</a>
                 </div>
             </li>
+        	<%}%>
         
           </ul>
         <!-- Links -->
 
         <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="modal"  data-target="#modalContacto"><i class="fa fa-envelope"></i> Contacto <span class="sr-only">(current)</span></a>
-                        </li>
-                        
+                                              
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
                              ${usuario.getUsuario()}</a>
