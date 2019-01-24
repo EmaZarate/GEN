@@ -104,10 +104,22 @@ public class RiesgoController {
 		}
 		return ir;
 	}
+	
 	@RequestMapping(value = "/gestionarRiesgos", method = RequestMethod.GET)
 	public String gestionarRiesgos(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj) {
-		int idusu=(Integer) sesion.getAttribute("id_usuario");
+	//	int idusu=(Integer) sesion.getAttribute("id_usuario");
+		int idusu=1;
+		model.addAttribute("msj", msj);
+		System.out.println(sesion.getAttribute("id_usuario"));
 		model.addAttribute("ries",riesgoDatos.mostrarRiesgos(idusu));
+		return "gestionarRiesgos";
+	}
+	
+	@RequestMapping(value = "/eliminarRiesgo", method = RequestMethod.GET)
+	public String eliminarRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int id) {
+		msj="Usuario Eliminado";
+		model.addAttribute("msj", msj);
+		model.addAttribute("ries",riesgoDatos.eliminarRiesgo(id));
 		return "gestionarRiesgos";
 	}
 }

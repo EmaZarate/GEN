@@ -49,7 +49,6 @@ public class LoginController {
 			//crear sesiones
 			sesion.setAttribute("usuario", usu);
 			int tipoUsu = usu.getTipoUsuario();
-			System.out.println(tipoUsu);
 			sesion.setAttribute("tipoUsu", tipoUsu);
 			ir="redirect:/mapaInteractivo";
 		}

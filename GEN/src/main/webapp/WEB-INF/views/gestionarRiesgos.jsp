@@ -14,7 +14,7 @@
 
 
 <div class="container margentop">    
-	<h4>Habilitar usuarios:</h4>
+	<h4>Gestionar de Riesgos</h4>
 	<br>
 	
 <table id="dtBasicExample" class="table table-striped table-bordered">
@@ -22,34 +22,36 @@
     <tr>
       <th class="th-sm">Nombre 
       </th>
-      <th class="th-sm">Apellido
+      <th class="th-sm">Fecha inicio
       </th>
-      <th class="th-sm">Email
+      <th class="th-sm">Estado
       </th>
-      <th class="th-sm">Usuario
+      <th class="th-sm">Descripcion
       </th>
-      <th class="th-sm">Habilitar
+      <th class="th-sm">Tipo de Riesgo
+      </th>
+      <th class="th-sm">Ciudad
+      </th>
+      <th class="th-sm">Provincia
+      </th>
+      <th class="th-sm">Modificar
+      </th>
+      <th class="th-sm">Eliminar
       </th>
     </tr>
   </thead>
   <tbody>
-    <c:forEach items="${usus}" var="usus">
+    <c:forEach items="${ries}" var="ries">
 		<tr>
-		 <td><c:out value="${usus.nombre}" /></td>
-		 <td><c:out value="${usus.apellido}" /></td>
-		 <td><c:out value="${usus.email}" /></td>
-		 <td><c:out value="${usus.usuario}" /></td>
-		 <c:if test="${(usus.habilitado)}">
-		 <td>
-			<a href="habilitarUsu?id=${usus.idusuario}"><button type="button" class="btn btn-success">Habilitar <i class="far fa-check-circle"></i></button></a>
-		</td>
-		</c:if>
-		<c:if test="${!(usus.habilitado)}">
-		<td>
-			<a href="deshabilitarUsu?id=${usus.idusuario}"><button type="button" class="btn btn-danger">Deshabilitar <i class="fas fa-times"></i></button></a>
-		</td>
-		</c:if>
-											
+		 <td><c:out value="${ries.nombre}" /></td>
+		 <td><c:out value="${ries.fecha_inicio}" /></td>
+		 <td><c:out value="${ries.estado}" /></td>
+		 <td><c:out value="${ries.descripcion}" /></td>
+		 <td><c:out value="${ries.tipoRiesgo.nombre}" /></td>
+		 <td><c:out value="${ries.ciudad.getNombre()}" /></td>
+		 <td><c:out value="${ries.provincia.nombre}" /></td>				
+		 <td><a href="modificarRiesgo?id=${ries.idriesgo}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
+		 <td><a href="eliminarRiesgo?id=${ries.idriesgo}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a></td>			
 		</tr>
 	</c:forEach>
   </tbody>

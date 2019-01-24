@@ -23,6 +23,7 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Riesgos</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="nuevoRiesgo">Nuevo Riesgo</a>
+                    <a class="dropdown-item" href="gestionarRiesgos">Gestionar Riesgo</a>
                     <a class="dropdown-item" href="nuevoTipoRiesgo">Nuevo Tipo de Riesgo</a>
                 </div>
             </li>
@@ -42,14 +43,12 @@
                 </div>
             </li>
            
-           <% if(session.getAttribute("tipo_usuario") == "0"){%>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="habilitarUsuarios">Habilitar Usuarios</a>
                 </div>
             </li>
-        	<%}%>
         
           </ul>
         <!-- Links -->

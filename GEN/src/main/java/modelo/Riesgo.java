@@ -12,6 +12,9 @@ public class Riesgo {
 	private int id_usuario;
 	private int prv;
 	private int ciu;
+	private TipoRiesgo tipoRiesgo;
+	private Ciudad ciudad;
+	private Provincia provincia;
 	
 	public int getIdriesgo() {
 		return idriesgo;
@@ -73,5 +76,23 @@ public class Riesgo {
 	}
 	public void setCiu(int ciu) {
 		this.ciu = ciu;
+	}
+	public TipoRiesgo getTipoRiesgo() {
+		return tipoRiesgo;
+	}
+	public void setTipoRiesgo(TipoRiesgo tipoRiesgo) {
+		this.tipoRiesgo = tipoRiesgo;
+	}
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
+	}
+	public Provincia getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
 	}
 }

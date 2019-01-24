@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import datos.conexion;
-
+import modelo.Ciudad;
+import modelo.Provincia;
 import modelo.Riesgo;
-import modelo.Usuario;
+import modelo.TipoRiesgo;
 
 public class riesgoDatos {
 	public static void nuevoRiesgo(Riesgo rie) {
@@ -51,7 +52,7 @@ public class riesgoDatos {
 					"INNER JOIN usuarios ON riesgos.id_usuario=usuarios.id_usuario\r\n" + 
 					"INNER JOIN provincia ON riesgos.id_provincia=provincia.id_provincia\r\n" + 
 					"INNER JOIN ciudad ON riesgos.id_ciudad=ciudad.id_ciudad\r\n" + 
-					"WHERE riesgos.id_usuario=?");
+					"WHERE riesgos.id_usuario=? AND estado<>'Cancelado'");
 			pst.setInt(1, idusu);
 			ResultSet rs=pst.executeQuery();
 			while(rs.next())
@@ -62,14 +63,20 @@ public class riesgoDatos {
 				rie.setFecha_inicio(rs.getDate("fecha_inicio"));
 				rie.setFecha_fin(rs.getDate("fecha_fin"));
 				rie.setEstado(rs.getString("estado"));
-				rie.setTipo_riesgo(rs.getInt("tipo_riesgo"));
 				rie.setId_usuario(rs.getInt("id_usuario"));
 				rie.setDescripcion(rs.getString("descripcion"));
-				rie.setCiu(rs.getInt("id_ciudad"));
-				rie.setPrv(rs.getInt("id_provincia"));
-				//rie.setIdriesgo("trnom");
-				//rie.setIdriesgo("ciunom");
-				//rie.setIdriesgo("prvnom");
+					TipoRiesgo tr = new TipoRiesgo();
+					tr.setNombre(rs.getString("trnom"));
+					tr.setId_tipor(rs.getInt("tipo_riesgo"));
+				rie.setTipoRiesgo(tr);
+					Ciudad ci = new Ciudad();
+					ci.setNombre(rs.getString("ciunom"));
+					ci.setId_ciudad(rs.getInt("id_ciudad"));
+				rie.setCiudad(ci);
+					Provincia pr = new Provincia();
+					pr.setNombre(rs.getString("prvnom"));
+					pr.setId_provincia(rs.getInt("id_provincia"));
+				rie.setProvincia(pr);
 				ries.add(rie);
 				}
 			conn.close();
@@ -79,5 +86,24 @@ public class riesgoDatos {
 		}
 		return ries;
 	}
+	
+
+		public static boolean eliminarRiesgo(int id_rie) {
+			Connection conn = null;
+			boolean resp = false;
+			try {
+				conn = conexion.getConnection();
+				//Insert con parametros para que no hagan SQL Inject
+				PreparedStatement pst = conn.prepareStatement("UPDATE `riesgos` SET `estado`='Cancelado' where `id_riesgo`=?");				
+				pst.setInt(1, id_rie);
+				pst.executeUpdate();
+				resp = true;
+				conn.close();
+			} 
+			catch (SQLException e) {resp=false;System.out.println(e.toString());try {conn.rollback();} catch (SQLException e1) {e1.printStackTrace();	}}
+			finally {if(conn!=null)	try {resp=false;conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+			}
+			return resp;	
+		}
 	
 }
