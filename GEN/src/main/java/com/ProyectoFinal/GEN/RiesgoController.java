@@ -26,7 +26,6 @@ import datos.ciudadDatos;
 import datos.provinciaDatos;
 import datos.riesgoDatos;
 import datos.tipoRiesgoDatos;
-import datos.usuarioDatos;
 import modelo.Riesgo;
 import modelo.TipoRiesgo;
 import modelo.Usuario;
@@ -38,7 +37,7 @@ public class RiesgoController {
 	private static final Logger logger = LoggerFactory.getLogger(RiesgoController.class);	
 	
 	@RequestMapping(value = "/nuevoRiesgo", method = RequestMethod.GET)
-	public String nuevoRiesgo(Locale locale, Model model, HttpSession sesion) {
+	public String nuevoRiesgo(Locale locale, Model model, HttpSession sesion,@RequestParam(required=false) String modi) {
 		if(sesion.getAttribute("usuario")==null) 
 		{
 			model.addAttribute("usu", new Usuario());
@@ -117,9 +116,30 @@ public class RiesgoController {
 	
 	@RequestMapping(value = "/eliminarRiesgo", method = RequestMethod.GET)
 	public String eliminarRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int id) {
-		msj="Usuario Eliminado";
+		msj="Riesgo Eliminado";
 		model.addAttribute("msj", msj);
 		model.addAttribute("ries",riesgoDatos.eliminarRiesgo(id));
 		return "gestionarRiesgos";
 	}
+	
+	@RequestMapping(value = "/modificarRiesgo", method = RequestMethod.GET)
+	public String modificarRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int id) {
+		Riesgo rie = new Riesgo();
+		rie = riesgoDatos.buscarRie(id);
+		model.addAttribute("rie",rie);
+		System.out.println("nombre riesgo");
+		System.out.println(rie.getNombre());
+		model.addAttribute("cius", ciudadDatos.mostrarTodos() );
+		model.addAttribute("prvs", provinciaDatos.mostrarTodos() );
+		model.addAttribute("trs",tipoRiesgoDatos.mostrarTodos());
+		return "modificarRiesgo";
+	}
+	
+	@RequestMapping(value = "/modiRie", method = RequestMethod.POST)
+	public String modiRie(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@ModelAttribute("rie") Riesgo rie) {;
+		rie.setEstado("Iniciado");
+		riesgoDatos.modificarRie(rie);
+		return "mapaInteractivo";
+	}
+
 }

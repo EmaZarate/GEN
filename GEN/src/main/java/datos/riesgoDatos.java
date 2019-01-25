@@ -105,5 +105,59 @@ public class riesgoDatos {
 			}
 			return resp;	
 		}
+		
+		public static  Riesgo buscarRie(int idusu) {
+			Connection conn = null;
+			Riesgo rie=new Riesgo();
+			try {
+				conn = conexion.getConnection();
+				PreparedStatement pst = 
+				conn.prepareStatement("SELECT riesgos.* FROM riesgos WHERE id_riesgo=?" );
+				pst.setInt(1, idusu);
+				ResultSet rs = pst.executeQuery();
+				while (rs.next()) {
+					rie.setIdriesgo(rs.getInt("id_riesgo"));
+					rie.setNombre(rs.getString("nombre"));
+					rie.setFecha_inicio(rs.getDate("fecha_inicio"));
+					rie.setFecha_fin(rs.getDate("fecha_fin"));
+					rie.setEstado(rs.getString("estado"));
+					rie.setId_usuario(rs.getInt("tipo_riesgo"));
+					rie.setId_usuario(rs.getInt("id_usuario"));
+					rie.setDescripcion(rs.getString("descripcion"));
+					rie.setId_usuario(rs.getInt("id_usuario"));
+					rie.setId_usuario(rs.getInt("id_provincia"));
+				}
+				conn.close();
+			} 
+			catch (SQLException e) {System.out.println(e.toString());}
+			finally {if(conn!=null)	try {conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+			}
+			return rie;
+		}
+		
+		
+		public static boolean modificarRie(Riesgo rie) {
+			Connection conn = null;
+			boolean resp = false;
+			try {
+				conn = conexion.getConnection();
+				//Insert con parametros para que no hagan SQL Inject
+				PreparedStatement pst = conn.prepareStatement("UPDATE `riesgos` SET `nombre`=?, `estado`=?, `tipo_riesgo`=?, `descripcion`=?,`id_ciudad`=?,`id_provincia`=? WHERE id_riesgo=?");				
+				pst.setString(1, rie.getNombre());
+				pst.setString(2, rie.getEstado());
+				pst.setInt(3,rie.getTipo_riesgo());
+				pst.setString(4,rie.getDescripcion());
+				pst.setInt(5,rie.getCiu());
+				pst.setInt(6,rie.getPrv());
+				pst.setInt(7, rie.getIdriesgo());
+				System.out.println(pst);
+				pst.executeUpdate();
+				conn.close();
+			} 
+			catch (SQLException e) {resp=false;System.out.println(e.toString());try {conn.rollback();} catch (SQLException e1) {e1.printStackTrace();	}}
+			finally {if(conn!=null)	try {resp=false;conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+			}
+			return resp;	
+		}
 	
 }
