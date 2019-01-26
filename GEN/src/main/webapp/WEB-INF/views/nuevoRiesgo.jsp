@@ -72,9 +72,17 @@
 	
 	        </div>
 	    </div>
-	    <!--/.Second row-->
-	    <!--/.Third row-->
-	    <!--Fourth row-->
+	   
+	    <div class="row">
+	 	<div class="col-md-12">
+	            <div class="md-form">
+	            	<i class="fas fa-camera-retro prefix"></i>
+	                <form:input type="text" path="imagen" class="form-control" required="true"/>
+	    			<label for="nombre" class="textcontrol">Imagen del riesgo</label>
+	            </div>
+	        </div>
+	   </div>
+	   
 	    <div class="row">
 	    	<div class="col-md-7">
 	    	</div>

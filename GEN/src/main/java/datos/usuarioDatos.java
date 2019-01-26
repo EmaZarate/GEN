@@ -55,7 +55,7 @@ public class usuarioDatos {
 		try {
 			conn = conexion.getConnection();
 			conn.setAutoCommit(false);
-			//Insert con parametros para que no hagan SQL Inject
+			//Tipo_usuario 1 = usuario común, Tipo_usuario=0 Admin
 			PreparedStatement pst = 
 			conn.prepareStatement("INSERT INTO `usuarios` (`nombre`, `apellido`,`email`,`usuario`, `password`,`habilitado`,`tipo_usuario`) VALUES ( ?, ?, ?,?,?,?,?)");
 			pst.setString(1, usu.getNombre());
@@ -110,7 +110,7 @@ public class usuarioDatos {
 		boolean resp = false;
 		try {
 			conn = conexion.getConnection();
-		    //Asi se hace una consulta para que no metan SQL inject
+		    //HABILITADO = 0
 			PreparedStatement pst = conn.prepareStatement("UPDATE `usuarios` SET `habilitado`=0 where `id_usuario`=?");
 			pst.setInt(1, idusu); 
 			pst.executeUpdate();
@@ -134,7 +134,7 @@ public class usuarioDatos {
 		boolean resp = false;
 		try {
 			conn = conexion.getConnection();
-		    //Asi se hace una consulta para que no metan SQL inject
+		    //DESHABILITADO = 1
 			PreparedStatement pst = conn.prepareStatement("UPDATE `usuarios` SET `habilitado`=1 where `id_usuario`=?");
 			pst.setInt(1, idusu);
 			pst.executeUpdate();

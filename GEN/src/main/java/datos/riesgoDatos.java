@@ -21,7 +21,7 @@ public class riesgoDatos {
 			System.out.println("riesgoDatos - nuevoRiesgo");
 			//Insert con parametros para que no hagan SQL Inject
 			PreparedStatement pst = 
-			conn.prepareStatement("INSERT INTO `riesgos` (`nombre`, `estado`, `tipo_riesgo`, `id_usuario`, `descripcion`,`fecha_inicio`,`id_ciudad`,`id_provincia`) VALUES ( ?, ?, ?, ?, ?,NOW(), ?, ?)");
+			conn.prepareStatement("INSERT INTO `riesgos` (`nombre`, `estado`, `tipo_riesgo`, `id_usuario`, `descripcion`,`fecha_inicio`,`id_ciudad`,`id_provincia`,`imagen`) VALUES ( ?, ?, ?, ?, ?,NOW(), ?, ?,?)");
 			pst.setString(1, rie.getNombre());
 			pst.setString(2, rie.getEstado());
 			pst.setInt(3,rie.getTipo_riesgo());
@@ -29,7 +29,7 @@ public class riesgoDatos {
 			pst.setString(5,rie.getDescripcion());
 			pst.setInt(6,rie.getCiu());
 			pst.setInt(7,rie.getPrv());
-			System.out.println(pst);
+			pst.setString(8,rie.getImagen());
 			pst.executeUpdate();
 			conn.commit();
 			conn.close();
@@ -106,14 +106,14 @@ public class riesgoDatos {
 			return resp;	
 		}
 		
-		public static  Riesgo buscarRie(int idusu) {
+		public static  Riesgo buscarRie(int idrie) {
 			Connection conn = null;
 			Riesgo rie=new Riesgo();
 			try {
 				conn = conexion.getConnection();
 				PreparedStatement pst = 
 				conn.prepareStatement("SELECT riesgos.* FROM riesgos WHERE id_riesgo=?" );
-				pst.setInt(1, idusu);
+				pst.setInt(1, idrie);
 				ResultSet rs = pst.executeQuery();
 				while (rs.next()) {
 					rie.setIdriesgo(rs.getInt("id_riesgo"));
@@ -126,6 +126,7 @@ public class riesgoDatos {
 					rie.setDescripcion(rs.getString("descripcion"));
 					rie.setId_usuario(rs.getInt("id_usuario"));
 					rie.setId_usuario(rs.getInt("id_provincia"));
+					rie.setImagen(rs.getString("imagen"));
 				}
 				conn.close();
 			} 
@@ -142,14 +143,15 @@ public class riesgoDatos {
 			try {
 				conn = conexion.getConnection();
 				//Insert con parametros para que no hagan SQL Inject
-				PreparedStatement pst = conn.prepareStatement("UPDATE `riesgos` SET `nombre`=?, `estado`=?, `tipo_riesgo`=?, `descripcion`=?,`id_ciudad`=?,`id_provincia`=? WHERE id_riesgo=?");				
+				PreparedStatement pst = conn.prepareStatement("UPDATE `riesgos` SET `nombre`=?, `estado`=?, `tipo_riesgo`=?, `descripcion`=?,`id_ciudad`=?,`id_provincia`=?, `imagen`=? WHERE id_riesgo=?");				
 				pst.setString(1, rie.getNombre());
 				pst.setString(2, rie.getEstado());
 				pst.setInt(3,rie.getTipo_riesgo());
 				pst.setString(4,rie.getDescripcion());
 				pst.setInt(5,rie.getCiu());
 				pst.setInt(6,rie.getPrv());
-				pst.setInt(7, rie.getIdriesgo());
+				pst.setString(8,rie.getImagen());
+				pst.setInt(8, rie.getIdriesgo());
 				System.out.println(pst);
 				pst.executeUpdate();
 				conn.close();

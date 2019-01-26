@@ -15,11 +15,14 @@
 	        <div class="col-md-6">
 	            <div class="md-form">
 	            	<i class="fa fa-fire prefix"></i>
+	            	<form:input type="hidden" path="idriesgo" class="form-control" />
 	                <form:input type="text" path="nombre" class="form-control" required="true"/>
 	    			<label for="nombre" class="textcontrol">Nombre del riesgo</label>
 	            </div>
 	        </div>
-	    
+	      </div>
+	      
+	      <div class="row">
 	        <!--Second column-->
 	        <div class="col-md-6">
 	               <div class="md-form">
@@ -31,13 +34,22 @@
 					  </div>
 	            </div>
 	        </div>
+	        <div class="col-md-6">
+	               <div class="md-form">
+                      <div class="form-group">
+					    <form:select id="cmtr" path="estado" class="form-control" required="true">
+					  	 	 <form:option value="Iniciado" label="Iniciado" />
+					  	 	 <form:option value="Finalizado" label="Finalizado" />
+					  	 	 <form:option value="Cancelado" label="Cancelado" />
+						</form:select>
+					  </div>
+	            </div>
 	        </div>
+	    </div>
 	     
 	    <!--/.First row-->
 	    <!--second row-->
-	    <div class="row">
-	
-	       
+	    <div class="row">       
 	     <div class="col-md-6">
 	               <div class="md-form">
                       <div class="form-group">
@@ -72,9 +84,17 @@
 	
 	        </div>
 	    </div>
-	    <!--/.Second row-->
-	    <!--/.Third row-->
-	    <!--Fourth row-->
+	    
+	   <div class="row">
+	 	 <div class="col-md-12">
+	            <div class="md-form">
+	            	<i class="fas fa-camera-retro prefix"></i>
+	                <form:input type="text" path="imagen" class="form-control" required="true"/>
+	    			<label for="nombre" class="textcontrol">Imagen del riesgo</label>
+	            </div>
+	        </div>
+	   </div>
+	   
 	    <div class="row">
 	    	<div class="col-md-7">
 	    	</div>

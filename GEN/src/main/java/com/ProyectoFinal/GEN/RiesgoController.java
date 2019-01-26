@@ -37,13 +37,21 @@ public class RiesgoController {
 	private static final Logger logger = LoggerFactory.getLogger(RiesgoController.class);	
 	
 	@RequestMapping(value = "/nuevoRiesgo", method = RequestMethod.GET)
-	public String nuevoRiesgo(Locale locale, Model model, HttpSession sesion,@RequestParam(required=false) String modi) {
+	public String nuevoRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String error) {
 		if(sesion.getAttribute("usuario")==null) 
 		{
 			model.addAttribute("usu", new Usuario());
 			return "login";
 		}
 	else {
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
 		Riesgo rie=new Riesgo();
 		model.addAttribute("rie",rie);
 		model.addAttribute("cius", ciudadDatos.mostrarTodos() );
@@ -55,14 +63,23 @@ public class RiesgoController {
 	
 	@RequestMapping(value = "/crearRiesgo", method = RequestMethod.POST)
 	public String crearRiesgo(@ModelAttribute("rie") Riesgo rie,
-            BindingResult result, HttpSession sesion, Model model) {
+            BindingResult result, HttpSession sesion, Model model, @RequestParam(required = false) String error) {
 		String ir="crearRiesgo";
 		if(sesion.getAttribute("usuario")==null) 
 			{
+				model.addAttribute("usu", new Usuario());	
 				ir="login";
 				return ir;
 			}
 		else {
+			Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+			boolean tipousu=usuh.getHabilitado();
+			if(tipousu) {
+				error="Usuario Deshabilitado";
+				model.addAttribute("usu", new Usuario());
+				model.addAttribute("error", error);
+				return "login";
+			}
 			Usuario usu=(Usuario)sesion.getAttribute("usuario");
 			rie.setId_usuario(usu.getIdusuario());
 			rie.setEstado("Iniciado");
@@ -72,7 +89,7 @@ public class RiesgoController {
 		return ir;
 	}
 	@RequestMapping(value = "/nuevoTipoRiesgo", method = RequestMethod.GET)
-	public String nuevoRipoRiesgo(Locale locale, Model model, HttpSession sesion) {
+	public String nuevoRipoRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String error) {
 		String ir="login";
 		if(sesion.getAttribute("usuario")==null) 
 		{
@@ -80,6 +97,14 @@ public class RiesgoController {
 			return "login";
 		}
 	else {
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
 		TipoRiesgo tr=new TipoRiesgo();
 		model.addAttribute("tr",tr);
 		ir="nuevoTipoRiesgo";
@@ -89,13 +114,22 @@ public class RiesgoController {
 
 	@RequestMapping(value = "/crearTipoRiesgo", method = RequestMethod.POST)
 	public String crearTipoRiesgo(@ModelAttribute("tr") TipoRiesgo tr,
-            BindingResult result, HttpSession sesion, Model model) {
+            BindingResult result, HttpSession sesion, Model model, @RequestParam(required = false) String error) {
 		String ir="crearTipoRiesgo";
 		if(sesion.getAttribute("usuario")==null) 
 			{
+				model.addAttribute("usu", new Usuario());	
 				ir="login";
 			}
 		else {
+			Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+			boolean tipousu=usuh.getHabilitado();
+			if(tipousu) {
+				error="Usuario Deshabilitado";
+				model.addAttribute("usu", new Usuario());
+				model.addAttribute("error", error);
+				return "login";
+			}
 			Usuario usu=(Usuario)sesion.getAttribute("usuario");
 			tr.setId_usu_atr(usu.getIdusuario());
 			tipoRiesgoDatos.nuevoTR(tr);
@@ -105,17 +139,42 @@ public class RiesgoController {
 	}
 	
 	@RequestMapping(value = "/gestionarRiesgos", method = RequestMethod.GET)
-	public String gestionarRiesgos(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj) {
-	//	int idusu=(Integer) sesion.getAttribute("id_usuario");
-		int idusu=1;
+	public String gestionarRiesgos(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj, @RequestParam(required = false) String error) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
+		Usuario usu=(Usuario)sesion.getAttribute("usuario");
+		int idusu=usu.getIdusuario();
 		model.addAttribute("msj", msj);
-		System.out.println(sesion.getAttribute("id_usuario"));
 		model.addAttribute("ries",riesgoDatos.mostrarRiesgos(idusu));
 		return "gestionarRiesgos";
 	}
 	
 	@RequestMapping(value = "/eliminarRiesgo", method = RequestMethod.GET)
-	public String eliminarRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int id) {
+	public String eliminarRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int id, @RequestParam(required = false) String error) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
 		msj="Riesgo Eliminado";
 		model.addAttribute("msj", msj);
 		model.addAttribute("ries",riesgoDatos.eliminarRiesgo(id));
@@ -123,12 +182,23 @@ public class RiesgoController {
 	}
 	
 	@RequestMapping(value = "/modificarRiesgo", method = RequestMethod.GET)
-	public String modificarRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int id) {
+	public String modificarRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int id, @RequestParam(required = false) String error) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
 		Riesgo rie = new Riesgo();
 		rie = riesgoDatos.buscarRie(id);
 		model.addAttribute("rie",rie);
-		System.out.println("nombre riesgo");
-		System.out.println(rie.getNombre());
 		model.addAttribute("cius", ciudadDatos.mostrarTodos() );
 		model.addAttribute("prvs", provinciaDatos.mostrarTodos() );
 		model.addAttribute("trs",tipoRiesgoDatos.mostrarTodos());
@@ -136,10 +206,82 @@ public class RiesgoController {
 	}
 	
 	@RequestMapping(value = "/modiRie", method = RequestMethod.POST)
-	public String modiRie(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@ModelAttribute("rie") Riesgo rie) {;
-		rie.setEstado("Iniciado");
-		riesgoDatos.modificarRie(rie);
+	public String modiRie(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@ModelAttribute("rie") Riesgo rie, @RequestParam(required = false) String error) {;
+	if(sesion.getAttribute("usuario")==null) 
+	{
+		model.addAttribute("usu", new Usuario());
+		return "login";
+	}	
+	Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+	boolean tipousu=usuh.getHabilitado();
+	if(tipousu) {
+		error="Usuario Deshabilitado";
+		model.addAttribute("usu", new Usuario());
+		model.addAttribute("error", error);
+		return "login";
+	}
+	riesgoDatos.modificarRie(rie);
 		return "mapaInteractivo";
+	}
+	
+	@RequestMapping(value = "/verRiesgo", method = RequestMethod.GET)
+	public String verRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int id, @RequestParam(required = false) String error) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
+		model.addAttribute("rie",riesgoDatos.buscarRie(id));
+		return "visorRiesgo";
+	}
+	
+	@RequestMapping(value = "/gestionarTipoRiesgos", method = RequestMethod.GET)
+	public String gestionarTipoRiesgos(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj, @RequestParam(required = false) String error) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
+		model.addAttribute("msj", msj);
+		model.addAttribute("trs",tipoRiesgoDatos.mostrarTipoRiesgos());
+		return "gestionarTipoRiesgos";
+	}
+	
+	@RequestMapping(value = "/eliminarTipoRiesgo", method = RequestMethod.GET)
+	public String eliminarTipoRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int id, @RequestParam(required = false) String error) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
+		msj="Tipo Riesgo Eliminado";
+		model.addAttribute("msj", msj);
+		model.addAttribute("ries",tipoRiesgoDatos.eliminartipoRiesgo(id));
+		return "gestionarTipoRiesgos";
 	}
 
 }

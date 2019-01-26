@@ -56,5 +56,52 @@ public class tipoRiesgoDatos {
 
 		}	
 	}
+	
+	public static  List<TipoRiesgo> mostrarTipoRiesgos() {
+		Connection conn = null;
+		List<TipoRiesgo> trs=new ArrayList<TipoRiesgo>();
+		try {
+			conn = conexion.getConnection();
+			conn.setAutoCommit(false);
+			PreparedStatement pst = 
+			conn.prepareStatement("SELECT * FROM tipo_riesgo");
+			ResultSet rs=pst.executeQuery();
+			while(rs.next())
+				{                           
+				TipoRiesgo tr=new TipoRiesgo();
+				tr.setNombre(rs.getString("nombre"));
+				tr.setDescripcion(rs.getString("descripcion"));
+				tr.setFecha_alta_tr(rs.getDate("fecha_alta_tr"));
+				tr.setId_tipor(rs.getInt("id_tipo"));
+				tr.setId_usu_atr(rs.getInt("usu_alta_tr"));
+				trs.add(tr);
+				}
+			conn.close();
+		} 
+		catch (SQLException e) {System.out.println(e.toString());}
+		finally {if(conn!=null)	try {conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+		}
+		return trs;
+	}
+	
+	public static boolean eliminartipoRiesgo(int id_tr) {
+		Connection conn = null;
+		boolean resp = false;
+		try {
+			conn = conexion.getConnection();
+			//Insert con parametros para que no hagan SQL Inject
+			PreparedStatement pst = conn.prepareStatement("DELETE FROM `tipo_riesgo` WHERE `id_tipo`=?");				
+			pst.setInt(1, id_tr);
+			System.out.println(pst);
+			pst.executeUpdate();
+			resp = true;
+			conn.close();
+		} 
+		catch (SQLException e) {resp=false;System.out.println(e.toString());try {conn.rollback();} catch (SQLException e1) {e1.printStackTrace();	}}
+		finally {if(conn!=null)	try {resp=false;conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+		}
+		return resp;	
+	}
+	
 }
 	

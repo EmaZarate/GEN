@@ -25,6 +25,9 @@
                     <a class="dropdown-item" href="nuevoRiesgo">Nuevo Riesgo</a>
                     <a class="dropdown-item" href="gestionarRiesgos">Gestionar Riesgo</a>
                     <a class="dropdown-item" href="nuevoTipoRiesgo">Nuevo Tipo de Riesgo</a>
+                    <c:if test="${usuario.getTipoUsuario() == 0}">
+                       <a class="dropdown-item" href="gestionarTipoRiesgos">Gestionar Tipo de Riesgos</a>
+                    </c:if>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -43,12 +46,14 @@
                 </div>
             </li>
            
+           <c:if test="${usuario.getTipoUsuario() == 0}">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="habilitarUsuarios">Habilitar Usuarios</a>
                 </div>
             </li>
+            </c:if>
         
           </ul>
         <!-- Links -->

@@ -14,7 +14,7 @@
 
 
 <div class="container margentop">    
-	<h4>Gestionar de Riesgos</h4>
+	<h4>Gestionar Tipo de Riesgos</h4>
 	<br>
 	
 <table id="dtBasicExample" class="table table-striped table-bordered">
@@ -22,19 +22,9 @@
     <tr>
       <th class="th-sm text-centro">Nombre 
       </th>
-      <th class="th-sm text-centro">Fecha inicio
-      </th>
-      <th class="th-sm text-centro">Estado
-      </th>
       <th class="th-sm text-centro">Descripcion
       </th>
-      <th class="th-sm text-centro">Tipo de Riesgo
-      </th>
-      <th class="th-sm text-centro">Ciudad
-      </th>
-      <th class="th-sm text-centro">Provincia
-      </th>
-      <th class="th-sm text-centro">Ver
+      <th class="th-sm text-centro">Fecha Alta
       </th>
       <th class="th-sm text-centro">Modificar
       </th>
@@ -43,18 +33,13 @@
     </tr>
   </thead>
   <tbody>
-    <c:forEach items="${ries}" var="ries">
+    <c:forEach items="${trs}" var="trs">
 		<tr>
-		 <td><c:out value="${ries.nombre}" /></td>
-		 <td><c:out value="${ries.fecha_inicio}" /></td>
-		 <td><c:out value="${ries.estado}" /></td>
-		 <td><c:out value="${ries.descripcion}" /></td>
-		 <td><c:out value="${ries.tipoRiesgo.nombre}" /></td>
-		 <td><c:out value="${ries.ciudad.getNombre()}" /></td>
-		 <td><c:out value="${ries.provincia.nombre}" /></td>
-		 <td><a href="verRiesgo?id=${ries.idriesgo}"><button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button></a></td>			
-		 <td><a href="modificarRiesgo?id=${ries.idriesgo}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
-		 <td><a href="eliminarRiesgo?id=${ries.idriesgo}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a></td>			
+		 <td><c:out value="${trs.nombre}" /></td>
+		 <td><c:out value="${trs.descripcion}" /></td>
+		 <td><c:out value="${trs.fecha_alta_tr}" /></td>
+		 <td><a href=""><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
+		 <td><a href="eliminarTipoRiesgo?id=${trs.id_tipor}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a></td>			
 		</tr>
 	</c:forEach>
   </tbody>

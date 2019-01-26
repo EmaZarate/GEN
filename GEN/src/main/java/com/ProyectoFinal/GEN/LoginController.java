@@ -79,6 +79,7 @@ public class LoginController {
             BindingResult result, HttpSession sesion, Model model) {
 		    String ir="registrarse";
 			nu.setHabilitado(false);
+			//Tipo_usuario 1 = usuario común, Tipo_usuario=0 Admin
 			nu.setTipoUsuario(1);
 			usuarioDatos.nuevoUsu(nu);
 			ir="mapaInteractivo";

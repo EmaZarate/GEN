@@ -15,6 +15,7 @@ public class Riesgo {
 	private TipoRiesgo tipoRiesgo;
 	private Ciudad ciudad;
 	private Provincia provincia;
+	private String imagen;
 	
 	public int getIdriesgo() {
 		return idriesgo;
@@ -94,5 +95,11 @@ public class Riesgo {
 	}
 	public void setProvincia(Provincia provincia) {
 		this.provincia = provincia;
+	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 }
