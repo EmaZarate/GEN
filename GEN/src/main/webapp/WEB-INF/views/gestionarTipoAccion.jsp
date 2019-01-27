@@ -14,7 +14,7 @@
 
 
 <div class="container margentop">    
-	<h4>Gestionar Tipo de Riesgos</h4>
+	<h4>Gestionar Tipo de Acciones</h4>
 	<br>
 	
 <table id="dtBasicExample" class="table table-striped table-bordered">
@@ -33,13 +33,13 @@
     </tr>
   </thead>
   <tbody>
-    <c:forEach items="${trs}" var="trs">
+    <c:forEach items="${tas}" var="tas">
 		<tr>
-		 <td><c:out value="${trs.nombre}" /></td>
-		 <td><c:out value="${trs.descripcion}" /></td>
-		 <td><c:out value="${trs.fecha_alta_tr}" /></td>
-		 <td><a href="modificarTipoRiesgo?id=${trs.id_tipor}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
-		 <td><a href="eliminarTipoRiesgo?id=${trs.id_tipor}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a></td>			
+		 <td><c:out value="${tas.nombre}" /></td>
+		 <td><c:out value="${tas.descripcion}" /></td>
+		 <td><c:out value="${tas.fecha_alta_ta}" /></td>
+		 <td><a href="modificarTipoAccion?id=${tas.idTipo_accion}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
+		 <td><a href="eliminarTipoAccion?id=${tas.idTipo_accion}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a></td>			
 		</tr>
 	</c:forEach>
   </tbody>

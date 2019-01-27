@@ -34,7 +34,11 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Acciones</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="nuevaAccion">Nueva Accion</a>
+                    <a class="dropdown-item" href="gestionarAcciones">Gestionar Acciones</a>
                     <a class="dropdown-item" href="nuevoTipoAccion">Nuevo Tipo de Accion</a>
+                     <c:if test="${usuario.getTipoUsuario() == 0}">
+                       <a class="dropdown-item" href="gestionarTipoAccion">Gestionar Tipo de Acciones</a>
+                    </c:if>
                 </div>
             </li>
             <!-- Dropdown -->

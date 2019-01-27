@@ -178,7 +178,7 @@ public class RiesgoController {
 		msj="Riesgo Eliminado";
 		model.addAttribute("msj", msj);
 		model.addAttribute("ries",riesgoDatos.eliminarRiesgo(id));
-		return "gestionarRiesgos";
+		return "mapaInteractivo";
 	}
 	
 	@RequestMapping(value = "/modificarRiesgo", method = RequestMethod.GET)
@@ -258,6 +258,13 @@ public class RiesgoController {
 			model.addAttribute("error", error);
 			return "login";
 		}
+		if(usuh.getTipoUsuario()!=0)
+		 {
+			error="Usted no es usuario administrador";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
 		model.addAttribute("msj", msj);
 		model.addAttribute("trs",tipoRiesgoDatos.mostrarTipoRiesgos());
 		return "gestionarTipoRiesgos";
@@ -278,10 +285,64 @@ public class RiesgoController {
 			model.addAttribute("error", error);
 			return "login";
 		}
+		if(usuh.getTipoUsuario()!=0)
+		 {
+			error="Usted no es usuario administrador";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
 		msj="Tipo Riesgo Eliminado";
 		model.addAttribute("msj", msj);
 		model.addAttribute("ries",tipoRiesgoDatos.eliminartipoRiesgo(id));
 		return "gestionarTipoRiesgos";
+	}
+	
+	@RequestMapping(value = "/modificarTipoRiesgo", method = RequestMethod.GET)
+	public String modificarTipoRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int id, @RequestParam(required = false) String error) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
+		if(usuh.getTipoUsuario()!=0)
+		 {
+			error="Usted no es usuario administrador";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
+		TipoRiesgo tr = new TipoRiesgo();
+		tr = tipoRiesgoDatos.buscartipoRie(id);
+		model.addAttribute("tr",tr);
+		return "modificarTipoRiesgo";
+	}
+	
+	@RequestMapping(value = "/modiTRie", method = RequestMethod.POST)
+	public String modiTRie(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@ModelAttribute("tr") TipoRiesgo tr, @RequestParam(required = false) String error) {;
+	if(sesion.getAttribute("usuario")==null) 
+	{
+		model.addAttribute("usu", new Usuario());
+		return "login";
+	}	
+	Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+	boolean tipousu=usuh.getHabilitado();
+	if(tipousu) {
+		error="Usuario Deshabilitado";
+		model.addAttribute("usu", new Usuario());
+		model.addAttribute("error", error);
+		return "login";
+	}
+	tipoRiesgoDatos.modificarTipoRie(tr);
+		return "mapaInteractivo";
 	}
 
 }

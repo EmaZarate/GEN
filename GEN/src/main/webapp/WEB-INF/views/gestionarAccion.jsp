@@ -14,7 +14,7 @@
 
 
 <div class="container margentop">    
-	<h4>Gestionar Tipo de Riesgos</h4>
+	<h4>Gestionar Acciones</h4>
 	<br>
 	
 <table id="dtBasicExample" class="table table-striped table-bordered">
@@ -24,7 +24,9 @@
       </th>
       <th class="th-sm text-centro">Descripcion
       </th>
-      <th class="th-sm text-centro">Fecha Alta
+      <th class="th-sm text-centro">Estado
+      </th>
+      <th class="th-sm text-centro">Fecha alta
       </th>
       <th class="th-sm text-centro">Modificar
       </th>
@@ -33,13 +35,14 @@
     </tr>
   </thead>
   <tbody>
-    <c:forEach items="${trs}" var="trs">
+    <c:forEach items="${accs}" var="accs">
 		<tr>
-		 <td><c:out value="${trs.nombre}" /></td>
-		 <td><c:out value="${trs.descripcion}" /></td>
-		 <td><c:out value="${trs.fecha_alta_tr}" /></td>
-		 <td><a href="modificarTipoRiesgo?id=${trs.id_tipor}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
-		 <td><a href="eliminarTipoRiesgo?id=${trs.id_tipor}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a></td>			
+		 <td><c:out value="${accs.nombre}" /></td>
+		 <td><c:out value="${accs.descripcion}" /></td>
+		 <td><c:out value="${accs.estado}" /></td>
+		 <td><c:out value="${accs.fecha_alta}" /></td>
+		 <td><a href="modificarAccion?id=${accs.id_accion}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
+		 <td><a href="eliminarAccion?id=${accs.id_accion}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a></td>			
 		</tr>
 	</c:forEach>
   </tbody>

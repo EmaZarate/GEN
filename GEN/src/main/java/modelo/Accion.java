@@ -1,10 +1,16 @@
 package modelo;
 
+import java.sql.Date;
+
 public class Accion {
  private int id_accion;
  private String nombre;
  private int id_tipo_Accion;
  private String descripcion;
+ private int id_usualta_acc;
+ private Date fecha_alta;
+ private String estado;
+ private TipoAccion ta;
  
 	public int getId_accion() {
 		return id_accion;
@@ -29,6 +35,30 @@ public class Accion {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	public int getId_usualta_acc() {
+		return id_usualta_acc;
+	}
+	public void setId_usualta_acc(int id_usualta_acc) {
+		this.id_usualta_acc = id_usualta_acc;
+	}
+	public Date getFecha_alta() {
+		return fecha_alta;
+	}
+	public void setFecha_alta(Date fecha_alta) {
+		this.fecha_alta = fecha_alta;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	public TipoAccion getTa() {
+		return ta;
+	}
+	public void setTa(TipoAccion ta) {
+		this.ta = ta;
 	}
 	
 }

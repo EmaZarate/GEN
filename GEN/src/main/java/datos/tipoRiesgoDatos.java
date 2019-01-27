@@ -8,6 +8,7 @@ import java.util.List;
 import datos.conexion;
 import java.sql.ResultSet;
 
+import modelo.Riesgo;
 import modelo.TipoRiesgo;
 
 public class tipoRiesgoDatos {
@@ -102,6 +103,54 @@ public class tipoRiesgoDatos {
 		}
 		return resp;	
 	}
+	
+	
+	public static  TipoRiesgo buscartipoRie(int idtr) {
+		Connection conn = null;
+		TipoRiesgo tr=new TipoRiesgo();
+		try {
+			conn = conexion.getConnection();
+			PreparedStatement pst = 
+			conn.prepareStatement("SELECT * FROM tipo_riesgo WHERE id_tipo=?" );
+			pst.setInt(1, idtr);
+			System.out.println(pst);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				tr.setId_tipor(rs.getInt("id_tipo"));
+				tr.setNombre(rs.getString("nombre"));
+				tr.setDescripcion(rs.getString("descripcion"));
+				tr.setFecha_alta_tr(rs.getDate("fecha_alta_tr"));
+				tr.setId_usu_atr(rs.getInt("usu_alta_tr"));
+			}
+			conn.close();
+		} 
+		catch (SQLException e) {System.out.println(e.toString());}
+		finally {if(conn!=null)	try {conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+		}
+		return tr;
+	}
+	
+
+	public static boolean modificarTipoRie(TipoRiesgo tr) {
+		Connection conn = null;
+		boolean resp = false;
+		try {
+			conn = conexion.getConnection();
+			//Insert con parametros para que no hagan SQL Inject
+			PreparedStatement pst = conn.prepareStatement("UPDATE `tipo_riesgo` SET `nombre`=?, `descripcion`=? WHERE id_tipo=?");				
+			pst.setString(1, tr.getNombre());
+			pst.setString(2, tr.getDescripcion());
+			pst.setInt(3,tr.getId_tipor());
+			pst.executeUpdate();
+			conn.commit();
+			conn.close();
+		} 
+		catch (SQLException e) {resp=false;System.out.println(e.toString());try {conn.rollback();} catch (SQLException e1) {e1.printStackTrace();	}}
+		finally {if(conn!=null)	try {resp=false;conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+		}
+		return resp;	
+	}
+
 	
 }
 	
