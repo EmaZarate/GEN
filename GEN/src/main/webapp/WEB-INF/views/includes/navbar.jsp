@@ -75,7 +75,7 @@
                              	<a class="dropdown-item" href="nuevoUsuario">Crear cuenta</a>
                              	<%}%>
                              	<% if (session.getAttribute("usuario") != null){%>
-                                <a class="dropdown-item" href="micuenta">Mi cuenta</a>
+                                <a class="dropdown-item" href="modusu">Mi cuenta</a>
                                 <%}%>
                                 <% if (session.getAttribute("usuario") != null){%>
                                 <a class="dropdown-item" href="finsesion">cerrar sesion</a>

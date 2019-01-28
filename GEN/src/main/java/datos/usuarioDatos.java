@@ -9,6 +9,7 @@ import java.util.List;
 import datos.conexion;
 import java.sql.ResultSet;
 
+import modelo.Accion;
 import modelo.TipoAccion;
 import modelo.TipoRiesgo;
 import modelo.Usuario;
@@ -152,5 +153,54 @@ public class usuarioDatos {
 		}
 		return resp;
 	}
+	
+	public static Usuario buscarUsu(int idusu) {
+		Connection conn = null;
+		Usuario usu=new Usuario();
+		try {
+			conn = conexion.getConnection();
+			PreparedStatement pst = 
+			conn.prepareStatement("SELECT * FROM usuarios WHERE id_usuario=?" );
+			pst.setInt(1, idusu);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				usu.setIdusuario(rs.getInt("id_usuario"));
+				usu.setNombre(rs.getString("nombre"));
+				usu.setApellido(rs.getString("apellido"));
+				usu.setEmail(rs.getString("email"));
+				usu.setUsuario(rs.getString("usuario"));
+				usu.setImagen(rs.getString("imagen"));
+			}
+			conn.close();
+		} 
+		catch (SQLException e) {System.out.println(e.toString());}
+		finally {if(conn!=null)	try {conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+		}
+		return usu;
+	}
+	
+
+	public static boolean modificarUsu(Usuario usu) {
+		Connection conn = null;
+		boolean resp = false;
+		try {
+			conn = conexion.getConnection();
+			//Insert con parametros para que no hagan SQL Inject
+			PreparedStatement pst = conn.prepareStatement("UPDATE `usuarios` SET `nombre`=?, `apellido`=?, `usuario`=?, `email`=?, `imagen`=? WHERE id_usuario=?");				
+			pst.setString(1, usu.getNombre());
+			pst.setString(2, usu.getApellido());
+			pst.setString(3,usu.getUsuario());
+			pst.setString(4,usu.getEmail());
+			pst.setString(5, usu.getImagen());
+			pst.setInt(6, usu.getIdusuario());
+			pst.executeUpdate();
+			conn.close();
+		} 
+		catch (SQLException e) {resp=false;System.out.println(e.toString());try {conn.rollback();} catch (SQLException e1) {e1.printStackTrace();	}}
+		finally {if(conn!=null)	try {resp=false;conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+		}
+		return resp;	
+	}
+	
 	
 }

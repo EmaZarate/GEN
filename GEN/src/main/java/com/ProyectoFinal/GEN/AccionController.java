@@ -212,7 +212,7 @@ public class AccionController {
 	}
 	
 	@RequestMapping(value = "/modiAcc", method = RequestMethod.POST)
-	public String modiRie(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@ModelAttribute("acc") Accion acc, @RequestParam(required = false) String error) {;
+	public String modiAcc(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@ModelAttribute("acc") Accion acc, @RequestParam(required = false) String error) {;
 	if(sesion.getAttribute("usuario")==null) 
 	{
 		model.addAttribute("usu", new Usuario());

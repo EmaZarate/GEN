@@ -9,6 +9,7 @@ public class Usuario {
 	private String clave;
 	private boolean habilitado;
 	private int tipo_usuario;
+	private String imagen;
 	
 	public String getUsuario() {
 		return usuario;
@@ -57,5 +58,11 @@ public class Usuario {
 	}
 	public void setTipoUsuario(int tipo_usuario) {
 		this.tipo_usuario= tipo_usuario;
+	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 }

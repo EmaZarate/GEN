@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import datos.AccionDatos;
+import datos.tipoAccionDatos;
 import datos.tipoRiesgoDatos;
 import datos.usuarioDatos;
+import modelo.Accion;
 import modelo.Usuario;
 
 
@@ -109,5 +112,45 @@ public class LoginController {
 		return "habilitarUsuarios";
 	}
 	
+	@RequestMapping(value = "/modusu", method = RequestMethod.GET)
+	public String modusu(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj, @RequestParam(required = false) String error) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
+		Usuario usu = new Usuario();
+		usu = usuarioDatos.buscarUsu(usuh.getIdusuario());
+		model.addAttribute("usu",usu);
+		return "modusu";
+	}
+	
+	@RequestMapping(value = "/modiUsu", method = RequestMethod.POST)
+	public String modiUsu(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@ModelAttribute("usu") Usuario usu, @RequestParam(required = false) String error) {;
+	if(sesion.getAttribute("usuario")==null) 
+	{
+		model.addAttribute("usu", new Usuario());
+		return "login";
+	}	
+	Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+	boolean tipousu=usuh.getHabilitado();
+	if(tipousu) {
+		error="Usuario Deshabilitado";
+		model.addAttribute("usu", new Usuario());
+		model.addAttribute("error", error);
+		return "login";
+	}
+		usu.setIdusuario(usuh.getIdusuario());
+		usuarioDatos.modificarUsu(usu);
+		return "mapaInteractivo";
+	}
 
 }
