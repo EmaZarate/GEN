@@ -30,6 +30,17 @@
 	}).addTo(mymap);
 	circle.bindPopup("Agua en la calzada");
 
+	var popup = L.popup();
+
+	function onMapClick(e) {
+	    popup
+	        .setLatLng(e.latlng)
+	        .setContent("Clicleaste en as cordenadas " + e.latlng.toString())
+	        .openOn(mymap);
+	}
+
+	mymap.on('click', onMapClick);
+	
 </script>
 
  <%@ include file="includes/footer.jsp" %>      

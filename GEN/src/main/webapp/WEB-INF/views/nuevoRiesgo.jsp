@@ -80,11 +80,22 @@
 	                <form:input type="text" path="imagen" class="form-control" required="true"/>
 	    			<label for="nombre" class="textcontrol">Imagen del riesgo</label>
 	            </div>
-	        </div>
+	        </div>      
 	   </div>
 	   
+	   <br>
+	   	<div class="row">
+	   	<i class="fas fa-map-marked-alt"></i> <h3 class="text-centro">	Seleccione la ubicacion del riesgo</h3>
+	   		<div class="col-md-12">
+			   	<div id="mapubic">
+				    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>   
+	      		</div>
+		   	</div>
+	    </div>
+		  
 	    <div class="row">
 	    	<div class="col-md-7">
+	    	<input type="text" id="cordenadas" name="cordenadas" class="form-control" />
 	    	</div>
 	     	<div class="col-md-2">
 	            <div class="md-form">
@@ -101,8 +112,29 @@
 	</form:form>
 </div>
 
- <%@ include file="includes/footer.jsp" %>      
+<script>
 
+var mymap = L.map('mapubic').setView([-32.955096650, -60.655925274], 14);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+	maxZoom: 16,
+	id: 'mapbox.streets'
+}).addTo(mymap);
+
+var popup = L.popup();
+
+function onMapClick(e) {
+	cordenadas.value=e.latlng.toString()
+    popup
+        .setLatLng(e.latlng)
+        .setContent("Cordenadas " + e.latlng.toString())
+        .openOn(mymap);
+    
+}
+
+
+mymap.on('click', onMapClick);
+
+</script>
+<%@ include file="includes/footer.jsp" %>      
 </body>
-
 </html>
