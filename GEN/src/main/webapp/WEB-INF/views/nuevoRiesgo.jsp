@@ -95,8 +95,12 @@
 		  
 	    <div class="row">
 	    	<div class="col-md-7">
-	    	<input type="text" id="cordenadas" name="cordenadas" class="form-control" />
+	    	<form:input type="text" path="ubicacion" id="cordenadas" name="cordenadas" class="form-control" />
 	    	</div>
+	   </div> 	
+	   <div class="row">
+	   <div class="col-md-5">
+	   </div>
 	     	<div class="col-md-2">
 	            <div class="md-form">
 	            <button type="button" class="btn btn-blue-grey">Cancelar</button>

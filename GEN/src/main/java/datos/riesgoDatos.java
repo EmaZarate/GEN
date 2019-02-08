@@ -21,7 +21,7 @@ public class riesgoDatos {
 			System.out.println("riesgoDatos - nuevoRiesgo");
 			//Insert con parametros para que no hagan SQL Inject
 			PreparedStatement pst = 
-			conn.prepareStatement("INSERT INTO `riesgos` (`nombre`, `estado`, `tipo_riesgo`, `id_usuario`, `descripcion`,`fecha_inicio`,`id_ciudad`,`id_provincia`,`imagen`) VALUES ( ?, ?, ?, ?, ?,NOW(), ?, ?,?)");
+			conn.prepareStatement("INSERT INTO `riesgos` (`nombre`, `estado`, `tipo_riesgo`, `id_usuario`, `descripcion`,`fecha_inicio`,`id_ciudad`,`id_provincia`,`imagen`,`ubicacion`) VALUES ( ?, ?, ?, ?, ?,NOW(), ?, ?,?,?)");
 			pst.setString(1, rie.getNombre());
 			pst.setString(2, rie.getEstado());
 			pst.setInt(3,rie.getTipo_riesgo());
@@ -30,6 +30,7 @@ public class riesgoDatos {
 			pst.setInt(6,rie.getCiu());
 			pst.setInt(7,rie.getPrv());
 			pst.setString(8,rie.getImagen());
+			pst.setString(9, rie.getUbicacion());
 			pst.executeUpdate();
 			conn.commit();
 			conn.close();
@@ -64,6 +65,54 @@ public class riesgoDatos {
 				rie.setFecha_fin(rs.getDate("fecha_fin"));
 				rie.setEstado(rs.getString("estado"));
 				rie.setId_usuario(rs.getInt("id_usuario"));
+				rie.setDescripcion(rs.getString("descripcion"));
+					TipoRiesgo tr = new TipoRiesgo();
+					tr.setNombre(rs.getString("trnom"));
+					tr.setId_tipor(rs.getInt("tipo_riesgo"));
+				rie.setTipoRiesgo(tr);
+					Ciudad ci = new Ciudad();
+					ci.setNombre(rs.getString("ciunom"));
+					ci.setId_ciudad(rs.getInt("id_ciudad"));
+				rie.setCiudad(ci);
+					Provincia pr = new Provincia();
+					pr.setNombre(rs.getString("prvnom"));
+					pr.setId_provincia(rs.getInt("id_provincia"));
+				rie.setProvincia(pr);
+				ries.add(rie);
+				}
+			conn.close();
+		} 
+		catch (SQLException e) {System.out.println(e.toString());}
+		finally {if(conn!=null)	try {conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+		}
+		return ries;
+	}
+	
+	public static  List<Riesgo> mostrarTodosRiesgos() {
+		Connection conn = null;
+		List<Riesgo> ries=new ArrayList<Riesgo>();
+		try {
+			conn = conexion.getConnection();
+			conn.setAutoCommit(false);
+			PreparedStatement pst = 
+			conn.prepareStatement("SELECT riesgos.*,tipo_riesgo.nombre trnom,ciudad.nombre ciunom,provincia.nombre prvnom FROM riesgos\r\n" + 
+					"INNER JOIN tipo_riesgo ON riesgos.tipo_riesgo=tipo_riesgo.id_tipo\r\n" + 
+					"INNER JOIN usuarios ON riesgos.id_usuario=usuarios.id_usuario\r\n" + 
+					"INNER JOIN provincia ON riesgos.id_provincia=provincia.id_provincia\r\n" + 
+					"INNER JOIN ciudad ON riesgos.id_ciudad=ciudad.id_ciudad\r\n" + 
+					"WHERE estado<>'Cancelado'");
+			ResultSet rs=pst.executeQuery();
+			while(rs.next())
+				{                           
+				Riesgo rie=new Riesgo();
+				rie.setIdriesgo(rs.getInt("id_riesgo"));
+				rie.setNombre(rs.getString("nombre"));
+				rie.setFecha_inicio(rs.getDate("fecha_inicio"));
+				rie.setFecha_fin(rs.getDate("fecha_fin"));
+				rie.setEstado(rs.getString("estado"));
+				rie.setId_usuario(rs.getInt("id_usuario"));
+				rie.setUbicacion(rs.getString("ubicacion"));
+				rie.setImagen(rs.getString("imagen"));
 				rie.setDescripcion(rs.getString("descripcion"));
 					TipoRiesgo tr = new TipoRiesgo();
 					tr.setNombre(rs.getString("trnom"));
@@ -127,6 +176,7 @@ public class riesgoDatos {
 					rie.setId_usuario(rs.getInt("id_usuario"));
 					rie.setId_usuario(rs.getInt("id_provincia"));
 					rie.setImagen(rs.getString("imagen"));
+					rie.setUbicacion(rs.getString("ubicacion"));
 				}
 				conn.close();
 			} 
@@ -143,7 +193,7 @@ public class riesgoDatos {
 			try {
 				conn = conexion.getConnection();
 				//Insert con parametros para que no hagan SQL Inject
-				PreparedStatement pst = conn.prepareStatement("UPDATE `riesgos` SET `nombre`=?, `estado`=?, `tipo_riesgo`=?, `descripcion`=?,`id_ciudad`=?,`id_provincia`=?, `imagen`=? WHERE id_riesgo=?");				
+				PreparedStatement pst = conn.prepareStatement("UPDATE `riesgos` SET `nombre`=?, `estado`=?, `tipo_riesgo`=?, `descripcion`=?,`id_ciudad`=?,`id_provincia`=?, `imagen`=?, `ubicacion`=? WHERE id_riesgo=?");				
 				pst.setString(1, rie.getNombre());
 				pst.setString(2, rie.getEstado());
 				pst.setInt(3,rie.getTipo_riesgo());
@@ -152,7 +202,7 @@ public class riesgoDatos {
 				pst.setInt(6,rie.getPrv());
 				pst.setString(8,rie.getImagen());
 				pst.setInt(8, rie.getIdriesgo());
-				System.out.println(pst);
+				pst.setString(9,rie.getUbicacion());
 				pst.executeUpdate();
 				conn.close();
 			} 

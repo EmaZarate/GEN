@@ -63,7 +63,9 @@
         <!-- Links -->
 
         <ul class="navbar-nav ml-auto">
-                                              
+                         <li class="nav-item dropdown">
+			                    <a  class="nav-link" href="ayuda">Ayuda</a>
+			            </li>        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
                              ${usuario.getUsuario()}</a>

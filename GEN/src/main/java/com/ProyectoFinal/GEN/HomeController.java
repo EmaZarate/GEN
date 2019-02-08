@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import datos.riesgoDatos;
+import datos.tipoRiesgoDatos;
 import modelo.Usuario;
 
 /**
@@ -34,6 +36,7 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("ries",riesgoDatos.mostrarTodosRiesgos());
 		return "home";
 	}
 	/**
@@ -106,6 +109,12 @@ public class HomeController {
 		if(sesion.getAttribute("usuario")==null) 
 		{ir="login";model.addAttribute("usu", new Usuario());error="Debe estar logeado para ver un Mapa/Radar";model.addAttribute("error", error);}	
 		model.addAttribute("error", error);
+		return ir; 
+	}
+	
+	@RequestMapping(value = "/ayuda", method = RequestMethod.GET)
+	public String ayuda(Locale locale, Model model, HttpSession sesion) {
+		String ir="ayuda";
 		return ir; 
 	}
 }

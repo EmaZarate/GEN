@@ -16,6 +16,7 @@ public class Riesgo {
 	private Ciudad ciudad;
 	private Provincia provincia;
 	private String imagen;
+	private String ubicacion;
 	
 	public int getIdriesgo() {
 		return idriesgo;
@@ -102,4 +103,11 @@ public class Riesgo {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
+	public String getUbicacion() {
+		return ubicacion;
+	}
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
 }
