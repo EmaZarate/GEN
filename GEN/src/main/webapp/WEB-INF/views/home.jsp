@@ -22,24 +22,20 @@
 		id: 'mapbox.streets'
 	}).addTo(mymap);
 
-	var circle = L.circle([-32.955096650, -60.625925274], {
+	<c:forEach items="${ries}" var="rie">
+	
+	//var circle = L.circle([-32.955096650, -60.625925274], {
+	var circle = L.circle([${rie.getUbicacion()}], {
 	    color: 'red',
 	    fillColor: '#f03',
 	    fillOpacity: 0.5,
 	    radius: 500
 	}).addTo(mymap);
-	circle.bindPopup("Agua en la calzada");
-
+	circle.bindPopup("${rie.getNombre()}");
+	
 	var popup = L.popup();
 
-	function onMapClick(e) {
-	    popup
-	        .setLatLng(e.latlng)
-	        .setContent("Clicleaste en as cordenadas " + e.latlng.toString())
-	        .openOn(mymap);
-	}
-
-	mymap.on('click', onMapClick);
+	</c:forEach>
 	
 </script>
 
