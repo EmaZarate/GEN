@@ -16,7 +16,10 @@ public class Riesgo {
 	private Ciudad ciudad;
 	private Provincia provincia;
 	private String imagen;
-	private String ubicacion;
+	private float latitud;
+	private float longitud;
+	private String color;
+	private int tamaño;
 	
 	public int getIdriesgo() {
 		return idriesgo;
@@ -103,11 +106,29 @@ public class Riesgo {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	public String getUbicacion() {
-		return ubicacion;
+	public float getLatitud() {
+		return latitud;
 	}
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
+	public void setLatitud(float latitud) {
+		this.latitud = latitud;
+	}
+	public float getLongitud() {
+		return longitud;
+	}
+	public void setLongitud(float longitud) {
+		this.longitud = longitud;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public int getTamaño() {
+		return tamaño;
+	}
+	public void setTamaño(int tamaño) {
+		this.tamaño = tamaño;
 	}
 
 }

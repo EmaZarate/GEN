@@ -21,7 +21,7 @@ public class riesgoDatos {
 			System.out.println("riesgoDatos - nuevoRiesgo");
 			//Insert con parametros para que no hagan SQL Inject
 			PreparedStatement pst = 
-			conn.prepareStatement("INSERT INTO `riesgos` (`nombre`, `estado`, `tipo_riesgo`, `id_usuario`, `descripcion`,`fecha_inicio`,`id_ciudad`,`id_provincia`,`imagen`,`ubicacion`) VALUES ( ?, ?, ?, ?, ?,NOW(), ?, ?,?,?)");
+			conn.prepareStatement("INSERT INTO `riesgos` (`nombre`, `estado`, `tipo_riesgo`, `id_usuario`, `descripcion`,`fecha_inicio`,`id_ciudad`,`id_provincia`,`imagen`,`latitud`,`longitud`,`color`,`tamaño`) VALUES ( ?, ?, ?, ?, ?,NOW(), ?, ?,?,?,?,?,?)");
 			pst.setString(1, rie.getNombre());
 			pst.setString(2, rie.getEstado());
 			pst.setInt(3,rie.getTipo_riesgo());
@@ -30,7 +30,10 @@ public class riesgoDatos {
 			pst.setInt(6,rie.getCiu());
 			pst.setInt(7,rie.getPrv());
 			pst.setString(8,rie.getImagen());
-			pst.setString(9, rie.getUbicacion());
+			pst.setFloat(9, rie.getLongitud());
+			pst.setFloat(10, rie.getLatitud());
+			pst.setString(11, rie.getColor());
+			pst.setInt(12, rie.getTamaño());
 			pst.executeUpdate();
 			conn.commit();
 			conn.close();
@@ -111,7 +114,10 @@ public class riesgoDatos {
 				rie.setFecha_fin(rs.getDate("fecha_fin"));
 				rie.setEstado(rs.getString("estado"));
 				rie.setId_usuario(rs.getInt("id_usuario"));
-				rie.setUbicacion(rs.getString("ubicacion"));
+				rie.setLongitud(rs.getFloat("longitud"));
+				rie.setLatitud(rs.getFloat("latitud"));
+				rie.setColor(rs.getString("color"));
+				rie.setTamaño(rs.getInt("tamaño"));
 				rie.setImagen(rs.getString("imagen"));
 				rie.setDescripcion(rs.getString("descripcion"));
 					TipoRiesgo tr = new TipoRiesgo();
@@ -176,7 +182,10 @@ public class riesgoDatos {
 					rie.setId_usuario(rs.getInt("id_usuario"));
 					rie.setId_usuario(rs.getInt("id_provincia"));
 					rie.setImagen(rs.getString("imagen"));
-					rie.setUbicacion(rs.getString("ubicacion"));
+					rie.setLongitud(rs.getFloat("longitud"));
+					rie.setLatitud(rs.getFloat("latitud"));
+					rie.setColor(rs.getString("color"));
+					rie.setTamaño(rs.getInt("tamaño"));
 				}
 				conn.close();
 			} 
@@ -193,16 +202,19 @@ public class riesgoDatos {
 			try {
 				conn = conexion.getConnection();
 				//Insert con parametros para que no hagan SQL Inject
-				PreparedStatement pst = conn.prepareStatement("UPDATE `riesgos` SET `nombre`=?, `estado`=?, `tipo_riesgo`=?, `descripcion`=?,`id_ciudad`=?,`id_provincia`=?, `imagen`=?, `ubicacion`=? WHERE id_riesgo=?");				
+				PreparedStatement pst = conn.prepareStatement("UPDATE `riesgos` SET `nombre`=?, `estado`=?, `tipo_riesgo`=?, `descripcion`=?,`id_ciudad`=?,`id_provincia`=?, `imagen`=?, `longitud`=?, `latitud`=?, `color`=?, `tamaño`=? WHERE id_riesgo=?");				
 				pst.setString(1, rie.getNombre());
 				pst.setString(2, rie.getEstado());
 				pst.setInt(3,rie.getTipo_riesgo());
 				pst.setString(4,rie.getDescripcion());
 				pst.setInt(5,rie.getCiu());
 				pst.setInt(6,rie.getPrv());
-				pst.setString(8,rie.getImagen());
-				pst.setInt(8, rie.getIdriesgo());
-				pst.setString(9,rie.getUbicacion());
+				pst.setString(7,rie.getImagen());
+				pst.setFloat(8, rie.getLongitud());
+				pst.setFloat(9, rie.getLatitud());
+				pst.setString(10, rie.getColor());
+				pst.setInt(11, rie.getTamaño());
+				pst.setInt(12, rie.getIdriesgo());
 				pst.executeUpdate();
 				conn.close();
 			} 

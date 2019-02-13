@@ -24,12 +24,16 @@
 
 	<c:forEach items="${ries}" var="rie">
 	
+	var lon = ${rie.getLongitud()}
+	var lat = ${rie.getLatitud()}
+	var tamaño = ${rie.getTamaño()}
+	var color = '${rie.getColor()}'
 	//var circle = L.circle([-32.955096650, -60.625925274], {
-	var circle = L.circle([${rie.getUbicacion()}], {
-	    color: 'red',
-	    fillColor: '#f03',
-	    fillOpacity: 0.5,
-	    radius: 75
+	var circle = L.circle([lon,lat], {
+	    color:color,
+	    fillColor: color,
+	    fillOpacity: 0.3,
+	    radius: tamaño
 	}).addTo(mymap);
 	 var customOptions =
      {

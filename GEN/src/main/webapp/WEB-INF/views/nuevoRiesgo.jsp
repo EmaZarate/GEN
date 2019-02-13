@@ -94,10 +94,34 @@
 	    </div>
 		  
 	    <div class="row">
-	    	<div class="col-md-7">
-	    	<form:input type="text" path="ubicacion" id="cordenadas" name="cordenadas" class="form-control" />
+	    	<div class="col-md-4">
+	    		<form:input type="text" path="latitud" id="latitud" name="latitud" class="form-control" />
+	    	</div>
+	    	<div class="col-md-4">
+	    		<form:input type="text" path="longitud" id="longitud" name="longitud" class="form-control" />
 	    	</div>
 	   </div> 	
+	   <div class="row">
+	   <div class="col-md-4">
+	   		Color Marcador:
+	    	 <form:select id="color" path="color" class="form-control" required="true">
+    					  <form:option value="red" label="Rojo" />
+						  <form:option value="blue" label="Azul" />
+						  <form:option value="back" label="Negro" />
+						  <form:option value="white" label="Blanco" />
+						  <form:option value="yellow" label="Amarillo" />
+			 </form:select>
+	    	</div>
+	    	<div class="col-md-4">
+	    	Tamaño Marcador:
+	    		 <form:select id="tamaño" path="tamaño" class="form-control" required="true">
+    					  <form:option value="40" label="Chico" />
+						  <form:option value="75" label="Mediano" />
+						  <form:option value="150" label="Grande" />
+			 </form:select>
+	    	</div>
+	    </div>
+	    
 	   <div class="row">
 	   <div class="col-md-5">
 	   </div>
@@ -127,10 +151,11 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 var popup = L.popup();
 
 function onMapClick(e) {
-	cordenadas.value=e.latlng.toString()
+	longitud.value=e.latlng.lng
+	latitud.value=e.latlng.lat
     popup
         .setLatLng(e.latlng)
-        .setContent("Cordenadas " + e.latlng.toString())
+        .setContent("Latitud: " + e.latlng.lat+" Longitud: " + e.latlng.lng)
         .openOn(mymap);
     
 }
