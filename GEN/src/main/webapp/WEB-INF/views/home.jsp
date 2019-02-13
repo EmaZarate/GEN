@@ -29,9 +29,16 @@
 	    color: 'red',
 	    fillColor: '#f03',
 	    fillOpacity: 0.5,
-	    radius: 500
+	    radius: 75
 	}).addTo(mymap);
-	circle.bindPopup("${rie.getNombre()}");
+	 var customOptions =
+     {
+     'maxWidth': '500',
+     'className' : 'custom'
+     }
+	 
+	 var customPopup ="<p><h2>Riesgo:${rie.getNombre()} </h2></p><p><img src='${rie.getImagen()}' alt='maptime logo gif' width='350px'/></p><p>Descripcion:${rie.getDescripcion()}</p><p>Estado:${rie.getEstado()}</p>" ;
+	circle.bindPopup(customPopup,customOptions);
 	
 	var popup = L.popup();
 
