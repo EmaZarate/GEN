@@ -344,5 +344,23 @@ public class RiesgoController {
 	tipoRiesgoDatos.modificarTipoRie(tr);
 		return "mapaInteractivo";
 	}
+	
+	@RequestMapping(value = "/riesgoAcciones", method = RequestMethod.GET)
+	public String riesgoAcciones(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj, @RequestParam(required = false) String error) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
+		return "riesgoAcciones";
+	}
 
 }

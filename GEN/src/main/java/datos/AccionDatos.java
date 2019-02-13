@@ -28,6 +28,8 @@ public class AccionDatos {
 				a.setId_tipo_Accion(rs.getInt("id_tipo_accion"));
 				a.setDescripcion(rs.getString("descripcion"));
 				a.setNombre(rs.getString("nombre"));
+				a.setLatitud(rs.getFloat("latitud"));
+				a.setLongitud(rs.getFloat("longitud"));
 				as.add(a);
 				}
 			conn.close();
@@ -45,12 +47,15 @@ public class AccionDatos {
 			conn.setAutoCommit(false);
 			//Insert con parametros para que no hagan SQL Inject
 			PreparedStatement pst = 
-			conn.prepareStatement("INSERT INTO `accion` (`id_tipo_Accion`,`descripcion`,`nombre`,`id_usualta_acc`,`fecha_alta`) VALUES ( ?, ?, ?, ?, NOW())");
+			conn.prepareStatement("INSERT INTO `accion` (`id_tipo_Accion`,`descripcion`,`nombre`,`id_usualta_acc`,`fecha_alta`,`latitud`,`longitud`) VALUES ( ?, ?, ?, ?, NOW()),?,?");
 			pst.setInt(1, a.getId_tipo_Accion());
 			pst.setString(2, a.getDescripcion());
 			pst.setString(3, a.getNombre());
 			pst.setInt(4, a.getId_usualta_acc());
+			pst.setFloat(5, a.getLatitud());
+			pst.setFloat(6, a.getLongitud());
 			pst.executeUpdate();
+			System.out.println(pst);
 			conn.commit();
 			conn.close();
 		} 
@@ -82,6 +87,8 @@ public class AccionDatos {
 				acc.setEstado(rs.getString("estado"));
 				acc.setId_usualta_acc(rs.getInt("id_usualta_acc"));
 				acc.setDescripcion(rs.getString("descripcion"));
+				acc.setLatitud(rs.getFloat("latitud"));
+				acc.setLongitud(rs.getFloat("longitud"));
 					TipoAccion ta = new TipoAccion();
 					ta.setNombre(rs.getString("nombre"));
 					ta.setIdTipo_accion(rs.getInt("id_tipo_Accion"));
@@ -133,6 +140,8 @@ public class AccionDatos {
 					acc.setFecha_alta(rs.getDate("fecha_alta"));
 					acc.setId_usualta_acc(rs.getInt("id_usualta_acc"));
 					acc.setEstado(rs.getString("estado"));
+					acc.setLatitud(rs.getFloat("latitud"));
+					acc.setLongitud(rs.getFloat("longitud"));
 				}
 				conn.close();
 			} 
@@ -149,13 +158,14 @@ public class AccionDatos {
 			try {
 				conn = conexion.getConnection();
 				//Insert con parametros para que no hagan SQL Inject
-				PreparedStatement pst = conn.prepareStatement("UPDATE `accion` SET `nombre`=?, `estado`=?, `id_tipo_Accion`=?, `descripcion`=? WHERE id_accion=?");				
+				PreparedStatement pst = conn.prepareStatement("UPDATE `accion` SET `nombre`=?, `estado`=?, `id_tipo_Accion`=?, `descripcion`=?, `latitud`=?, `longitud`=? WHERE id_accion=?");				
 				pst.setString(1, acc.getNombre());
 				pst.setString(2, acc.getEstado());
 				pst.setInt(3,acc.getId_tipo_Accion());
 				pst.setString(4,acc.getDescripcion());
 				pst.setInt(5, acc.getId_accion());
-				System.out.println(pst);
+				pst.setFloat(6, acc.getLatitud());
+				pst.setFloat(7, acc.getLongitud());
 				pst.executeUpdate();
 				conn.close();
 			} 

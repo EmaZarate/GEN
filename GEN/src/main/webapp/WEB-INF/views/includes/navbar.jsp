@@ -25,6 +25,7 @@
                     <a class="dropdown-item" href="nuevoRiesgo">Nuevo Riesgo</a>
                     <a class="dropdown-item" href="gestionarRiesgos">Gestionar Riesgo</a>
                     <a class="dropdown-item" href="nuevoTipoRiesgo">Nuevo Tipo de Riesgo</a>
+                    <a class="dropdown-item" href="riesgoAcciones">acciones de los riesgo</a>
                     <c:if test="${usuario.getTipoUsuario() == 0}">
                        <a class="dropdown-item" href="gestionarTipoRiesgos">Gestionar Tipo de Riesgos</a>
                     </c:if>

@@ -11,6 +11,8 @@ public class Accion {
  private Date fecha_alta;
  private String estado;
  private TipoAccion ta;
+ private float latitud;
+ private float longitud;
  
 	public int getId_accion() {
 		return id_accion;
@@ -59,6 +61,18 @@ public class Accion {
 	}
 	public void setTa(TipoAccion ta) {
 		this.ta = ta;
+	}
+	public float getLatitud() {
+		return latitud;
+	}
+	public void setLatitud(float latitud) {
+		this.latitud = latitud;
+	}
+	public float getLongitud() {
+		return longitud;
+	}
+	public void setLongitud(float longitud) {
+		this.longitud = longitud;
 	}
 	
 }
