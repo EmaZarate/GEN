@@ -22,10 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import datos.AccionDatos;
+import datos.AccionRiesgoDatos;
 import datos.ciudadDatos;
 import datos.provinciaDatos;
 import datos.riesgoDatos;
 import datos.tipoRiesgoDatos;
+import modelo.AccionRiesgo;
 import modelo.Riesgo;
 import modelo.TipoRiesgo;
 import modelo.Usuario;
@@ -346,7 +349,7 @@ public class RiesgoController {
 	}
 	
 	@RequestMapping(value = "/riesgoAcciones", method = RequestMethod.GET)
-	public String riesgoAcciones(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj, @RequestParam(required = false) String error) {
+	public String riesgoAcciones(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int idRie, @RequestParam(required = false) String error) {
 		if(sesion.getAttribute("usuario")==null) 
 		{
 			model.addAttribute("usu", new Usuario());
@@ -360,7 +363,32 @@ public class RiesgoController {
 			model.addAttribute("error", error);
 			return "login";
 		}
+		AccionRiesgo accrie = new AccionRiesgo();
+		model.addAttribute("accrie",accrie);
+		model.addAttribute("rie",riesgoDatos.buscarRie(idRie));
+		model.addAttribute("accs", AccionDatos.mostrarAcciones(usuh.getIdusuario()) );
 		return "riesgoAcciones";
 	}
+	
+	@RequestMapping(value = "/rieAcc", method = RequestMethod.POST)
+	public String rieAcc(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj, @RequestParam(required = false) String error,@ModelAttribute("accrie") AccionRiesgo accrie) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
+		accrie.setId_usualta(usuh.getIdusuario());
+		AccionRiesgoDatos.nuevoAR(accrie);
+		return "home";
+	}
+
 
 }

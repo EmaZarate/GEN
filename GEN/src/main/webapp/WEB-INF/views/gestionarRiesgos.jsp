@@ -38,6 +38,8 @@
       </th>
       <th class="th-sm text-centro">Modificar
       </th>
+       <th class="th-sm text-centro">Agregar Accion
+      </th>
       <th class="th-sm text-centro">Eliminar
       </th>
     </tr>
@@ -54,6 +56,7 @@
 		 <td><c:out value="${ries.provincia.nombre}" /></td>
 		 <td><a href="verRiesgo?id=${ries.idriesgo}"><button type="button" class="btn btn-info"><i class="fas fa-info-circle"></i></button></a></td>			
 		 <td><a href="modificarRiesgo?id=${ries.idriesgo}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a></td>
+		 <td><a href="riesgoAcciones?idRie=${ries.idriesgo}"><button type="button" class="btn btn-success"><i class="far fa-plus-square"></i></button></a></td>
 		 <td><a href="eliminarRiesgo?id=${ries.idriesgo}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a></td>			
 		</tr>
 	</c:forEach>

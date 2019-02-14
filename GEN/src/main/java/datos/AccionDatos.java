@@ -47,15 +47,15 @@ public class AccionDatos {
 			conn.setAutoCommit(false);
 			//Insert con parametros para que no hagan SQL Inject
 			PreparedStatement pst = 
-			conn.prepareStatement("INSERT INTO `accion` (`id_tipo_Accion`,`descripcion`,`nombre`,`id_usualta_acc`,`fecha_alta`,`latitud`,`longitud`) VALUES ( ?, ?, ?, ?, NOW()),?,?");
+			conn.prepareStatement("INSERT INTO `accion` (`id_tipo_Accion`,`descripcion`,`nombre`,`id_usualta_acc`,`fecha_alta`,`latitud`,`longitud`) VALUES ( ?, ?, ?, ?, NOW(),?,?)");
 			pst.setInt(1, a.getId_tipo_Accion());
 			pst.setString(2, a.getDescripcion());
 			pst.setString(3, a.getNombre());
 			pst.setInt(4, a.getId_usualta_acc());
 			pst.setFloat(5, a.getLatitud());
 			pst.setFloat(6, a.getLongitud());
-			pst.executeUpdate();
 			System.out.println(pst);
+			pst.executeUpdate();
 			conn.commit();
 			conn.close();
 		} 
@@ -163,9 +163,9 @@ public class AccionDatos {
 				pst.setString(2, acc.getEstado());
 				pst.setInt(3,acc.getId_tipo_Accion());
 				pst.setString(4,acc.getDescripcion());
-				pst.setInt(5, acc.getId_accion());
-				pst.setFloat(6, acc.getLatitud());
-				pst.setFloat(7, acc.getLongitud());
+				pst.setFloat(5, acc.getLatitud());
+				pst.setFloat(6, acc.getLongitud());
+				pst.setInt(7, acc.getId_accion());
 				pst.executeUpdate();
 				conn.close();
 			} 

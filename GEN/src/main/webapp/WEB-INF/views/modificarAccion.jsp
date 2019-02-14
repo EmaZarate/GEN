@@ -15,7 +15,7 @@
 	        <div class="col-md-6">
 	            <div class="md-form">
 	            	<i class="fa fa-fire prefix"></i>
-	            	<form:input type="hidden" path="id_Accion" class="form-control" />
+	            	<form:input type="hidden" path="id_accion" class="form-control" />
 	                <form:input type="text" path="nombre" class="form-control" required="true"/>
 	    			<label for="nombre" class="textcontrol">Nombre de la Accion</label>
 	            </div>
