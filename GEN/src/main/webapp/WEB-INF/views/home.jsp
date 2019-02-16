@@ -29,7 +29,7 @@
 	var tamaño = ${rie.getTamaño()}
 	var color = '${rie.getColor()}'
 	//var circle = L.circle([-32.955096650, -60.625925274], {
-	var circle = L.circle([lon,lat], {
+	var circle = L.circle([lat,lon], {
 	    color:color,
 	    fillColor: color,
 	    fillOpacity: 0.3,
@@ -41,11 +41,48 @@
      'className' : 'custom'
      }
 	 
-	 var customPopup ="<p><h2>Riesgo:${rie.getNombre()} </h2></p><p><img src='${rie.getImagen()}' alt='maptime logo gif' width='350px'/></p><p>Descripcion:${rie.getDescripcion()}</p><p>Estado:${rie.getEstado()}</p>" ;
+	 var customPopup ="<p><h2>${rie.getNombre()} </h2></p><p><img src='${rie.getImagen()}' alt='maptime logo gif' width='350px'/></p><p>Descripcion:${rie.getDescripcion()}</p><p>Estado:${rie.getEstado()}</p>" ;
 	circle.bindPopup(customPopup,customOptions);
 	
 	var popup = L.popup();
 
+	</c:forEach>
+	
+	<c:forEach items="${accs}" var="acc">
+	
+	var lat = ${acc.getLatitud()}
+	var lon = ${acc.getLongitud()}
+	var tamaño = ${acc.getTam()}
+	var color = '${acc.getColor()}'
+	//var circle = L.circle([-32.955096650, -60.625925274], {
+	
+
+	var indicador = new L.Icon({
+	 	 iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-'+color+'.png',
+	 	 shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	 	 iconSize: [25, 41],
+	  	 iconAnchor: [12, 41],
+		 popupAnchor: [1, -34],
+	 	 shadowSize: [41, 41]
+		});
+		
+
+	var circle = L.marker([lat,lon], {
+	    icon:indicador
+	}).addTo(mymap);
+	
+	
+	
+	 var customOptions =
+     {
+     'maxWidth': '500',
+     'className' : 'custom'
+     }
+	 
+	 var customPopup ="<p><h2>Accion:${acc.getNomacc()} </h2></p><p>Descripcion:${acc.getDescripcion()}</p><p>Riesgo:${acc.getNomrie()}</p><p> <a href='eliminaraccrie?id=${acc.getIdaccrie()}&idusu=${acc.getId_usualta()}''><button type='button' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></a>  </p>" ;
+	circle.bindPopup(customPopup,customOptions);
+	
+	var popup = L.popup();
 	</c:forEach>
 	
 </script>

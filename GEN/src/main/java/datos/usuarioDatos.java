@@ -21,7 +21,7 @@ public class usuarioDatos {
 		try {
 			conn = conexion.getConnection();
 		    //Asi se hace una consulta para que no metan SQL inject
-			PreparedStatement pst = conn.prepareStatement("SELECT * FROM usuarios WHERE BINARY usuario=? and  password=?");
+			PreparedStatement pst = conn.prepareStatement("SELECT * FROM usuarios WHERE BINARY usuario=? and  password=? and habilitado=0");
 			pst.setString(1, usu.getUsuario()); 
 			pst.setString(2, usu.getClave());
 			ResultSet rs = pst.executeQuery();
@@ -64,7 +64,7 @@ public class usuarioDatos {
 			pst.setString(3, usu.getEmail());
 			pst.setString(4, usu.getUsuario());
 			pst.setString(5, usu.getClave());
-			pst.setBoolean(6, usu.getHabilitado());
+			pst.setBoolean(6, true);
 			pst.setInt(7, usu.getTipoUsuario());
 			pst.executeUpdate();
 			conn.commit();
@@ -83,7 +83,7 @@ public class usuarioDatos {
 			conn = conexion.getConnection();
 			conn.setAutoCommit(false);
 			PreparedStatement pst = 
-			conn.prepareStatement("SELECT * from usuarios");
+			conn.prepareStatement("SELECT * FROM usuarios WHERE tipo_usuario<>0");
 			ResultSet rs=pst.executeQuery();
 			while(rs.next())
 				{                           

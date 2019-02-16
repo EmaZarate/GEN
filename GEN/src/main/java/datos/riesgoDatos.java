@@ -30,8 +30,8 @@ public class riesgoDatos {
 			pst.setInt(6,rie.getCiu());
 			pst.setInt(7,rie.getPrv());
 			pst.setString(8,rie.getImagen());
-			pst.setFloat(9, rie.getLongitud());
-			pst.setFloat(10, rie.getLatitud());
+			pst.setFloat(9, rie.getLatitud());
+			pst.setFloat(10, rie.getLongitud());
 			pst.setString(11, rie.getColor());
 			pst.setInt(12, rie.getTamaño());
 			pst.executeUpdate();

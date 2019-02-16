@@ -4,12 +4,17 @@ import java.sql.Date;
 
 public class AccionRiesgo {
  private int id_accion;
- private int id_riesgo;
+ private int idriesgo;
+ private int idaccrie;
  private String descripcion;
  private int id_usualta;
  private Date fecha_alta;
  private float latitud;
  private float longitud;
+ private String color;
+ private String nomrie;
+ private String nomacc;
+ private String tam;
  
 	public int getId_accion() {
 		return id_accion;
@@ -41,17 +46,48 @@ public class AccionRiesgo {
 	public void setLongitud(float longitud) {
 		this.longitud = longitud;
 	}
-	public int getId_riesgo() {
-		return id_riesgo;
-	}
-	public void setId_riesgo(int id_riesgo) {
-		this.id_riesgo = id_riesgo;
-	}
+
 	public int getId_usualta() {
 		return id_usualta;
 	}
 	public void setId_usualta(int id_usualta) {
 		this.id_usualta = id_usualta;
+	}
+	public int getIdriesgo() {
+		return idriesgo;
+	}
+	public void setIdriesgo(int idriesgo) {
+		this.idriesgo = idriesgo;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public String getNomrie() {
+		return nomrie;
+	}
+	public void setNomrie(String nomrie) {
+		this.nomrie = nomrie;
+	}
+	public String getNomacc() {
+		return nomacc;
+	}
+	public void setNomacc(String nomacc) {
+		this.nomacc = nomacc;
+	}
+	public String getTam() {
+		return tam;
+	}
+	public void setTam(String tam) {
+		this.tam = tam;
+	}
+	public int getIdaccrie() {
+		return idaccrie;
+	}
+	public void setIdaccrie(int idaccrie) {
+		this.idaccrie = idaccrie;
 	}
 	
 }

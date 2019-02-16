@@ -364,8 +364,12 @@ public class RiesgoController {
 			return "login";
 		}
 		AccionRiesgo accrie = new AccionRiesgo();
+		Riesgo riesgo = new Riesgo();
+		riesgo = riesgoDatos.buscarRie(idRie);
+		riesgo.setIdriesgo(idRie);
+		accrie.setIdriesgo(idRie);
+		model.addAttribute("rie",riesgo);
 		model.addAttribute("accrie",accrie);
-		model.addAttribute("rie",riesgoDatos.buscarRie(idRie));
 		model.addAttribute("accs", AccionDatos.mostrarAcciones(usuh.getIdusuario()) );
 		return "riesgoAcciones";
 	}
@@ -390,5 +394,22 @@ public class RiesgoController {
 		return "home";
 	}
 
-
+	@RequestMapping(value = "/eliminaraccrie", method = RequestMethod.GET)
+	public String eliminaraccrie(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String err,@RequestParam int id,@RequestParam int idusu, @RequestParam(required = false) String error) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			error="Usuario Deshabilitado";
+			model.addAttribute("usu", new Usuario());
+			model.addAttribute("error", error);
+			return "login";
+		}
+		model.addAttribute("ries",AccionRiesgoDatos.eliminarAccRie(id));
+		return "mapaInteractivo";
+	}
 }

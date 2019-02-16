@@ -15,7 +15,7 @@
 	        <div class="col-md-6">
 	            <div class="md-form">
 	            	<i class="fa fa-fire prefix"></i>
-	            	<form:input type="hidden" path="idriesgo" class="form-control" />
+	            	<form:input path="idriesgo" type="hidden" class="form-control" />
 	                <form:input type="text" path="nombre" class="form-control" required="true"/>
 	    			<label for="nombre" class="textcontrol">Nombre del riesgo</label>
 	            </div>
@@ -116,11 +116,14 @@
 	   <div class="col-md-4">
 	   		Color Marcador:
 	    	 <form:select id="color" path="color" class="form-control" required="true">
-    					  <form:option value="red" label="Rojo" />
+    					 <form:option value="red" label="Rojo" />
 						  <form:option value="blue" label="Azul" />
-						  <form:option value="back" label="Negro" />
+						  <form:option value="black" label="Negro" />
 						  <form:option value="white" label="Blanco" />
 						  <form:option value="yellow" label="Amarillo" />
+						  <form:option value="orange" label="Naranja" />
+						  <form:option value="grey" label="gris" />
+						  <form:option value="green" label="verde" />
 			 </form:select>
 	    	</div>
 	    	<div class="col-md-4">
@@ -130,6 +133,7 @@
     					  <form:option value="40" label="Chico" />
 						  <form:option value="75" label="Mediano" />
 						  <form:option value="150" label="Grande" />
+						  <form:option value="450" label="Muy Grande" />
 			 </form:select>
 	    	</div>
 	    </div>

@@ -21,14 +21,22 @@
 	               <div class="md-form">
                       <div class="form-group">Accion:
 					    <form:select id="cmacc" path="id_accion" class="form-control" required="true">
-					  	 	 <form:option value="1" label="Seleccione la accion" />
 					  	  	 <form:options items="${accs}" itemValue="id_accion" itemLabel="nombre" />
 						</form:select>
 					  </div>
 	            </div>
 	        </div>
 	     </div>
-	 <form:input type="hidden" path="id_riesgo" class="form-control" />
+	 <form:input path="idriesgo" type="hidden" class="form-control" />
+	 
+	    <div class="col-md-12">
+	            <div class="md-form">
+	            	<i class="fa fa-font prefix"></i>
+	                <form:textarea type="text" id="desc" path="descripcion" class="md-textarea " required="true"/>
+	                <label for="desc" class="textcontrol">Comentario</label>
+	            </div>
+	
+	        </div>
 	 
 	 <br>
 	   	<div class="row">
@@ -78,7 +86,7 @@ var lat = ${rie.getLatitud()}
 var tamaño = ${rie.getTamaño()}
 var color = '${rie.getColor()}'
 
-var circle = L.circle([lon,lat], {
+var circle = L.circle([lat,lon], {
     color:color,
     fillColor: color,
     fillOpacity: 0.3,
@@ -90,8 +98,7 @@ var circle = L.circle([lon,lat], {
  'className' : 'custom'
  }
  
- var customPopup ="<p><h2>Riesgo:${rie.getNombre()} </h2></p><p><img src='${rie.getImagen()}' alt='maptime logo gif' width='350px'/></p><p>Descripcion:${rie.getDescripcion()}</p><p>Estado:${rie.getEstado()}</p>" ;
-circle.bindPopup(customPopup,customOptions);
+
 
 var popup = L.popup();
 

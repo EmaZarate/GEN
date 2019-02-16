@@ -3,7 +3,7 @@
 <body>
 <%@ include file="includes/navbar.jsp" %>
         
-    
+<div class="container margentop"> 
 <!-- Section: Blog v.1 -->
 <section class="my-5">
 
@@ -31,7 +31,7 @@
 
       <!-- Category -->
       <a href="#!" class="green-text">
-        <h6 class="font-weight-bold mb-3"><i class="fas fa-user"></i> Paso 1</h6>
+        <h2 class="font-weight-bold mb-3"><i class="fas fa-user"></i> Paso 1</h2>
       </a>
       <!-- Post title -->
       <h3 class="font-weight-bold mb-3"><strong>Login</strong></h3>
@@ -43,7 +43,7 @@
   </div>
   <!-- Grid row -->
 
-  <hr class="my-5">
+  <hr class="my-5 separador">
 
   <!-- Grid row -->
   <div class="row">
@@ -53,7 +53,7 @@
 
       <!-- Category -->
       <a href="#!" class="pink-text">
-        <h6 class="font-weight-bold mb-3"><i class="fas fa-mouse-pointer"></i> Paso 2</h6>
+        <h2 class="font-weight-bold mb-3"><i class="fas fa-mouse-pointer"></i> Paso 2</h2>
       </a>
       <!-- Post title -->
       <h3 class="font-weight-bold mb-3"><strong>Seleccione opción "Nuevo Riesgo"</strong></h3>
@@ -106,7 +106,7 @@
 
       <!-- Category -->
       <a href="#!" class="indigo-text">
-        <h6 class="font-weight-bold mb-3"><i class="fab fa-wpforms"></i> Paso 3</h6>
+        <h2 class="font-weight-bold mb-3"><i class="fab fa-wpforms"></i> Paso 3</h2>
       </a>
       <!-- Post title -->
       <h3 class="font-weight-bold mb-3"><strong>Llenar datos del riesgo</strong></h3>
@@ -128,7 +128,7 @@
 
       <!-- Category -->
       <a href="#!" class="yellow-text">
-        <h6 class="font-weight-bold mb-3"><i class="fas fa-map-marked-alt"></i> Paso 4</h6>
+        <h2 class="font-weight-bold mb-3"><i class="fas fa-map-marked-alt"></i> Paso 4</h2>
       </a>
       <!-- Post title -->
       <h3 class="font-weight-bold mb-3"><strong>Seleccionar ubicación</strong></h3>
@@ -181,7 +181,7 @@
 
       <!-- Category -->
       <a href="#!" class="blue-text">
-        <h6 class="font-weight-bold mb-3"><i class="far fa-eye"></i> Paso 5</h6>
+        <h2 class="font-weight-bold mb-3"><i class="far fa-eye"></i> Paso 5</h2>
       </a>
       <!-- Post title -->
       <h3 class="font-weight-bold mb-3"><strong>Gestionar Riesgo</strong></h3>
@@ -203,7 +203,7 @@
 
       <!-- Category -->
       <a href="#!" class="red-text">
-        <h6 class="font-weight-bold mb-3"><i class="fas fa-map-marked-alt"></i> Paso 6</h6>
+        <h2 class="font-weight-bold mb-3"><i class="fas fa-map-marked-alt"></i> Paso 6</h2>
       </a>
       <!-- Post title -->
       <h3 class="font-weight-bold mb-3"><strong>Visor</strong></h3>
@@ -235,7 +235,7 @@
 </section>
 <!-- Section: Blog v.1 -->
 
-
+</div>
 
  <%@ include file="includes/footer.jsp" %>      
 

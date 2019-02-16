@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `desastres` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `desastres`;
 -- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: localhost    Database: desastres
@@ -32,12 +30,14 @@ CREATE TABLE `accion` (
   `id_usualta_acc` int(11) DEFAULT NULL,
   `fecha_alta` varchar(45) DEFAULT NULL,
   `estado` varchar(45) DEFAULT 'Iniciado',
+  `longitud` decimal(65,30) DEFAULT NULL,
+  `latitud` decimal(65,30) DEFAULT NULL,
   PRIMARY KEY (`id_accion`),
   KEY `tipo_acc_idx` (`id_tipo_accion`),
   KEY `usu_alta_acc_idx` (`id_usualta_acc`),
   CONSTRAINT `tipo_acc` FOREIGN KEY (`id_tipo_accion`) REFERENCES `tipo_accion` (`id_tipo_Accion`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `usu_alta_acc` FOREIGN KEY (`id_usualta_acc`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +46,7 @@ CREATE TABLE `accion` (
 
 LOCK TABLES `accion` WRITE;
 /*!40000 ALTER TABLE `accion` DISABLE KEYS */;
+INSERT INTO `accion` VALUES (1,3,'Llamado a bomberos para que apaguen el incendio','Envio bomberos',15,'2019-02-16 15:59:42','Iniciado',-60.670742000000000000000000000000,-32.939920000000000000000000000000),(2,3,'Envio de escuadron para que investigue causas de incendio o eventos naturales','Envio escuadron de investigacion',15,'2019-02-16 16:00:11','Iniciado',-60.681570000000000000000000000000,-32.953957000000000000000000000000),(3,2,'Reparto de agua potable para la población','Reparto de agua potabe',16,'2019-02-16 16:05:57','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(4,1,'Envio de equipo de limpieza para ayudar a tareas de mantenimiento en los hogares','Equipo de limpieza',16,'2019-02-16 16:06:26','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(5,3,'Envio de efectivos policiales','Envio policia',16,'2019-02-16 16:07:02','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(6,3,'Reparación de antenas','Reparación circuito electrico',17,'2019-02-16 17:21:40','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(7,1,'Reparación de tendido electrico','Reparación de cables de electricidad',17,'2019-02-16 17:22:01','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(8,3,'Envio de eambulancia','Envio Ambulancia',17,'2019-02-16 17:22:21','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000);
 /*!40000 ALTER TABLE `accion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,16 +58,20 @@ DROP TABLE IF EXISTS `accion_riesgo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `accion_riesgo` (
+  `id_accrie` int(11) NOT NULL AUTO_INCREMENT,
   `id_riesgo` int(11) NOT NULL,
   `id_accion` int(11) NOT NULL,
-  `descripcion` varchar(45) DEFAULT NULL,
+  `descripcion` varchar(200) DEFAULT NULL,
   `id_usualta` int(11) DEFAULT NULL,
   `fecha_alta` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_riesgo`,`id_accion`),
-  KEY `accion_idx` (`id_accion`),
-  CONSTRAINT `accion` FOREIGN KEY (`id_accion`) REFERENCES `accion` (`id_accion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `riesgo` FOREIGN KEY (`id_riesgo`) REFERENCES `riesgos` (`id_riesgo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `latitud` decimal(65,30) DEFAULT NULL,
+  `longitud` decimal(65,30) DEFAULT NULL,
+  PRIMARY KEY (`id_accrie`,`id_riesgo`,`id_accion`),
+  KEY `rie_idx` (`id_riesgo`),
+  KEY `acc_idx` (`id_accion`),
+  CONSTRAINT `acc` FOREIGN KEY (`id_accion`) REFERENCES `accion` (`id_accion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `rie` FOREIGN KEY (`id_riesgo`) REFERENCES `riesgos` (`id_riesgo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,6 +80,7 @@ CREATE TABLE `accion_riesgo` (
 
 LOCK TABLES `accion_riesgo` WRITE;
 /*!40000 ALTER TABLE `accion_riesgo` DISABLE KEYS */;
+INSERT INTO `accion_riesgo` VALUES (1,1,1,'Envio de bomberos 15/02/219',15,'2019-02-16 16:00:37',-32.937813000000000000000000000000,-60.667310000000000000000000000000),(2,1,2,'Escuadron que investigara cual fue la causa del incendio',15,'2019-02-16 16:03:26',-32.937130000000000000000000000000,-60.667510000000000000000000000000),(3,2,4,'Limpieza de 40 casas afectadas',16,'2019-02-16 16:07:21',-32.954666000000000000000000000000,-60.624220000000000000000000000000),(4,2,3,'Reparto de 400 bidones de agua ya que el servicio se encuentra cortado',16,'2019-02-16 16:07:52',-32.955612000000000000000000000000,-60.622690000000000000000000000000),(5,2,5,'Envio de policia a custodiar casas abandonadas por el ingreso de agua',16,'2019-02-16 16:08:10',-32.954315000000000000000000000000,-60.623974000000000000000000000000),(6,4,7,'Reparación de antena donde cayo el rayo',17,'2019-02-16 17:22:51',-32.942730000000000000000000000000,-60.651043000000000000000000000000),(7,4,6,'Reparación de tendido eléctrico que dejo de funcionar por la caida de un rayo',17,'2019-02-16 17:23:24',-32.943214000000000000000000000000,-60.651882000000000000000000000000);
 /*!40000 ALTER TABLE `accion_riesgo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,7 +178,10 @@ CREATE TABLE `riesgos` (
   `id_ciudad` int(11) DEFAULT NULL,
   `id_provincia` smallint(2) DEFAULT NULL,
   `imagen` varchar(600) DEFAULT NULL,
-  `ubicacion` varchar(90) DEFAULT NULL,
+  `latitud` decimal(65,30) DEFAULT NULL,
+  `longitud` decimal(65,30) DEFAULT NULL,
+  `color` varchar(90) DEFAULT NULL,
+  `tamaño` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_riesgo`),
   KEY `tipo_riesgo_idx` (`tipo_riesgo`),
   KEY `usu_alta_rie_idx` (`id_usuario`),
@@ -182,7 +191,7 @@ CREATE TABLE `riesgos` (
   CONSTRAINT `riesgo_ciudad` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tipo_riesgo` FOREIGN KEY (`tipo_riesgo`) REFERENCES `tipo_riesgo` (`id_tipo`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `usu_alta_rie` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='Tabla principal de riesgos';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Tabla principal de riesgos';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,7 +200,7 @@ CREATE TABLE `riesgos` (
 
 LOCK TABLES `riesgos` WRITE;
 /*!40000 ALTER TABLE `riesgos` DISABLE KEYS */;
-INSERT INTO `riesgos` VALUES (8,'MODIFICAAR','2019-01-14 16:07:25',NULL,'Cancelado',4,1,'MODIFICADOOO',1111,14,'https://www.eluniverso.com/sites/default/files/styles/powgallery_1280/public/fotos/2017/04/8527632.jpg?itok=SGnnGx5I',NULL),(9,'ubic','2019-02-08 09:01:09',NULL,'Iniciado',4,2,'adasd',1111,1,'https://imagenes-cdn.laprovincia.es/multimedia/fotos/2017/07/11/97553/preview_m.jpg?t=1499775952000',NULL),(10,'ubicacccc','2019-02-08 09:03:09',NULL,'Iniciado',4,2,'asdsad',1111,1,'https://imagenes-cdn.laprovincia.es/multimedia/fotos/2017/07/11/97553/preview_m.jpg?t=1499775952000','LatLng(-32.95484, -60.65573)');
+INSERT INTO `riesgos` VALUES (1,'Incendio Casa','2019-02-16 15:58:41',NULL,'Iniciado',4,15,'Incendio en casa en Rosario crespo 519 ',1111,21,'https://www.yaencontre.com/noticias/wp-content/uploads/2017/04/BL_Abr_22.jpg',-32.936737000000000000000000000000,-60.667137000000000000000000000000,'red',75),(2,'Desborde rio Parana','2019-02-16 16:05:25',NULL,'Iniciado',2,16,'Desborde de rio Parana por lo que se inundo una zona amplia de casas',1111,21,'http://www.chacabuconoticias.com.ar/wp-content/uploads/2014/06/inundados.jpg',-32.954456000000000000000000000000,-60.623558000000000000000000000000,'blue',450),(3,'Calle cortada por arbol caido','2019-02-16 16:10:24',NULL,'Iniciado',8,17,'Avenida cortada por arbol en la calle',1111,21,'https://i2.wp.com/enteratecali.net/wp-content/uploads/2019/01/Emergencia-por-%C3%A1rbol-ca%C3%ADdo-llegando-a-la-Avenida-Roosevelt.jpeg?resize=800%2C445',-32.954456000000000000000000000000,-60.657375000000000000000000000000,'green',40),(4,'Rayo  - corte energia','2019-02-16 17:20:06',NULL,'Iniciado',7,17,'Rayo en balcon, dejho sin luz a 2 cuadras a la redonda',1111,3,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZCgKYi_rEZZKiCsSO7z_faAEOfjHkVuukgX0lRJP16dKtuDMByQ',-32.942795000000000000000000000000,-60.651250000000000000000000000000,'violet',40);
 /*!40000 ALTER TABLE `riesgos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,7 +220,7 @@ CREATE TABLE `tipo_accion` (
   PRIMARY KEY (`id_tipo_Accion`),
   KEY `usu_Alta_ta_idx` (`usu_alta_ta`),
   CONSTRAINT `usu_Alta_ta` FOREIGN KEY (`usu_alta_ta`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,7 +229,7 @@ CREATE TABLE `tipo_accion` (
 
 LOCK TABLES `tipo_accion` WRITE;
 /*!40000 ALTER TABLE `tipo_accion` DISABLE KEYS */;
-INSERT INTO `tipo_accion` VALUES (2,'aaaaaaaaaa',2,'2019-01-27 15:25:44','bbbb');
+INSERT INTO `tipo_accion` VALUES (1,'Envio de equipos de rescate',1,'2019-02-16 15:55:44','Equipo de rescate'),(2,'Envio de proviciones',1,'2019-02-16 15:55:57','Proviciones'),(3,'Envio de servicios de emergencia como bomberos, policia, ambulancias, etc',1,'2019-02-16 15:56:22','Servicio de emergencia');
 /*!40000 ALTER TABLE `tipo_accion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +249,7 @@ CREATE TABLE `tipo_riesgo` (
   PRIMARY KEY (`id_tipo`),
   KEY `usu_alta_tr_idx` (`usu_alta_tr`),
   CONSTRAINT `usu_alta_tr` FOREIGN KEY (`usu_alta_tr`) REFERENCES `usuarios` (`id_usuario`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +258,7 @@ CREATE TABLE `tipo_riesgo` (
 
 LOCK TABLES `tipo_riesgo` WRITE;
 /*!40000 ALTER TABLE `tipo_riesgo` DISABLE KEYS */;
-INSERT INTO `tipo_riesgo` VALUES (4,'mentirabb','mentira',1,'2019-01-16 19:08:43'),(6,'tormenta modificada','MODIFICIADAA',2,'2019-01-27 12:12:00');
+INSERT INTO `tipo_riesgo` VALUES (1,'Terremotos','Todo tipo de terremotos',15,'2019-02-16 15:53:22'),(2,'Inundaciones','Todo tipo de inundaciones',15,'2019-02-16 15:53:34'),(3,'Tsunami','Todo tipo de tsunamis',15,'2019-02-16 15:53:46'),(4,'Incendio habitacional','Incendios en casas y/o  edificios',1,'2019-02-16 15:54:24'),(5,'Incendio forestal','Incendios forestales en la naturaleza',1,'2019-02-16 15:54:39'),(6,'Tornados','Tornados o remolinos',1,'2019-02-16 15:54:51'),(7,'Tormentas','Tormentas fuertes, electricas o con piedras',1,'2019-02-16 15:55:07'),(8,'Otro','Otro tipo de eventos de emergencia natural',1,'2019-02-16 15:55:23');
 /*!40000 ALTER TABLE `tipo_riesgo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -280,29 +289,6 @@ INSERT INTO `tipo_usuario` VALUES (0,'admin',NULL,NULL),(1,'prueba',NULL,NULL);
 UNLOCK TABLES;
 
 --
--- Table structure for table `ubicacion`
---
-
-DROP TABLE IF EXISTS `ubicacion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `ubicacion` (
-  `id_direccion` int(11) NOT NULL,
-  `direccion` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id_direccion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ubicacion`
---
-
-LOCK TABLES `ubicacion` WRITE;
-/*!40000 ALTER TABLE `ubicacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ubicacion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `usuarios`
 --
 
@@ -317,12 +303,12 @@ CREATE TABLE `usuarios` (
   `usuario` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
   `habilitado` tinyint(4) DEFAULT NULL,
-  `tipo_usuario` int(11) NOT NULL,
+  `tipo_usuario` int(11) NOT NULL DEFAULT '1',
   `imagen` varchar(600) DEFAULT 'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png',
   PRIMARY KEY (`id_usuario`),
   KEY `tipo_usu_idx` (`tipo_usuario`),
   CONSTRAINT `tip_us` FOREIGN KEY (`tipo_usuario`) REFERENCES `tipo_usuario` (`idtipo_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,7 +317,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'gaston','graziani','g@gmail.com','Ggraziani','otto',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(2,'Otto','Rocket','otto@gmail.com','ottorocket','otto',0,0,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(3,'Gaston','Graziani','grazianigaston@gma','','',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(4,'a','a','aasdasd','aaaaaaaaaaaa2','aaaaaaaa221a',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(5,'asd','asdas','asd','asd1213as','asdd112123as',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(6,'asdasdasd','asdasdas','a','asdsadasdasd','asdasdd123123',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(7,'asdasd','asdasd','a','asdsad2132','asdasd12312312',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(8,'asdasd','asdasd','a','asdsad2132','asdasd12312312',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(9,'asdasd','asdasd','a','asdasdasasd','asdasd123',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(10,'aa','aa','asdasd','aasdasd123@1.com','asdsd132213',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(11,'aa','aa','asdasd','aasdasd123@1.com','asdsd132213',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(12,'asdasd','asdasdds','aa','asdasdasd12321','asdasd123',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(13,'asdasd','asdasd','a','asdasdasd','asdasdasd12312',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(14,'saddasads','asdsad','assdsa@otto.com','asdasdasdasd','otto1234',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png');
+INSERT INTO `usuarios` VALUES (1,'admin','admin','admin@gmail.com','admin','admin',0,0,'https://previews.123rf.com/images/carmendorin/carmendorin1405/carmendorin140500034/28009966-grunge-rubber-stamp-with-text-admin-vector-illustration.jpg'),(15,'usuario','usuario','usuario@gmail.com','usuario','usuario',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(16,'usuario2','usuario2','usuario2@gmail.com','usuario2','usuario2',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(17,'usuario3','usuario3','usuario3@gmail.com','usuario3','usuario3',0,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png'),(18,'usuario4','usuario4','usuario4@gmail.com','usuario4','usuario4',1,1,'https://www.eleconomista.com.mx/export/sites/eleconomista/arte/avatar-usuario-generico.png');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -344,4 +330,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-12 15:28:45
+-- Dump completed on 2019-02-16 18:20:39

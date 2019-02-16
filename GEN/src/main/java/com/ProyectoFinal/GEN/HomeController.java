@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import datos.AccionRiesgoDatos;
 import datos.riesgoDatos;
 import datos.tipoRiesgoDatos;
 import modelo.Usuario;
@@ -37,6 +38,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
 		model.addAttribute("ries",riesgoDatos.mostrarTodosRiesgos());
+		model.addAttribute("accs",AccionRiesgoDatos.mostrarAccRie());
 		return "home";
 	}
 	/**
@@ -117,4 +119,6 @@ public class HomeController {
 		String ir="ayuda";
 		return ir; 
 	}
+
+	
 }

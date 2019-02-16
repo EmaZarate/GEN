@@ -91,6 +91,17 @@ public class LoginController {
 	
 	@RequestMapping(value = "/habilitarUsuarios", method = RequestMethod.GET)
 	public String habilitarUsuarios(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj) {
+		if(sesion.getAttribute("usuario")==null) 
+		{
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
+		Usuario usuh=(Usuario)sesion.getAttribute("usuario");
+		boolean tipousu=usuh.getHabilitado();
+		if(tipousu) {
+			model.addAttribute("usu", new Usuario());
+			return "login";
+		}
 		model.addAttribute("usus",usuarioDatos.mostrarInhab());
 		model.addAttribute("msj", msj);
 		return "habilitarUsuarios";
