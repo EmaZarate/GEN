@@ -37,7 +37,7 @@ CREATE TABLE `accion` (
   KEY `usu_alta_acc_idx` (`id_usualta_acc`),
   CONSTRAINT `tipo_acc` FOREIGN KEY (`id_tipo_accion`) REFERENCES `tipo_accion` (`id_tipo_Accion`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `usu_alta_acc` FOREIGN KEY (`id_usualta_acc`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `accion` (
 
 LOCK TABLES `accion` WRITE;
 /*!40000 ALTER TABLE `accion` DISABLE KEYS */;
-INSERT INTO `accion` VALUES (1,3,'Llamado a bomberos para que apaguen el incendio','Envio bomberos',15,'2019-02-16 15:59:42','Iniciado',-60.670742000000000000000000000000,-32.939920000000000000000000000000),(2,3,'Envio de escuadron para que investigue causas de incendio o eventos naturales','Envio escuadron de investigacion',15,'2019-02-16 16:00:11','Iniciado',-60.681570000000000000000000000000,-32.953957000000000000000000000000),(3,2,'Reparto de agua potable para la población','Reparto de agua potabe',16,'2019-02-16 16:05:57','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(4,1,'Envio de equipo de limpieza para ayudar a tareas de mantenimiento en los hogares','Equipo de limpieza',16,'2019-02-16 16:06:26','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(5,3,'Envio de efectivos policiales','Envio policia',16,'2019-02-16 16:07:02','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(6,3,'Reparación de antenas','Reparación circuito electrico',17,'2019-02-16 17:21:40','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(7,1,'Reparación de tendido electrico','Reparación de cables de electricidad',17,'2019-02-16 17:22:01','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(8,3,'Envio de eambulancia','Envio Ambulancia',17,'2019-02-16 17:22:21','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000);
+INSERT INTO `accion` VALUES (1,3,'Llamado a bomberos para que apaguen el incendio','Envio bomberos',15,'2019-02-16 15:59:42','Iniciado',-60.670742000000000000000000000000,-32.939920000000000000000000000000),(2,3,'Envio de escuadron para que investigue causas de incendio o eventos naturales','Envio escuadron de investigacion',15,'2019-02-16 16:00:11','Iniciado',-60.681570000000000000000000000000,-32.953957000000000000000000000000),(3,2,'Reparto de agua potable para la población','Reparto de agua potabe',16,'2019-02-16 16:05:57','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(4,1,'Envio de equipo de limpieza para ayudar a tareas de mantenimiento en los hogares','Equipo de limpieza',16,'2019-02-16 16:06:26','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(5,3,'Envio de efectivos policiales','Envio policia',16,'2019-02-16 16:07:02','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(6,3,'Reparación de antenas','Reparación circuito electrico',17,'2019-02-16 17:21:40','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(7,1,'Reparación de tendido electrico','Reparación de cables de electricidad',17,'2019-02-16 17:22:01','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(8,3,'Envio de eambulancia','Envio Ambulancia',17,'2019-02-16 17:22:21','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000),(9,1,'Prefectura naval','Envio prefectura naval',1,'2019-02-17 19:36:30','Iniciado',0.000000000000000000000000000000,0.000000000000000000000000000000);
 /*!40000 ALTER TABLE `accion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,7 +71,7 @@ CREATE TABLE `accion_riesgo` (
   KEY `acc_idx` (`id_accion`),
   CONSTRAINT `acc` FOREIGN KEY (`id_accion`) REFERENCES `accion` (`id_accion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `rie` FOREIGN KEY (`id_riesgo`) REFERENCES `riesgos` (`id_riesgo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,7 +80,7 @@ CREATE TABLE `accion_riesgo` (
 
 LOCK TABLES `accion_riesgo` WRITE;
 /*!40000 ALTER TABLE `accion_riesgo` DISABLE KEYS */;
-INSERT INTO `accion_riesgo` VALUES (1,1,1,'Envio de bomberos 15/02/219',15,'2019-02-16 16:00:37',-32.937813000000000000000000000000,-60.667310000000000000000000000000),(2,1,2,'Escuadron que investigara cual fue la causa del incendio',15,'2019-02-16 16:03:26',-32.937130000000000000000000000000,-60.667510000000000000000000000000),(3,2,4,'Limpieza de 40 casas afectadas',16,'2019-02-16 16:07:21',-32.954666000000000000000000000000,-60.624220000000000000000000000000),(4,2,3,'Reparto de 400 bidones de agua ya que el servicio se encuentra cortado',16,'2019-02-16 16:07:52',-32.955612000000000000000000000000,-60.622690000000000000000000000000),(5,2,5,'Envio de policia a custodiar casas abandonadas por el ingreso de agua',16,'2019-02-16 16:08:10',-32.954315000000000000000000000000,-60.623974000000000000000000000000),(6,4,7,'Reparación de antena donde cayo el rayo',17,'2019-02-16 17:22:51',-32.942730000000000000000000000000,-60.651043000000000000000000000000),(7,4,6,'Reparación de tendido eléctrico que dejo de funcionar por la caida de un rayo',17,'2019-02-16 17:23:24',-32.943214000000000000000000000000,-60.651882000000000000000000000000);
+INSERT INTO `accion_riesgo` VALUES (1,1,1,'Envio de bomberos 15/02/219',15,'2019-02-16 16:00:37',-32.937813000000000000000000000000,-60.667310000000000000000000000000),(2,1,2,'Escuadron que investigara cual fue la causa del incendio',15,'2019-02-16 16:03:26',-32.937130000000000000000000000000,-60.667510000000000000000000000000),(3,2,4,'Limpieza de 40 casas afectadas',16,'2019-02-16 16:07:21',-32.954666000000000000000000000000,-60.624220000000000000000000000000),(4,2,3,'Reparto de 400 bidones de agua ya que el servicio se encuentra cortado',16,'2019-02-16 16:07:52',-32.955612000000000000000000000000,-60.622690000000000000000000000000),(5,2,5,'Envio de policia a custodiar casas abandonadas por el ingreso de agua',16,'2019-02-16 16:08:10',-32.954315000000000000000000000000,-60.623974000000000000000000000000),(6,4,7,'Reparación de antena donde cayo el rayo',17,'2019-02-16 17:22:51',-32.942730000000000000000000000000,-60.651043000000000000000000000000),(7,4,6,'Reparación de tendido eléctrico que dejo de funcionar por la caida de un rayo',17,'2019-02-16 17:23:24',-32.943214000000000000000000000000,-60.651882000000000000000000000000),(9,5,1,'Envio de bomberos a rescatar gente atrapada',1,'2019-02-17 18:28:50',-32.966370000000000000000000000000,-60.647995000000000000000000000000),(10,5,5,'A proteger el area',1,'2019-02-17 18:29:11',-32.966152000000000000000000000000,-60.649113000000000000000000000000),(11,5,8,'A atender heridos',1,'2019-02-17 18:29:31',-32.967037000000000000000000000000,-60.648106000000000000000000000000),(18,5,4,'Limpieza de derrumbe',1,'2019-02-17 19:33:41',-32.967037000000000000000000000000,-60.648533000000000000000000000000),(19,6,9,'Envio de prefectura al rescate de sobrevivientes',1,'2019-02-17 19:36:48',-32.949562000000000000000000000000,-60.616764000000000000000000000000);
 /*!40000 ALTER TABLE `accion_riesgo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +191,7 @@ CREATE TABLE `riesgos` (
   CONSTRAINT `riesgo_ciudad` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tipo_riesgo` FOREIGN KEY (`tipo_riesgo`) REFERENCES `tipo_riesgo` (`id_tipo`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `usu_alta_rie` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Tabla principal de riesgos';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Tabla principal de riesgos';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +200,7 @@ CREATE TABLE `riesgos` (
 
 LOCK TABLES `riesgos` WRITE;
 /*!40000 ALTER TABLE `riesgos` DISABLE KEYS */;
-INSERT INTO `riesgos` VALUES (1,'Incendio Casa','2019-02-16 15:58:41',NULL,'Iniciado',4,15,'Incendio en casa en Rosario crespo 519 ',1111,21,'https://www.yaencontre.com/noticias/wp-content/uploads/2017/04/BL_Abr_22.jpg',-32.936737000000000000000000000000,-60.667137000000000000000000000000,'red',75),(2,'Desborde rio Parana','2019-02-16 16:05:25',NULL,'Iniciado',2,16,'Desborde de rio Parana por lo que se inundo una zona amplia de casas',1111,21,'http://www.chacabuconoticias.com.ar/wp-content/uploads/2014/06/inundados.jpg',-32.954456000000000000000000000000,-60.623558000000000000000000000000,'blue',450),(3,'Calle cortada por arbol caido','2019-02-16 16:10:24',NULL,'Iniciado',8,17,'Avenida cortada por arbol en la calle',1111,21,'https://i2.wp.com/enteratecali.net/wp-content/uploads/2019/01/Emergencia-por-%C3%A1rbol-ca%C3%ADdo-llegando-a-la-Avenida-Roosevelt.jpeg?resize=800%2C445',-32.954456000000000000000000000000,-60.657375000000000000000000000000,'green',40),(4,'Rayo  - corte energia','2019-02-16 17:20:06',NULL,'Iniciado',7,17,'Rayo en balcon, dejho sin luz a 2 cuadras a la redonda',1111,3,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZCgKYi_rEZZKiCsSO7z_faAEOfjHkVuukgX0lRJP16dKtuDMByQ',-32.942795000000000000000000000000,-60.651250000000000000000000000000,'violet',40);
+INSERT INTO `riesgos` VALUES (1,'Incendio Casa','2019-02-16 15:58:41',NULL,'Iniciado',4,15,'Incendio en casa en Rosario crespo 519 ',1111,21,'https://www.yaencontre.com/noticias/wp-content/uploads/2017/04/BL_Abr_22.jpg',-32.936737000000000000000000000000,-60.667137000000000000000000000000,'red',75),(2,'Desborde rio Parana','2019-02-16 16:05:25',NULL,'Iniciado',2,16,'Desborde de rio Parana por lo que se inundo una zona amplia de casas',1111,21,'http://www.chacabuconoticias.com.ar/wp-content/uploads/2014/06/inundados.jpg',-32.954456000000000000000000000000,-60.623558000000000000000000000000,'blue',450),(3,'Calle cortada por arbol caido','2019-02-16 16:10:24',NULL,'Iniciado',8,17,'Avenida cortada por arbol en la calle',1111,21,'https://i2.wp.com/enteratecali.net/wp-content/uploads/2019/01/Emergencia-por-%C3%A1rbol-ca%C3%ADdo-llegando-a-la-Avenida-Roosevelt.jpeg?resize=800%2C445',-32.954456000000000000000000000000,-60.657375000000000000000000000000,'green',40),(4,'Rayo  - corte energia','2019-02-16 17:20:06',NULL,'Iniciado',7,17,'Rayo en balcon, dejho sin luz a 2 cuadras a la redonda',1111,3,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZCgKYi_rEZZKiCsSO7z_faAEOfjHkVuukgX0lRJP16dKtuDMByQ',-32.942795000000000000000000000000,-60.651250000000000000000000000000,'violet',40),(5,'Derrumbe edificio','2019-02-17 18:27:18',NULL,'Iniciado',8,1,'Derrumbe de edifico antiguo',1111,21,'https://album.mediaset.es/eimg/2017/07/19/XnASef0Bf8pJ5SjPBmjXa6.jpg',-32.966362000000000000000000000000,-60.648520000000000000000000000000,'grey',40),(6,'Choque lanchas','2019-02-17 19:35:56',NULL,'Iniciado',8,1,'Choque de 2 lanchas en el Rio Parana',1111,21,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzVKmFZP85AoV_8UpNci_N-1ry4ai6LFk-9WMxATPonFDJn9Vo',-32.948284000000000000000000000000,-60.617710000000000000000000000000,'orange',75);
 /*!40000 ALTER TABLE `riesgos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +220,7 @@ CREATE TABLE `tipo_accion` (
   PRIMARY KEY (`id_tipo_Accion`),
   KEY `usu_Alta_ta_idx` (`usu_alta_ta`),
   CONSTRAINT `usu_Alta_ta` FOREIGN KEY (`usu_alta_ta`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,7 +229,7 @@ CREATE TABLE `tipo_accion` (
 
 LOCK TABLES `tipo_accion` WRITE;
 /*!40000 ALTER TABLE `tipo_accion` DISABLE KEYS */;
-INSERT INTO `tipo_accion` VALUES (1,'Envio de equipos de rescate',1,'2019-02-16 15:55:44','Equipo de rescate'),(2,'Envio de proviciones',1,'2019-02-16 15:55:57','Proviciones'),(3,'Envio de servicios de emergencia como bomberos, policia, ambulancias, etc',1,'2019-02-16 15:56:22','Servicio de emergencia');
+INSERT INTO `tipo_accion` VALUES (1,'Envio de equipos de rescate',1,'2019-02-16 15:55:44','Equipo de rescate'),(2,'Envio de proviciones',1,'2019-02-16 15:55:57','Proviciones'),(3,'Envio de servicios de emergencia como bomberos, policia, ambulancias, etc',1,'2019-02-16 15:56:22','Servicio de emergencia'),(4,'Rescate de personas en general',1,'2019-02-17 19:43:08','Rescate de personas');
 /*!40000 ALTER TABLE `tipo_accion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,4 +330,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-16 18:20:39
+-- Dump completed on 2019-02-17 19:56:48

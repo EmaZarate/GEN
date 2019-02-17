@@ -41,6 +41,17 @@ public class HomeController {
 		model.addAttribute("accs",AccionRiesgoDatos.mostrarAccRie());
 		return "home";
 	}
+	@RequestMapping(value = "mapariesgos", method = RequestMethod.GET)
+	public String mapariesgos(Locale locale, Model model,HttpSession sesion) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("ries",riesgoDatos.mostrarTodosRiesgos());
+		model.addAttribute("accs",AccionRiesgoDatos.mostrarAccRie());
+		return "home";
+	}
 	/**
 	 * Radares
 	 */

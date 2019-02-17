@@ -47,3 +47,7 @@ body {
 separador{
 	border:5px;
 }
+
+.centrar{
+ margin:auto;
+}

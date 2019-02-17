@@ -11,8 +11,9 @@
   <h2 class="h1-responsive font-weight-bold text-center my-5">Alta de riesgo</h2>
   <!-- Section description -->
   <p class="text-center w-responsive mx-auto mb-5">En esta sección podrá ver paso a paso como dar de alta un riesgo en el <b>Sistema de Gestión de Emergencias Naturales (GEN)</b></p>
-
   <!-- Grid row -->
+  <hr class="my-5 separador"  style="height:3px" color="black">
+  
   <div class="row">
 
     <!-- Grid column -->
@@ -43,8 +44,7 @@
   </div>
   <!-- Grid row -->
 
-  <hr class="my-5 separador">
-
+  <hr class="my-5 separador"  style="height:3px" color="black">
   <!-- Grid row -->
   <div class="row">
 
@@ -81,8 +81,7 @@
 
   </div>
   <!-- Grid row -->
-
-  <hr class="my-5">
+  <hr class="my-5 separador"  style="height:3px" color="black">
 
   <!-- Grid row -->
   <div class="row">
@@ -118,7 +117,7 @@
   </div>
   <!-- Grid row -->
   
-  <hr class="my-5">
+  <hr class="my-5 separador"  style="height:3px" color="black">
 
   <!-- Grid row -->
   <div class="row">
@@ -145,7 +144,7 @@
 
       <!-- Featured image -->
       <div class="view overlay rounded z-depth-2">
-        <img class="img-fluid" src="resources/img/GEN/ubicacion.png" alt="Sample image">
+        <img class="img-fluid" src="resources/img/GEN/ubic.png" alt="Sample image">
         <a>
           <div class="mask rgba-white-slight"></div>
         </a>
@@ -157,7 +156,7 @@
   </div>
   <!-- Grid row -->
 
-  <hr class="my-5">
+  <hr class="my-5 separador"  style="height:3px" color="black">
 
   <!-- Grid row -->
   <div class="row">
@@ -193,7 +192,7 @@
   </div>
   <!-- Grid row -->
 
-<hr class="my-5">
+  <hr class="my-5 separador"  style="height:3px" color="black">
 
   <!-- Grid row -->
   <div class="row">
@@ -220,7 +219,7 @@
 
       <!-- Featured image -->
       <div class="view overlay rounded z-depth-2">
-        <img class="img-fluid" src="resources/img/GEN/visor.png" alt="Sample image">
+        <img class="img-fluid" src="resources/img/GEN/map-rie.png" alt="Sample image">
         <a>
           <div class="mask rgba-white-slight"></div>
         </a>

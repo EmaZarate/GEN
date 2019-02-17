@@ -87,7 +87,9 @@ public class RiesgoController {
 			rie.setId_usuario(usu.getIdusuario());
 			rie.setEstado("Iniciado");
 			riesgoDatos.nuevoRiesgo(rie);
-			ir="mapaInteractivo";
+			model.addAttribute("ries",riesgoDatos.mostrarTodosRiesgos());
+			model.addAttribute("accs",AccionRiesgoDatos.mostrarAccRie());
+			ir="home";
 		}
 		return ir;
 	}
@@ -224,8 +226,9 @@ public class RiesgoController {
 		return "login";
 	}
 	riesgoDatos.modificarRie(rie);
-		return "mapaInteractivo";
-	}
+	model.addAttribute("ries",riesgoDatos.mostrarTodosRiesgos());
+	model.addAttribute("accs",AccionRiesgoDatos.mostrarAccRie());
+	return "home";	}
 	
 	@RequestMapping(value = "/verRiesgo", method = RequestMethod.GET)
 	public String verRiesgo(Locale locale, Model model, HttpSession sesion, @RequestParam(required = false) String msj,@RequestParam int id, @RequestParam(required = false) String error) {
@@ -370,7 +373,7 @@ public class RiesgoController {
 		accrie.setIdriesgo(idRie);
 		model.addAttribute("rie",riesgo);
 		model.addAttribute("accrie",accrie);
-		model.addAttribute("accs", AccionDatos.mostrarAcciones(usuh.getIdusuario()) );
+		model.addAttribute("accs", AccionDatos.mostrarTodAcciones());
 		return "riesgoAcciones";
 	}
 	
@@ -391,6 +394,8 @@ public class RiesgoController {
 		}
 		accrie.setId_usualta(usuh.getIdusuario());
 		AccionRiesgoDatos.nuevoAR(accrie);
+		model.addAttribute("ries",riesgoDatos.mostrarTodosRiesgos());
+		model.addAttribute("accs",AccionRiesgoDatos.mostrarAccRie());
 		return "home";
 	}
 
@@ -410,6 +415,7 @@ public class RiesgoController {
 			return "login";
 		}
 		model.addAttribute("ries",AccionRiesgoDatos.eliminarAccRie(id));
-		return "mapaInteractivo";
-	}
+		model.addAttribute("ries",riesgoDatos.mostrarTodosRiesgos());
+		model.addAttribute("accs",AccionRiesgoDatos.mostrarAccRie());
+		return "home";	}
 }

@@ -174,6 +174,43 @@ public class AccionDatos {
 			}
 			return resp;	
 		}
+		
+		
+		public static  List<Accion> mostrarTodAcciones() {
+			Connection conn = null;
+			List<Accion> accs=new ArrayList<Accion>();
+			try {
+				conn = conexion.getConnection();
+				conn.setAutoCommit(false);
+				PreparedStatement pst = 
+				conn.prepareStatement("SELECT accion.*,tipo_accion.nombre FROM accion\r\n" + 
+						"INNER JOIN tipo_Accion ON accion.id_tipo_accion=tipo_accion.id_tipo_Accion\r\n" +  
+						"WHERE estado<>'Cancelado'");
+				ResultSet rs=pst.executeQuery();
+				while(rs.next())
+					{                           
+					Accion acc=new Accion();
+					acc.setId_accion(rs.getInt("id_Accion"));
+					acc.setNombre(rs.getString("nombre"));
+					acc.setFecha_alta(rs.getDate("fecha_alta"));
+					acc.setEstado(rs.getString("estado"));
+					acc.setId_usualta_acc(rs.getInt("id_usualta_acc"));
+					acc.setDescripcion(rs.getString("descripcion"));
+					acc.setLatitud(rs.getFloat("latitud"));
+					acc.setLongitud(rs.getFloat("longitud"));
+						TipoAccion ta = new TipoAccion();
+						ta.setNombre(rs.getString("nombre"));
+						ta.setIdTipo_accion(rs.getInt("id_tipo_Accion"));
+					acc.setTa(ta);
+					accs.add(acc);
+					}
+				conn.close();
+			} 
+			catch (SQLException e) {System.out.println(e.toString());}
+			finally {if(conn!=null)	try {conn.close();} catch (SQLException e) {System.out.println(e.toString());}
+			}
+			return accs;
+		}
 }
 
 
